@@ -53,23 +53,31 @@ nav ul li a:hover {
 /* Hero Section (usada en galeria.php) */
 .hero {
     background: url('../images/whitebg.jpg') no-repeat center center/cover;
-    color: #333; /* Cambiado a gris oscuro para contraste */
+    color: #333; /* Cambiadas las letras a gris oscuro para contraste */
     padding: 100px 20px;
     text-align: center;
     background-color: #fff; /* Fondo blanco por si la imagen no carga */
 }
 
+/* SECCIÓN NUESTRA GALERÍA */
+.hero {
+    background: #4a4a4a; /* FONDO DE LA SECCIÓN NUESTRA GALERÍA */
+    color: #fff;
+    padding: 20px 20px;
+    text-align: center;
+}
+
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #333; /* Aseguramos que el título sea visible */
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #000000; /* Asegurando que el título NUESTRA GALERÍA sea visible */
 }
 
 .hero p {
     font-size: 1.2rem;
     max-width: 800px;
     margin: 0 auto;
-    color: #555; /* Gris más claro para el párrafo */
+    color: #000000; /* Gris más claro para el párrafo */
 }
 
 /* Contenido centrado (primera parte de index.php) */

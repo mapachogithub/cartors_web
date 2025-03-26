@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="images/galeria2.jpg" alt="Mantenimiento de Equipos">
+                <img src="images/galeria2recut.jpg" alt="Mantenimiento de Equipos">
                 <div class="overlay">
                     <h3>Mantenimiento de Equipos</h3>
                     <p>Servicios de mantenimiento para equipos industriales.</p>
