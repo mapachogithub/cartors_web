@@ -1,0 +1,6 @@
+sección en blanco encerrada:
+
+<section class="centrado">
+    <h1>TÍTULO DE LA SECCIÓN</h1>
+    <p>Párrafo de la sección</p>
+</section>

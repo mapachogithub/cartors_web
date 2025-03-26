@@ -1,0 +1,30 @@
+ESTRUCTURA DEL PROYECTO
+
+cartors_web/
+│
+├── css/
+│   └── styles.css
+│
+├── js/
+│   └── scripts.js
+│
+├── images/
+│   └── logo.png
+│
+├── includes/
+│   ├── db.php          (Conexión a la base de datos)
+│   └── funciones.php   (Funciones comunes)
+│
+├── clientes/
+│   ├── registro.php
+│   ├── cotizacion.php
+│   └── facturas.php
+│
+├── administracion/
+│   ├── clientes.php
+│   ├── proyectos.php
+│   └── facturacion.php
+│
+├── index.php
+├── galeria.php
+└── README.md

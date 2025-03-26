@@ -1,0 +1,362 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1); /* Fondo vívido degradado */
+    color: #333;
+    min-height: 100vh; /* Asegura que el fondo cubra toda la página */
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centra todo el contenido horizontalmente */
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+}
+
+header .logo {
+    flex: 0 0 auto; /* Evita que el logo crezca o se encoja */
+}
+
+header .logo img {
+    height: 80px;
+    display: block;
+    margin: 0 auto; /* Centra el logo dentro de su contenedor */
+}
+
+nav {
+    flex: 0 0 auto; /* Evita que el nav crezca o se encoja */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centra las pestañas horizontalmente */
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #0073e6;
+}
+
+/* Hero Section */
+.hero {
+    background: no-repeat center center/cover;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Contenido centrado (primera parte de la página) */
+.centrado {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.centrado h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.centrado p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Estilo para la imagen de bienvenida */
+.welcome-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcome-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo del modal para la imagen ampliada */
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1002;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.close-image {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.close-image:hover {
+    color: #0073e6;
+}
+
+/* Sección Cartor's (segunda parte de la página) */
+.cartors-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cartors-container h2 {
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.cartors-container p {
+    line-height: 1.6;
+    color: #666;
+    text-align: justify;
+}
+
+/* Lista de servicios */
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.services-list li {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Galería dentro de cartors-container */
+.cartors-container .gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cartors-container .gallery img {
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.cartors-container .gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo del botón flotante */
+.login-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    background: #34495e;
+}
+
+/* Estilo del modal de login */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}
+
+.modal-content {
+    background: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #34495e;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+
+.close:hover {
+    color: #0073e6;
+}
+
+/* Galería (versión original para galeria.php) */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+    background-color: #fff;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 20px;
+    transition: bottom 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    bottom: 0;
+}
+
+.overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #0073e6;
+}
+
+.overlay p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+}
+
+footer .social-icons {
+    margin-top: 10px;
+}
+
+footer .social-icons a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+    color: #0073e6;
+}
