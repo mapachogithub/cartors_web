@@ -3,9 +3,9 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1); /* Fondo vívido degradado */
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
     color: #333;
-    min-height: 100vh; /* Asegura que el fondo cubra toda la página */
+    min-height: 100vh;
 }
 
 /* Header */
@@ -14,23 +14,18 @@ header {
     color: #fff;
     padding: 20px;
     display: flex;
-    justify-content: center; /* Centra todo el contenido horizontalmente */
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
 }
 
 header .logo {
-    flex: 0 0 auto; /* Evita que el logo crezca o se encoja */
+    margin-bottom: 15px;
 }
 
 header .logo img {
     height: 80px;
     display: block;
-    margin: 0 auto; /* Centra el logo dentro de su contenedor */
-}
-
-nav {
-    flex: 0 0 auto; /* Evita que el nav crezca o se encoja */
+    margin: 0 auto;
 }
 
 nav ul {
@@ -38,8 +33,7 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center; /* Centra las pestañas horizontalmente */
-    align-items: center;
+    justify-content: center;
 }
 
 nav ul li {
@@ -56,11 +50,11 @@ nav ul li a:hover {
     color: #0073e6;
 }
 
-/* Hero Section */
+/* Hero Section (usada en galeria.php) */
 .hero {
-    background: no-repeat center center/cover;
+    background: url('../images/whitebg.jpg') no-repeat center center/cover;
     color: #fff;
-    padding: 30px 20px;
+    padding: 100px 20px;
     text-align: center;
 }
 
@@ -75,7 +69,7 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
-/* Contenido centrado (primera parte de la página) */
+/* Contenido centrado (primera parte de index.php) */
 .centrado {
     text-align: center;
     max-width: 800px;
@@ -96,7 +90,7 @@ nav ul li a:hover {
     color: #555;
 }
 
-/* Estilo para la imagen de bienvenida */
+/* Estilo para la imagen de bienvenida (index.php) */
 .welcome-image {
     width: 200px;
     height: auto;
@@ -112,7 +106,7 @@ nav ul li a:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilo del modal para la imagen ampliada */
+/* Estilo del modal para la imagen ampliada (index.php) */
 .image-modal {
     display: none;
     position: fixed;
@@ -145,7 +139,7 @@ nav ul li a:hover {
     color: #0073e6;
 }
 
-/* Sección Cartor's (segunda parte de la página) */
+/* Sección Cartor's (segunda parte de index.php) */
 .cartors-container {
     max-width: 800px;
     margin: 20px auto;
@@ -167,7 +161,7 @@ nav ul li a:hover {
     text-align: justify;
 }
 
-/* Lista de servicios */
+/* Lista de servicios (index.php) */
 .services-list {
     list-style: none;
     padding: 0;
@@ -191,7 +185,7 @@ nav ul li a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Galería dentro de cartors-container */
+/* Galería dentro de cartors-container (index.php) */
 .cartors-container .gallery {
     display: flex;
     justify-content: space-between;
@@ -210,7 +204,73 @@ nav ul li a:hover {
     transform: scale(1.05);
 }
 
-/* Estilo del botón flotante */
+/* Galería (galeria.php) */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff; /* Fondo blanco para las imágenes */
+    height: 300px; /* Tamaño fijo para uniformidad */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que las imágenes se ajusten al contenedor */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1); /* Efecto de ampliación al pasar el mouse */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1; /* Muestra el overlay al pasar el mouse */
+}
+
+.overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #0073e6;
+    font-weight: bold;
+}
+
+.overlay p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Estilo del botón flotante (index.php) */
 .login-btn {
     position: fixed;
     top: 20px;
@@ -223,14 +283,13 @@ nav ul li a:hover {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    text-decoration: none;
 }
 
 .login-btn:hover {
     background: #34495e;
 }
 
-/* Estilo del modal de login */
+/* Estilo del modal de login (index.php) */
 .modal {
     display: none;
     position: fixed;
@@ -283,66 +342,12 @@ nav ul li a:hover {
     color: #0073e6;
 }
 
-/* Galería (versión original para galeria.php) */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 40px 20px;
-    background-color: #fff;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.gallery-item img {
-    width: 100%;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-.overlay {
-    position: absolute;
-    bottom: -100%;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    padding: 20px;
-    transition: bottom 0.3s ease;
-}
-
-.gallery-item:hover .overlay {
-    bottom: 0;
-}
-
-.overlay h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #0073e6;
-}
-
-.overlay p {
-    margin: 10px 0 0;
-    font-size: 1rem;
-    color: #555;
-}
-
 /* Footer */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    position: relative;
     width: 100%;
 }
 

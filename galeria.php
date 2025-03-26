@@ -22,6 +22,7 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <section class="hero">
             <h1>Nuestra Galería</h1>
@@ -59,14 +60,16 @@
             </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2023 Cartor's SAS. Todos los derechos reservados.</p>
+        <p>© <?php echo date("Y"); ?> Cartor's SAS. Todos los derechos reservados.</p>
         <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </footer>
+
     <script src="js/scripts.js"></script>
 </body>
 </html>
