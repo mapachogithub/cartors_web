@@ -84,7 +84,7 @@ include('includes/db.php');
 
     <section class="centrado">
     <h1>TÍTULO DE LA SECCIÓN</h1>
-    <p>Párrafo de la sección</p>
+    <p>Párrafo de la sección de prueba</p>
     </section>
 
     <!-- Footer -->
