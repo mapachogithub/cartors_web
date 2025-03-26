@@ -58,6 +58,20 @@
                     <p>Soluciones a medida para cada necesidad.</p>
                 </div>
             </div>
+            <div class="gallery-item">
+                <img src="images/galeria4.jpg" alt="Proyectos Personalizados">
+                <div class="overlay">
+                    <h3>Proyectos Personalizados</h3>
+                    <p>Soluciones a medida para cada necesidad.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/galeria4.jpg" alt="Proyectos Personalizados">
+                <div class="overlay">
+                    <h3>Proyectos Personalizados</h3>
+                    <p>Soluciones a medida para cada necesidad.</p>
+                </div>
+            </div>
         </section>
     </main>
 
