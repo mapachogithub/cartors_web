@@ -1,10 +1,3 @@
-<?php
-$errorMessage = '';
-if (isset($_GET["error"]) && $_GET["error"] == 1) {
-    $errorMessage = "Credenciales incorrectas. Por favor, intenta de nuevo.";
-}
-include('includes/db.php');
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,32 +14,16 @@ include('includes/db.php');
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">Inicio</a></li>
+                <li><a href="index.html">Inicio</a></li>
                 <li><a href="clientes/registro.php">Clientes</a></li>
-                <li><a href="administracion/clientes.php">Administración</a></li>
+                <li><a href="contactenos.html">Contáctenos</a></li>
                 <li><a href="galeria.php">Galería</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Botón flotante de inicio de sesión -->
-    <button class="login-btn" onclick="showLoginModal()">Iniciar Sesión</button>
-
-    <!-- Modal o config del botón de Login -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="hideLoginModal()">×</span>
-            <h2>Iniciar Sesión</h2>
-            <form method="POST" action="login.php">
-                <input type="text" name="username" placeholder="Usuario" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
-                <button type="submit">Acceder</button>
-                <?php if ($errorMessage): ?>
-                    <p id="error-msg" style="color: red;"><?php echo $errorMessage; ?></p>
-                <?php endif; ?>
-            </form>
-        </div>
-    </div>
+    <!-- Botón flotante de inicio de sesión como enlace -->
+    <a href="loginstarpage.html" class="login-btn">Iniciar Sesión</a>
 
     <!-- Contenido principal -->
     <main>
@@ -54,7 +31,7 @@ include('includes/db.php');
         <section class="centrado">
             <h1>Bienvenido a Cartor's SAS</h1>
             <p>Cartor’s SAS es una empresa dedicada a la instalación y mantenimiento de cocinas y equipos industriales, así como a la instalación, mantenimiento y certificación de parques para niños de la compañía Soft Play.</p>
-            <img src="images/FOTO1WELCOME.jpg" alt="Imagen de bienvenida" class="welcome-image" onclick="showImageModal(this.src)">
+            <img src="images/FOTO1WELCOME.jpg" alt="Imagen de bienvenida" class="welcome-image index-image" onclick="showImageModal(this.src)">
         </section>
         <!-- Config para la imagen ampliada de la bienvenida -->
         <div id="imageModal" class="image-modal">
@@ -75,21 +52,21 @@ include('includes/db.php');
 
             <!-- Galería de imágenes -->
             <div class="gallery">
-                <img src="img_descargadas/cocinas1.jpg" alt="Cocina Industrial 1" loading="lazy">
-                <img src="img_descargadas/cocinas2.jpg" alt="Cocina Industrial 2" loading="lazy">
-                <img src="img_descargadas/parques1.jpg" alt="Parque Infantil" loading="lazy">
+                <img src="img_descargadas/cocinas1.jpg" alt="Cocina Industrial 1" class="index-image" loading="lazy">
+                <img src="img_descargadas/cocinas2.jpg" alt="Cocina Industrial 2" class="index-image" loading="lazy">
+                <img src="img_descargadas/parques1.jpg" alt="Parque Infantil" class="index-image" loading="lazy">
             </div>
         </section>
     </main>
 
     <section class="centrado">
-    <h1>TÍTULO DE LA SECCIÓN</h1>
-    <p>Parrafo de la sección de prueba</p>
+        <h1>TÍTULO DE LA SECCIÓN</h1>
+        <p>Parrafo de la sección de prueba</p>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© <?php echo date("Y"); ?> Cartor's SAS. Todos los derechos reservados.</p>
+        <p>© 2025 Cartor's SAS. Todos los derechos reservados.</p>
         <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -97,7 +74,7 @@ include('includes/db.php');
         </div>
     </footer>
 
-<!-- Scripts -->
-<script src="js/scripts.js"></script>
+    <!-- Scripts -->
+    <script src="js/scripts.js"></script>
 </body>
 </html>
