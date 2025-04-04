@@ -1,4 +1,5 @@
-/* Estilos generales */
+/* ---------------------------------------------------------------------
+Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -8,7 +9,8 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
+/* ---------------------------------------------------------------------
+Header estilos */
 header {
     background-color: #333;
     color: #fff;
@@ -50,37 +52,10 @@ nav ul li a:hover {
     color: #0073e6;
 }
 
-/* Hero Section (usada en galeria.php) */
-.hero {
-    background: url('../images/whitebg.jpg') no-repeat center center/cover;
-    color: #333; /* Cambiadas las letras a gris oscuro para contraste */
-    padding: 100px 20px;
-    text-align: center;
-    background-color: #fff; /* Fondo blanco por si la imagen no carga */
-}
+/* ---------------------------------------------------------------------
+index.html estilos */
 
-/* SECCIÓN NUESTRA GALERÍA */
-.hero {
-    background: #4a4a4a; /* FONDO DE LA SECCIÓN NUESTRA GALERÍA */
-    color: #fff;
-    padding: 20px 20px;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #000000; /* Asegurando que el título NUESTRA GALERÍA sea visible */
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #000000; /* Gris más claro para el párrafo */
-}
-
-/* Contenido centrado (primera parte de index.php) */
+/* Contenido centrado (primera parte de index.html) */
 .centrado {
     text-align: center;
     max-width: 800px;
@@ -101,7 +76,7 @@ nav ul li a:hover {
     color: #555;
 }
 
-/* Estilo para la imagen de bienvenida (index.php) */
+/* Estilo para la imagen de bienvenida (index.html) */
 .welcome-image {
     width: 200px;
     height: auto;
@@ -117,7 +92,7 @@ nav ul li a:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilo del modal para la imagen ampliada (index.php) */
+/* Estilo del modal para la imagen ampliada (index.html) */
 .image-modal {
     display: none;
     position: fixed;
@@ -150,7 +125,7 @@ nav ul li a:hover {
     color: #0073e6;
 }
 
-/* Sección Cartor's (segunda parte de index.php) */
+/* Sección Cartor's (segunda parte de index.html) */
 .cartors-container {
     max-width: 800px;
     margin: 20px auto;
@@ -172,7 +147,7 @@ nav ul li a:hover {
     text-align: justify;
 }
 
-/* Lista de servicios (index.php) */
+/* Lista de servicios (index.html) */
 .services-list {
     list-style: none;
     padding: 0;
@@ -196,7 +171,7 @@ nav ul li a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Galería dentro de cartors-container (index.php) */
+/* Galería dentro de cartors-container (index.html) */
 .cartors-container .gallery {
     display: flex;
     justify-content: space-between;
@@ -218,10 +193,106 @@ nav ul li a:hover {
 /* Estilo específico para imágenes de index.html */
 .index-image {
     background: none; /* Asegura que no hereden un fondo no deseado */
-    /* Si quieres un fondo específico, puedes definirlo aquí, como: background-color: #fff; */
 }
 
-/* Galería (galeria.php) */
+/* Estilo del botón flotante (index.html) */
+.login-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    background: #34495e;
+}
+
+/* Estilo del modal de login (index.html) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}
+
+.modal-content {
+    background: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #34495e;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+
+.close:hover {
+    color: #0073e6;
+}
+
+/* ---------------------------------------------------------------------
+galeria.html estilos */
+
+/* Hero Section (usada en galeria.html) */
+.hero {
+    background: #4a4a4a; /* Fondo de la sección Nuestra Galería */
+    color: #fff;
+    padding: 100px 20px; /* Restaurado a 100px como en el diseño original */
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #000000; /* Negro para contraste */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #000000; /* Negro para contraste */
+}
+
+/* Galería (galeria.html) */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -287,110 +358,13 @@ nav ul li a:hover {
     color: #555;
 }
 
-/* Estilo del botón flotante (index.php) */
-.login-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    background: #2c3e50;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    text-decoration: none; /* Añadido para el enlace */
-}
-
-.login-btn:hover {
-    background: #34495e;
-}
-
-/* Estilo del modal de login (index.php) */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1001;
-}
-
-.modal-content {
-    background: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    width: 300px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.modal-content button {
-    padding: 10px 20px;
-    background: #2c3e50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal-content button:hover {
-    background: #34495e;
-}
-
-.close {
-    float: right;
-    cursor: pointer;
-    font-size: 24px;
-    color: #333;
-}
-
-.close:hover {
-    color: #0073e6;
-}
-
-/* Footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    width: 100%;
-}
-
-footer .social-icons {
-    margin-top: 10px;
-}
-
-footer .social-icons a {
-    color: #fff;
-    margin: 0 10px;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-footer .social-icons a:hover {
-    color: #0073e6;
-}
-
-/* ----------------------------------------------------------------------
-loginstarpage.html styles */
+/* ---------------------------------------------------------------------
+loginstarpage.html estilos */
 
 /* Importar la fuente Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap');
 
-/* Estilos generales */
+/* Estilos generales para loginstarpage */
 *,
 *::after,
 *::before {
@@ -433,7 +407,7 @@ a:hover::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('../images/wallpaperdarkindistries.jpg') center;
+    background: url('../images/wallpaperdarkindustries.jpg') center; /* Corregido typo */
     background-size: cover;
     color: #fff;
 }
@@ -471,7 +445,7 @@ h2 {
     pointer-events: none;
     font-size: 1em;
     transition: .5s;
-    color: #fff; /* Añadido para visibilidad */
+    color: #fff;
 }
 
 .input-box input:valid ~ label,
@@ -495,7 +469,7 @@ h2 {
     right: 8px;
     font-size: 1.4em;
     line-height: 45px;
-    color: #fff; /* Añadido para visibilidad */
+    color: #fff;
 }
 
 .remember-forgot {
@@ -515,7 +489,7 @@ button {
     background: white;
     color: black;
     transition: .3s;
-    cursor: pointer; /* Añadido para mejor UX */
+    cursor: pointer;
 }
 
 button:hover {
@@ -531,15 +505,13 @@ button:hover {
         width: 100%;
         height: 100vh;
         border: none;
-        border-radius: 0; /* Corregido de 'none' a '0' */
+        border-radius: 0;
     }
 }
-
 
 /* ---------------------------------------------------------------------
 contactenos.html estilos */
 
-/* Estilos para contactenos.html */
 .contact-section {
     min-height: 100vh;
     display: flex;
@@ -695,13 +667,12 @@ contactenos.html estilos */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* -----------------------------------------------
-clientes.html styles */
+/* ---------------------------------------------------------------------
+clientes.html estilos */
 
-/* Estilos para clientes.html */
 .clients-section {
     background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
-    padding: 60px 20px; /* Más espacio vertical */
+    padding: 60px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -715,7 +686,7 @@ clientes.html styles */
 }
 
 .clients-container h1 {
-    font-size: 3rem; /* Título más grande */
+    font-size: 3rem;
     color: #333;
     margin-bottom: 20px;
     font-family: 'Arial', sans-serif;
@@ -723,7 +694,7 @@ clientes.html styles */
 }
 
 .clients-container > p {
-    font-size: 1.4rem; /* Subtítulo más grande */
+    font-size: 1.4rem;
     color: #666;
     margin-bottom: 50px;
     max-width: 800px;
@@ -737,10 +708,10 @@ clientes.html styles */
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     padding: 30px;
-    margin: 30px auto; /* Espacio entre tarjetas */
-    max-width: 700px; /* Tarjetas más grandes */
-    width: 90%; /* Ajuste para pantallas pequeñas */
-    text-align: center; /* Centrar todo dentro de la tarjeta */
+    margin: 30px auto;
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -751,25 +722,25 @@ clientes.html styles */
 
 .client-card img {
     width: 100%;
-    max-width: 400px; /* Imágenes más grandes */
+    max-width: 400px;
     height: auto;
     border-radius: 15px;
     margin-bottom: 20px;
     object-fit: cover;
     display: block;
     margin-left: auto;
-    margin-right: auto; /* Centrar la imagen */
+    margin-right: auto;
 }
 
 .client-card h2 {
-    font-size: 2.2rem; /* Título más grande */
+    font-size: 2.2rem;
     color: #2c3e50;
     margin-bottom: 15px;
     text-align: center;
 }
 
 .client-card p {
-    font-size: 1.3rem; /* Texto más grande */
+    font-size: 1.3rem;
     color: #555;
     line-height: 1.6;
     text-align: center;
@@ -786,6 +757,32 @@ clientes.html styles */
     }
 
     .client-card {
-        margin: 30px 0; /* Espacio vertical en pantallas grandes */
+        margin: 30px 0;
     }
+}
+
+/* ---------------------------------------------------------------------
+Footer estilos */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+}
+
+footer .social-icons {
+    margin-top: 10px;
+}
+
+footer .social-icons a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+    color: #0073e6;
 }
