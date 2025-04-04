@@ -694,3 +694,98 @@ contactenos.html estilos */
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* -----------------------------------------------
+clientes.html styles */
+
+/* Estilos para clientes.html */
+.clients-section {
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    padding: 60px 20px; /* Más espacio vertical */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.clients-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+}
+
+.clients-container h1 {
+    font-size: 3rem; /* Título más grande */
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.clients-container > p {
+    font-size: 1.4rem; /* Subtítulo más grande */
+    color: #666;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.client-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin: 30px auto; /* Espacio entre tarjetas */
+    max-width: 700px; /* Tarjetas más grandes */
+    width: 90%; /* Ajuste para pantallas pequeñas */
+    text-align: center; /* Centrar todo dentro de la tarjeta */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.client-card img {
+    width: 100%;
+    max-width: 400px; /* Imágenes más grandes */
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; /* Centrar la imagen */
+}
+
+.client-card h2 {
+    font-size: 2.2rem; /* Título más grande */
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.client-card p {
+    font-size: 1.3rem; /* Texto más grande */
+    color: #555;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 768px) {
+    .clients-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .client-card {
+        margin: 30px 0; /* Espacio vertical en pantallas grandes */
+    }
+}
