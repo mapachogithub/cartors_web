@@ -13,12 +13,14 @@
     <title>Inicio de sesión</title>
   </head>
 
+  <a href="index.html" class="login-btn">Inicio</a>
+
   <body>
     <section class="login-section">
       <div class="login-container">
         <h2>Inicio de sesión</h2>
 
-        <form>
+        <form id="loginForm">
           <div class="input-box">
             <span class="icon">
               <i class="fa-solid fa-envelope"></i>
@@ -50,5 +52,34 @@
         </div>
       </div>
     </section>
+
+    <script>
+      // Definimos las credenciales correctas
+      const usuarioCorrecto = "12345";
+      const contraseñaCorrecta = "12345";
+
+      // Referenciamos el formulario y los campos de entrada
+      const formulario = document.getElementById("loginForm");
+      const inputEmail = document.getElementById("email");
+      const inputContraseña = document.getElementById("contraseña");
+
+      // Escuchamos el evento de submit del formulario
+      formulario.addEventListener("submit", function (evento) {
+        evento.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+
+        // Obtenemos los valores introducidos en los campos
+        const email = inputEmail.value;
+        const contraseña = inputContraseña.value;
+
+        // Comprobamos si el usuario y la contraseña son correctos
+        if (email === usuarioCorrecto && contraseña === contraseñaCorrecta) {
+          // Si es correcto, redirigimos a la página de administración
+          window.location.href = "administracion/admin.html";
+        } else {
+          // Si no es correcto, mostramos un mensaje de error
+          alert("Usuario o contraseña incorrectos.");
+        }
+      });
+    </script>
   </body>
 </html>
