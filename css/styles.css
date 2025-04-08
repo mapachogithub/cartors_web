@@ -1,10 +1,20 @@
 /* ---------------------------------------------------------------------
+Importación de fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap');
+
+/* ---------------------------------------------------------------------
 Estilos generales */
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave para enlaces de anclaje */
+}
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial', sans-serif; /* Por defecto para otras páginas */
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+    /* FONDO GENERAL (cambio tuyo) */
+    background: whitesmoke;
     color: #333;
     min-height: 100vh;
 }
@@ -12,7 +22,8 @@ body {
 /* ---------------------------------------------------------------------
 Header estilos */
 header {
-    background-color: #333;
+    /* Cambio tuyo: fondo negro */
+    background-color: black;
     color: #fff;
     padding: 20px;
     display: flex;
@@ -171,6 +182,16 @@ index.html estilos */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+.services-list li a {
+    color: #333; /* Color del texto del enlace */
+    text-decoration: none; /* Sin subrayado */
+    display: block; /* Para que todo el <li> sea clickable */
+}
+
+.services-list li a:hover {
+    color: #0073e6; /* Color azul al pasar el mouse, consistente con el sitio */
+}
+
 /* Galería dentro de cartors-container (index.html) */
 .cartors-container .gallery {
     display: flex;
@@ -268,12 +289,210 @@ index.html estilos */
     color: #0073e6;
 }
 
+/* Formulario de contacto (index.html) */
+.contact_form {	
+    width: 460px; 
+    height: auto;
+    margin: 80px auto;
+    border-radius: 10px;  
+    padding-top: 30px;
+    padding-bottom: 20px;  
+    background-color: #fbfbfb; 
+    padding-left: 30px; 
+}
+
+.formulario input {
+    background-color: #fbfbfb; 
+    width: 408px; 
+    height: 40px; 
+    border-radius: 5px;  
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: #ab4493; 
+    margin-top: 10px;  
+    padding-left: 10px;
+    margin-bottom: 20px; 
+}
+
+.formulario textarea {
+    background-color: #fbfbfb; 
+    width: 405px; 
+    height: 150px; 
+    border-radius: 5px;  
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: #ab4493; 
+    margin-top: 10px;  
+    padding-left: 10px;
+    margin-bottom: 20px; 
+    padding-top: 15px; 
+}
+
+.formulario label {
+    display: block; 
+    text-align: center; /* Centrado para etiquetas */
+}
+
+.formulario button {
+    height: 45px; 
+    padding-left: 5px;
+    padding-right: 5px; 	
+    margin-bottom: 20px; 
+    margin-top: 10px; 	
+    text-transform: uppercase;
+    background-color: #ab4493; 
+    border-color: #ab4493; 
+    border-style: solid; 
+    border-radius: 10px;	
+    width: 420px;   
+    cursor: pointer;
+}
+
+.formulario button p {
+    color: #fff; 
+}
+
+.formulario span {
+    color: #ab4493; 
+}
+
+.formulario .aviso {
+    font-size: 13px;  
+    color: #0e0e0e;  
+}
+
+.formulario h1 {
+    font-size: 39px;  
+    text-align: left;
+    padding-bottom: 20px; 
+    color: #ab4493;
+}
+
+.formulario h2 { /* Sin sombra para "Cartor´s web" y otros */
+    font-size: 1.75em; /* Tamaño consistente con otros h2 */
+    margin: 0 0 20px;
+    color: #333; /* Color consistente */
+}
+
+.formulario h3 {
+    font-size: 16px; 
+    padding-bottom: 30px;
+    color: #0e0e0e;   
+}
+
+.formulario p {
+    font-size: 14px; 
+    color: #0e0e0e; 
+}
+
+.formulario ::-webkit-input-placeholder {
+    color: #a8a8a8;
+}
+
+.formulario ::-webkit-textarea-placeholder {
+    color: #a8a8a8;
+}
+
+.formulario input:focus {
+    outline: 0;
+    border: 1px solid #97d848;
+}
+
+.formulario textarea:focus {
+    outline: 0;
+    border: 1px solid #97d848;
+}
+
+/* Sección específica para Mantenimiento e Instalación de Cocinas Industriales */
+.kitchen-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kitchen-section h2 {
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.kitchen-section p {
+    line-height: 1.6;
+    color: #666;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.kitchen-section .gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.kitchen-section .gallery img {
+    width: 48%; /* Ajustado para 2 imágenes */
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.kitchen-section .gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Sección específica para Mantenimiento e Instalación de Parques Infantiles */
+.playground-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.playground-section h2 {
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.playground-section p {
+    line-height: 1.6;
+    color: #666;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.playground-section .gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.playground-section .gallery img {
+    width: 48%; /* Ajustado para 2 imágenes */
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.playground-section .gallery img:hover {
+    transform: scale(1.05);
+}
+
 /* ---------------------------------------------------------------------
 galeria.html estilos */
 
 /* Hero Section (usada en galeria.html) */
 .hero {
-    background: #4a4a4a; /* Fondo de la sección Nuestra Galería */
+    background: whitesmoke; /* Cambio tuyo */
     color: #fff;
     padding: 100px 20px; /* Restaurado a 100px como en el diseño original */
     text-align: center;
@@ -361,9 +580,6 @@ galeria.html estilos */
 /* ---------------------------------------------------------------------
 loginstarpage.html estilos */
 
-/* Importar la fuente Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap');
-
 /* Estilos generales para loginstarpage */
 *,
 *::after,
@@ -407,7 +623,7 @@ a:hover::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('../images/wallpaperdarkindustries.jpg') center; /* Corregido typo */
+    background: url('../images/wallpaperdarkindustries.jpg') center;
     background-size: cover;
     color: #fff;
 }
@@ -424,10 +640,10 @@ a:hover::after {
     border-radius: 20px;
 }
 
-h2 {
+h2 { /* Sin sombra para loginstarpage.html */
     font-size: 1.75em;
     margin: 0 0 20px;
-    filter: drop-shadow(0 6px 2px black);
+    color: #fff; /* Color blanco para loginstarpage */
 }
 
 .input-box {
@@ -548,7 +764,7 @@ contactenos.html estilos */
     margin-bottom: 40px;
 }
 
-.contact-info h2 {
+.contact-info h2 { /* Sin sombra para "CONTÁCTANOS" si aparece aquí */
     font-size: 1.8rem;
     color: #2c3e50;
     margin-bottom: 15px;
@@ -617,7 +833,7 @@ contactenos.html estilos */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.contact-form h2 {
+.contact-form h2 { /* Sin sombra para "Formulario de contacto" si aparece aquí */
     font-size: 1.8rem;
     color: #333;
     margin-bottom: 20px;
@@ -762,27 +978,34 @@ clientes.html estilos */
 }
 
 /* ---------------------------------------------------------------------
-Footer estilos */
 
+Footer estilos */
 footer {
-    background-color: #333;
-    color: #fff;
+    background: none; /* Sin fondo negro, hereda el whitesmoke del body */
+    color: #000; /* Letras en negro */
     text-align: center;
-    padding: 20px 0;
-    width: 100%;
+    padding: 30px 0; /* Más espacio vertical para que respire */
+    width: 100%; /* Ocupa todo el ancho */
+    font-size: 1rem; /* Tamaño de fuente legible */
+    line-height: 2; /* Más espacio entre líneas para evitar que se corten o se vean apretadas */
+}
+
+footer p {
+    margin: 8px 0; /* Espaciado uniforme entre párrafos, más amplio para mejor legibilidad */
 }
 
 footer .social-icons {
-    margin-top: 10px;
+    margin-top: 20px; /* Más espacio entre el texto y los íconos */
 }
 
 footer .social-icons a {
-    color: #fff;
-    margin: 0 10px;
-    font-size: 1.2rem;
+    color: #000; /* Íconos en negro */
+    margin: 0 20px; /* Más espacio horizontal entre íconos para que no se vean apelotonados */
+    font-size: 1.8rem; /* Íconos más grandes para mejor visibilidad */
+    text-decoration: none; /* Sin subrayado */
     transition: color 0.3s ease;
 }
 
 footer .social-icons a:hover {
-    color: #0073e6;
+    color: #0073e6; /* Azul al pasar el mouse, consistente con el sitio */
 }

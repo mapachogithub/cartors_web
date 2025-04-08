@@ -10,7 +10,7 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="images/logo.png" alt="Cartor's SAS">
+            <img src="images/logoia1.jpeg" alt="Cartor's SAS">
         </div>
         <nav>
             <ul>
@@ -29,7 +29,9 @@
     <main>
         <!-- Sección de bienvenida -->
         <section class="centrado">
+            <br>
             <h1>Bienvenido a Cartor's SAS</h1>
+            <br>
             <p>Cartor’s SAS es una empresa dedicada a la instalación y mantenimiento de cocinas y equipos industriales, así como a la instalación, mantenimiento y certificación de parques para niños de la compañía Soft Play.</p>
             <img src="images/FOTO1WELCOME.jpg" alt="Imagen de bienvenida" class="welcome-image index-image" onclick="showImageModal(this.src)">
         </section>
@@ -44,10 +46,10 @@
             <h2>Nuestros servicios</h2>
             <p>En Cartor's ofrecemos los mejores productos y servicios para satisfacer tus necesidades. Nuestra experiencia nos respalda y estamos comprometidos con la calidad.</p>
             
-            <!-- Lista de servicios -->
+            <!-- Lista de servicios con enlaces a las secciones -->
             <ul class="services-list">
-                <li>Mantenimiento e instalación de cocinas industriales.</li>
-                <li>Mantenimiento e instalación de parques infantiles.</li>
+                <li><a href="#kitchen-section">Mantenimiento e instalación de cocinas industriales.</a></li>
+                <li><a href="#playground-section">Mantenimiento e instalación de parques infantiles.</a></li>
             </ul>
 
             <!-- Galería de imágenes -->
@@ -57,23 +59,100 @@
                 <img src="img_descargadas/parques1.jpg" alt="Parque Infantil" class="index-image" loading="lazy">
             </div>
         </section>
-    </main>
 
-    <section class="centrado">
-        <h1>TÍTULO DE LA SECCIÓN</h1>
-        <p>Parrafo de la sección de prueba</p>
-    </section>
+        <!-- Sección Mantenimiento e Instalación de Cocinas Industriales -->
+        <section class="centrado">
+            <section id="kitchen-section" class="cartors-container kitchen-section">
+                <h2>Mantenimiento e Instalación de Cocinas Industriales</h2>
+                <p>En Cartor's SAS, ofrecemos soluciones completas para cocinas industriales, desde la instalación profesional de equipos hasta su mantenimiento periódico. Nos aseguramos de que tus cocinas funcionen al máximo rendimiento, cumpliendo con los estándares de seguridad e higiene. Nuestro equipo técnico está capacitado para trabajar con marcas líderes, garantizando durabilidad y eficiencia en cada proyecto.</p>
+                <p>¿Por qué elegirnos? Realizamos diagnósticos precisos, ofrecemos mantenimientos preventivos y correctivos, y adaptamos nuestras instalaciones a las necesidades de tu negocio, ya sea un restaurante, hotel o industria alimentaria.</p>
+                <div class="gallery">
+                    <img src="img_descargadas/cocinas1.jpg" alt="Cocina Industrial 1" class="index-image" loading="lazy">
+                    <img src="img_descargadas/cocinas2.jpg" alt="Cocina Industrial 2" class="index-image" loading="lazy">
+                </div>
+            </section>
+        </section>
+
+        <!-- Sección Mantenimiento e Instalación de Parques Infantiles -->
+        <section class="centrado">
+            <section id="playground-section" class="cartors-container playground-section">
+                <h2>Mantenimiento e Instalación de Parques Infantiles</h2>
+                <p>En Cartor's SAS, somos expertos en la instalación y mantenimiento de parques infantiles, trabajando con marcas reconocidas como Soft Play. Diseñamos e instalamos áreas de juego seguras, duraderas y divertidas, adaptadas a las necesidades de escuelas, parques o espacios recreativos. Además, ofrecemos certificación para garantizar que cumplen con las normativas de seguridad.</p>
+                <p>Nuestro servicio incluye inspecciones regulares, reparaciones y mantenimiento preventivo para que los parques estén siempre en óptimas condiciones. Confía en nosotros para crear un espacio donde los niños puedan jugar con tranquilidad.</p>
+                <div class="gallery">
+                    <img src="img_descargadas/parques1.jpg" alt="Parque Infantil 1" class="index-image" loading="lazy">
+                    <img src="img_descargadas/parques2.jpg" alt="Parque Infantil 2" class="index-image" loading="lazy">
+                </div>
+            </section>
+        </section>
+
+<!-- Formulario de contacto -->
+        <section class="centrado">
+            <div class="formulario">
+                <br>
+                <h2>CONTÁCTANOS</h2>	
+                <h2>Formulario de contacto</h2>
+                <h2>Cartor´s web</h2>
+                <br>
+                <h3>Escríbenos y en breve los pondremos en contacto contigo.</h3>
+                <p class="aviso">
+                    <span class="obligatorio"> * </span>Los campos son obligatorios.
+                </p>
+                <form action="submeter-formulario.php" method="post">				
+                    <p>
+                        <label for="nombre" class="colocar_nombre">Nombre
+                            <span class="obligatorio">*</span>
+                        </label>
+                        <input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
+                    </p>
+                    <p>
+                        <label for="email" class="colocar_email">Email
+                            <span class="obligatorio">*</span>
+                        </label>
+                        <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
+                    </p>
+                    <p>
+                        <label for="telefone" class="colocar_telefono">Teléfono
+                        </label>
+                        <input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
+                    </p>		
+                    <p>
+                        <label for="compañía" class="colocar_nombre">Nombre de la empresa
+                        </label>
+                        <input type="url" name="introducir_nombre" id="website" placeholder="Escribe el nombre de la empresa">
+                    </p>		
+                    <p>
+                        <label for="asunto" class="colocar_asunto">Asunto
+                            <span class="obligatorio">*</span>
+                        </label>
+                        <input type="text" name="introducir_asunto" id="assunto" required="obligatorio" placeholder="Escribe un asunto">
+                    </p>		
+                    <p>
+                        <label for="mensaje" class="colocar_mensaje">Mensaje
+                            <span class="obligatorio">*</span>
+                        </label>                     
+                        <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
+                    </p>	  								
+                    <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+                </form>
+            </div>
+        </section>
+        
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Cartor's SAS. Todos los derechos reservados.</p>
+        <p>© 2025 Cartor's SAS.</p>
+        <p>Todos los derechos reservados.</p>
+        <br>
+        <p>Codificación y edición:</p>
+        <p>Francisco Quiñones Maldonado</p>
+        <p>Soluciones Tecnológicas</p>
         <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
-
     <!-- Scripts -->
     <script src="js/scripts.js"></script>
 </body>
