@@ -1,0 +1,350 @@
+/* ESTILOS PARA ADMIN.HTML */
+
+/* Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background: whitesmoke;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .header-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav ul li a {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0073e6;
+    color: #fff;
+}
+
+/* Sección de Bienvenida */
+.welcome-section {
+    padding: 40px 20px;
+    text-align: center;
+    background: whitesmoke;
+}
+
+.welcome-section .logo {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    object-fit: contain; /* Mantiene la proporción del logo */
+}
+
+.welcome-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.welcome-section .subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.welcome-section .logout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0073e6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.welcome-section .logout-btn:hover {
+    background: #005bb5;
+    transform: translateY(-2px);
+}
+
+/* Sección de Momentos de la Empresa */
+.company-moments {
+    padding: 40px 20px;
+    text-align: center;
+    background: whitesmoke;
+}
+
+.company-moments h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.moments-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.moments-container img {
+    width: 300px; /* Ancho fijo */
+    height: 200px; /* Altura fija */
+    object-fit: cover; /* Recorta la imagen manteniendo proporción */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de Lista de Empleados */
+.employee-list {
+    padding: 40px 20px;
+    background: whitesmoke;
+}
+
+.employee-list h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.employee-list table {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.employee-list th,
+.employee-list td {
+    padding: 15px;
+    text-align: left;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    color: #333;
+}
+
+.employee-list th {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: bold;
+}
+
+.employee-list tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.employee-list tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.employee-list td img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover; /* Mantiene la proporción y recorta si es necesario */
+}
+
+/* Sección de Frase Motivadora */
+.motivational-quote {
+    padding: 40px 20px;
+    text-align: center;
+    background: whitesmoke;
+}
+
+.motivational-quote p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Footer */
+footer {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .header-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    nav ul {
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .moments-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .moments-container img {
+        width: 100%;
+        max-width: 300px;
+        height: auto; /* Permite que la altura se ajuste proporcionalmente */
+    }
+
+    .employee-list table {
+        display: block;
+        width: 100%;
+    }
+
+    .employee-list thead,
+    .employee-list tbody,
+    .employee-list th,
+    .employee-list td,
+    .employee-list tr {
+        display: block;
+        width: 100%;
+    }
+
+    .employee-list th {
+        text-align: center;
+    }
+
+    .employee-list td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .employee-list td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .employee-list tbody tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .employee-list td img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
+    .welcome-section .logo {
+        max-width: 150px;
+    }
+
+    .welcome-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .welcome-section .subtitle {
+        font-size: 1rem;
+    }
+
+    .welcome-section .logout-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .company-moments h3 {
+        font-size: 1.5rem;
+    }
+
+    .employee-list h2 {
+        font-size: 1.5rem;
+    }
+
+    .employee-list th,
+    .employee-list td {
+        font-size: 0.9rem;
+    }
+
+    .employee-list td img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .motivational-quote p {
+        font-size: 1rem;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}

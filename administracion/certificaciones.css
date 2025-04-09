@@ -1,0 +1,280 @@
+/* ESTILOS PARA CERTIFICACIONES.HTML */
+
+/* Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background: whitesmoke;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .header-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav ul li a {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0073e6;
+    color: #fff;
+}
+
+/* Sección Principal */
+.centrado {
+    padding: 40px 20px;
+    background: whitesmoke;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.centrado h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.centrado p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Tabla de Certificaciones */
+.centrado table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.centrado th,
+.centrado td {
+    padding: 15px;
+    text-align: left;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    color: #333;
+}
+
+.centrado th {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: bold;
+}
+
+.centrado tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.centrado tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.centrado input[type="file"] {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    padding: 5px;
+}
+
+.centrado input[type="email"] {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 70%;
+    margin-right: 10px;
+}
+
+.centrado select {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.centrado button {
+    padding: 8px 15px;
+    background: #0073e6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.centrado button:hover {
+    background: #005bb5;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .header-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    nav ul {
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .centrado table {
+        display: block;
+        width: 100%;
+    }
+
+    .centrado thead,
+    .centrado tbody,
+    .centrado th,
+    .centrado td,
+    .centrado tr {
+        display: block;
+        width: 100%;
+    }
+
+    .centrado th {
+        text-align: center;
+    }
+
+    .centrado td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .centrado td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .centrado tbody tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .centrado input[type="file"],
+    .centrado input[type="email"],
+    .centrado select,
+    .centrado button {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
+    .centrado h2 {
+        font-size: 1.5rem;
+    }
+
+    .centrado p {
+        font-size: 1rem;
+    }
+
+    .centrado th,
+    .centrado td {
+        font-size: 0.9rem;
+    }
+
+    .centrado input[type="file"],
+    .centrado input[type="email"],
+    .centrado select,
+    .centrado button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}

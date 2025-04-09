@@ -289,120 +289,149 @@ index.html estilos */
     color: #0073e6;
 }
 
-/* Formulario de contacto (index.html) */
-.contact_form {	
-    width: 460px; 
-    height: auto;
-    margin: 80px auto;
-    border-radius: 10px;  
-    padding-top: 30px;
-    padding-bottom: 20px;  
-    background-color: #fbfbfb; 
-    padding-left: 30px; 
+/* ---------------------------------------------------------------------------------------------- */
+
+/* Estilos para la sección de contacto */
+.centrado {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px; /* Reducido ligeramente */
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgbaManual(0, 0, 0, 0.15); /* Sombra más sutil */
 }
 
-.formulario input {
-    background-color: #fbfbfb; 
-    width: 408px; 
-    height: 40px; 
-    border-radius: 5px;  
-    border-style: solid; 
-    border-width: 1px; 
-    border-color: #ab4493; 
-    margin-top: 10px;  
-    padding-left: 10px;
-    margin-bottom: 20px; 
+.formulario {
+    padding: 0;
 }
 
-.formulario textarea {
-    background-color: #fbfbfb; 
-    width: 405px; 
-    height: 150px; 
-    border-radius: 5px;  
-    border-style: solid; 
-    border-width: 1px; 
-    border-color: #ab4493; 
-    margin-top: 10px;  
-    padding-left: 10px;
-    margin-bottom: 20px; 
-    padding-top: 15px; 
-}
-
-.formulario label {
-    display: block; 
-    text-align: center; /* Centrado para etiquetas */
-}
-
-.formulario button {
-    height: 45px; 
-    padding-left: 5px;
-    padding-right: 5px; 	
-    margin-bottom: 20px; 
-    margin-top: 10px; 	
-    text-transform: uppercase;
-    background-color: #ab4493; 
-    border-color: #ab4493; 
-    border-style: solid; 
-    border-radius: 10px;	
-    width: 420px;   
-    cursor: pointer;
-}
-
-.formulario button p {
-    color: #fff; 
-}
-
-.formulario span {
-    color: #ab4493; 
-}
-
-.formulario .aviso {
-    font-size: 13px;  
-    color: #0e0e0e;  
-}
-
-.formulario h1 {
-    font-size: 39px;  
-    text-align: left;
-    padding-bottom: 20px; 
-    color: #ab4493;
-}
-
-.formulario h2 { /* Sin sombra para "Cartor´s web" y otros */
-    font-size: 1.75em; /* Tamaño consistente con otros h2 */
-    margin: 0 0 20px;
-    color: #333; /* Color consistente */
+.formulario h2 {
+    font-size: 1.8rem; /* Reducido para no abrumar */
+    color: #2c3e50;
+    margin: 0 0 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 
 .formulario h3 {
-    font-size: 16px; 
-    padding-bottom: 30px;
-    color: #0e0e0e;   
+    font-size: 1.1rem; /* Ligeramente más pequeño */
+    color: #555;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .formulario p {
-    font-size: 14px; 
-    color: #0e0e0e; 
+    font-size: 1rem; /* Reducido para proporción */
+    color: #666;
+    margin-bottom: 20px;
 }
 
-.formulario ::-webkit-input-placeholder {
-    color: #a8a8a8;
+/* Botón destacado para ir al formulario */
+.boton-destacado {
+    display: inline-block;
+    padding: 10px 25px; /* Reducido de 15px 35px */
+    background: #0073e6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px; /* Bordes un poco más pequeños */
+    font-size: 1rem; /* Fuente más pequeña */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra más ligera */
+    transition: all 0.3s ease;
 }
 
-.formulario ::-webkit-textarea-placeholder {
-    color: #a8a8a8;
+.boton-destacado:hover {
+    background: #005bb5;
+    transform: translateY(-2px); /* Elevación más sutil */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-.formulario input:focus {
-    outline: 0;
-    border: 1px solid #97d848;
+/* Contenedor de los botones finales */
+.botones-contacto {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Reducido de 25px */
+    margin-top: 30px; /* Reducido de 40px */
 }
 
-.formulario textarea:focus {
-    outline: 0;
-    border: 1px solid #97d848;
+/* Botón "Llámanos ahora" */
+.boton-llamar {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px; /* Reducido de 12px 30px */
+    background: #2ecc71;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px; /* Bordes más pequeños */
+    font-size: 0.95rem; /* Fuente más pequeña */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra más ligera */
+    transition: all 0.3s ease;
 }
 
+.boton-llamar:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón "Chatea con nosotros" (WhatsApp) */
+.boton-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px; /* Reducido de 12px 30px */
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px; /* Bordes más pequeños */
+    font-size: 0.95rem; /* Fuente más pequeña */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra más ligera */
+    transition: all 0.3s ease;
+}
+
+.boton-whatsapp:hover {
+    background: #20b358;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .centrado {
+        padding: 15px;
+    }
+
+    .formulario h2 {
+        font-size: 1.4rem;
+    }
+
+    .formulario h3 {
+        font-size: 0.9rem;
+    }
+
+    .boton-destacado {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+
+    .botones-contacto {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .boton-llamar, .boton-whatsapp {
+        padding: 7px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+/* --------------------------------------------------------------------------------------------------- */
 /* Sección específica para Mantenimiento e Instalación de Cocinas Industriales */
 .kitchen-section {
     max-width: 800px;
@@ -1060,247 +1089,6 @@ clientes.html estilos */
 
 
 /* ---------------------------------------------------------------------
-/* ESTILOS PARA ADMIN.HTML */
-
-/* Header específico para admin.html */
-header .header-container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-header h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 2rem;
-    margin: 0;
-}
-
-nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px; /* Espacio entre elementos */
-}
-
-nav ul li a {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-nav ul li a:hover {
-    background-color: #0073e6;
-    color: #fff;
-}
-
-/* Sección del Dashboard */
-.admin-dashboard {
-    padding: 40px 20px;
-    background: whitesmoke; /* Fondo consistente con el body */
-}
-
-.dashboard-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.card h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.card a {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
-    color: #0073e6;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.card a:hover {
-    color: #005bb5;
-    text-decoration: underline;
-}
-
-/* Sección de Lista de Empleados */
-.employee-list {
-    padding: 40px 20px;
-    background: whitesmoke;
-}
-
-.employee-list h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 2rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.employee-list table {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Para bordes redondeados en las esquinas */
-}
-
-.employee-list th,
-.employee-list td {
-    padding: 15px;
-    text-align: left;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
-    color: #333;
-}
-
-.employee-list th {
-    background: #2c3e50;
-    color: #fff;
-    font-weight: bold;
-}
-
-.employee-list tbody tr {
-    border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s ease;
-}
-
-.employee-list tbody tr:hover {
-    background-color: #f5f5f5;
-}
-
-.employee-list button {
-    padding: 8px 15px;
-    background: #0073e6;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.employee-list button:hover {
-    background: #005bb5;
-    transform: translateY(-2px);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    header .header-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav ul {
-        justify-content: center;
-        margin-top: 15px;
-    }
-
-    .dashboard-container {
-        grid-template-columns: 1fr;
-    }
-
-    .employee-list table,
-    .employee-list th,
-    .employee-list td {
-        display: block;
-        width: 100%;
-    }
-
-    .employee-list th {
-        text-align: center;
-    }
-
-    .employee-list td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    .employee-list td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .employee-list tbody tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
-        padding: 6px 10px;
-    }
-
-    .card h3 {
-        font-size: 1.3rem;
-    }
-
-    .card p {
-        font-size: 1rem;
-    }
-
-    .employee-list h2 {
-        font-size: 1.5rem;
-    }
-
-    .employee-list button {
-        font-size: 0.8rem;
-        padding: 6px 12px;
-    }
-}
-
-
-/* ---------------------------------------------------------------------------------------------------
 
 Footer estilos */
 footer {

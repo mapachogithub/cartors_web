@@ -1,0 +1,18 @@
+<!-- Agregar esto justo antes de cerrar </body> -->
+<script>
+  document.querySelector('a[href="../index.html"]').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita la redirección inmediata
+    if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+      // Aquí podrías agregar lógica para cerrar sesión, como limpiar localStorage
+      localStorage.clear(); // Ejemplo: limpia almacenamiento local
+      window.location.href = '../index.html'; // Redirige a index.html
+    }
+  });
+</script>
+
+<!------------------------------------------------------------>
+Este script:
+
+Escucha el clic en el enlace "Cerrar sesión".
+Muestra un mensaje de confirmación.
+Si se acepta, limpia el localStorage (simulando el fin de una sesión) y redirige a index.html.
