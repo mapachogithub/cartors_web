@@ -21,23 +21,14 @@ body {
 
 /* ---------------------------------------------------------------------
 Header estilos */
-
 header {
-    background-image: url('../images/headeria6.jpeg'); /* Cambia esto por la ruta de tu imagen */
-    background-size: cover; /* La imagen cubrirá todo el espacio */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que se repita la imagen */
+    /* Cambio tuyo: fondo negro */
+    background-color: black;
     color: #fff;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100px; /* Ajusta esto según tus necesidades */
-}
-
-header {
-    height: 90vh; /* 100% PARA QUE SE VEA TODA LA IMÁGEN DEL HEADER*/
-    /* Resto de propiedades... */
 }
 
 header .logo {
@@ -63,7 +54,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: black;
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
@@ -225,41 +216,34 @@ index.html estilos */
     background: none; /* Asegura que no hereden un fondo no deseado */
 }
 
-/* ------------------------------------------------------------------------------------------------------- */
-
-/* Estilo del botón LOGIN */
-
-/* Estilo del botón fijo debajo de la imagen de bienvenida */
+/* Estilo del botón flotante (index.html) */
 .login-btn {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 8px 16px; /* Reducido de 10px 20px a 8px 16px */
-    background: linear-gradient(135deg, #2c3e50 0%, #1abc9c 100%); /* Azul cambiado a un turquesa vibrante */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: #2c3e50;
     color: #fff;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
     text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px; /* Reducido de 14px a 12px */
-    transition: all 0.3s ease;
 }
 
 .login-btn:hover {
-    background: linear-gradient(135deg, #34495e 0%, #16a085 100%); /* Turquesa más oscuro para el hover */
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    background: #34495e;
 }
 
+/* Estilo de login (index.html) */
 .modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 1001;
 }
@@ -623,8 +607,8 @@ galeria.html estilos */
 }
 
 /* ---------------------------------------------------------------------
-loginstarpage.html estilos
-
+loginstarpage.html estilos */
+/* ---------------------------------------------------------------------
 inicio de sesion - iniciar sesion estilos */
 
 .login-section {
