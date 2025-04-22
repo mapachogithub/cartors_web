@@ -1,0 +1,51 @@
+Página web para la empresa: 
+Cartor’s sas, es una empresa
+dedicada a la instalación y
+mantenimiento de cocinas y
+equipos industriales, también es
+encargada de Instalación,
+mantenimiento y certificación de
+parques para niños de la compañía
+Soft Play.
+
+la Pagina web, es
+principalmente para tener un control tanto
+de clientes como de contabilidad, un
+control en los proyectos a realizar y una
+sistematización de procesos de
+certificación y facturación.
+
+Sistematización de procesos manuales tales como:
+Formatos de certificación.
+Base de datos de clientes.
+Cotización de proyectos.
+Muestrario de servicios.
+Expansión y modernización.
+Archivos de trabajo por cliente.
+
+La pagina va a estar dividida por diferentes secciones y prestara
+diferentes servicios dependiendo el usuario.
+CLIENTES:
+Creación de usuario, cotización de servicios, archivo y registro
+de pagos y facturas.
+ADMINISTRACIÓN
+Actualización de clientes, actualización de proyectos
+realizados, sistematización de formatos de certificación,
+archivos de facturación, control contable, entre otros.
+
+Dos fases de la pagina, una para clientes otra para
+administrativos.
+Creación de usuario
+Creación de áreas administrativas y contables.
+Actualización de estado de proyectos.
+Galería de fotos.
+Bases de datos
+Otros (Sujeto a requerimientos del cliente)
+
+Una pagina totalmente funcional y estable, con un
+diseño innovador, habilitación de diferentes áreas
+según la necesidad del cliente y mantenimiento a
+la misma.
+Procurando la satisfacción del cliente al 100%.
+
+Haz de toda la Codificación en html, css, js, phyton para correr la página desde Visual Studio Code y Xammp.

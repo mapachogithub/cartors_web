@@ -1,0 +1,34 @@
+Resumen Ejecutivo del Proyecto
+El proyecto consiste en el desarrollo de una página web y aplicación web para Cartor’s SAS, una empresa especializada en la instalación y mantenimiento de cocinas y equipos industriales, así como en la instalación, mantenimiento y certificación de parques infantiles en colaboración con la compañía Soft Play. Esta plataforma digital busca centralizar y sistematizar los procesos operativos y administrativos de la empresa, ofreciendo un control eficiente de clientes, contabilidad, proyectos y certificaciones. Está diseñada para modernizar las operaciones manuales, mejorar la experiencia del cliente y optimizar la gestión interna, dividida en dos fases principales: una interfaz para clientes y otra para administración.
+
+Antecedentes del Proyecto
+Cartor’s SAS es una empresa con experiencia consolidada en la instalación y mantenimiento de cocinas industriales y parques infantiles, destacándose por su colaboración con Soft Play, líder en soluciones recreativas. Hasta ahora, sus procesos, como la certificación, cotización y manejo de clientes, se han realizado de manera manual, lo que limita su eficiencia y escalabilidad. La creciente demanda de servicios personalizados y la necesidad de expansión y modernización han motivado la creación de esta plataforma digital, que busca posicionar a la empresa como un referente tecnológico y operativo en su sector.
+
+Identificación y Descripción del Problema
+El problema principal radica en la falta de una herramienta digital que integre y automatice los procesos clave de Cartor’s SAS. Actualmente, la empresa depende de formatos manuales para certificaciones, bases de datos físicas o desorganizadas, y métodos tradicionales de cotización y facturación, lo que genera retrasos, errores y una gestión ineficiente. Los clientes no cuentan con un medio directo para solicitar servicios, consultar estados de proyectos o acceder a sus registros, mientras que el equipo administrativo enfrenta dificultades para mantener un control contable y operativo actualizado. Esta situación limita la capacidad de la empresa para crecer y satisfacer las expectativas de un mercado cada vez más digitalizado.
+
+Justificación
+La implementación de una página web y aplicación web responde a la necesidad de modernizar los procesos de Cartor’s SAS, alineándose con las tendencias actuales de digitalización en el sector de servicios industriales y recreativos. Consultas a fuentes como estudios sobre transformación digital en PYMES, tendencias en X sobre plataformas de gestión empresarial y la experiencia operativa de la empresa respaldan la viabilidad de este proyecto. La sistematización mejorará la eficiencia interna, reducirá errores humanos y ofrecerá a los clientes una experiencia accesible y transparente, lo que incrementará la competitividad y satisfacción al 100%, como se propone.
+
+Objetivo General
+Desarrollar una página web y aplicación web funcional, estable e innovadora para Cartor’s SAS, que sistematice los procesos manuales de certificación, cotización, facturación y gestión de clientes, optimizando la operación administrativa y mejorando la interacción con los usuarios.
+
+Objetivos Específicos
+Diseñar e implementar una interfaz para clientes que permita la creación de usuarios, cotización de servicios y acceso a registros de pagos y facturas.
+
+Crear un área administrativa que facilite la actualización de proyectos, sistematización de certificaciones y control contable en tiempo real.
+
+Integrar bases de datos centralizadas para clientes, servicios y archivos de trabajo, eliminando la dependencia de procesos manuales.
+
+Desarrollar una galería de fotos y un muestrario de servicios que promueva la expansión y modernización de la imagen de la empresa.
+
+Metodología
+Fase de Análisis y Requerimientos: Recopilar necesidades específicas de Cartor’s SAS mediante entrevistas con el equipo administrativo y encuestas a clientes actuales. Complementar con investigación en la web y X sobre plataformas similares.
+
+Diseño: Elaborar un prototipo de la página web y aplicación con dos secciones diferenciadas (clientes y administración), incluyendo áreas para creación de usuarios, bases de datos, galerías y herramientas contables, priorizando un diseño innovador y funcional.
+
+Desarrollo: Implementar la plataforma utilizando tecnologías estables (por ejemplo, frameworks como React o Django), asegurando compatibilidad móvil y seguridad de datos. Dividir el desarrollo en dos fases: primero la interfaz de clientes, luego la administrativa.
+
+Pruebas y Lanzamiento: Realizar pruebas de usabilidad con usuarios reales (clientes y personal interno) para garantizar estabilidad y satisfacción. Lanzar la versión inicial y ofrecer mantenimiento continuo.
+
+Evaluación: Monitorear el uso de la plataforma mediante métricas como tiempo de respuesta, satisfacción del cliente y reducción de errores en procesos, ajustándola según retroalimentación.
