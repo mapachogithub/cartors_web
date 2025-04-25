@@ -348,3 +348,73 @@ footer p {
         font-size: 0.8rem;
     }
 }
+
+/* -------------------------------------------------------------------
+boton de nuestros empleados */
+
+.contenedor-del-boton {
+    display: flex; /* Convierte el contenedor en un flex container */
+    justify-content: center; /* Centra los elementos hijos horizontalmente */
+  }
+  
+  /* Tus estilos actuales para el botón */
+  .nuestros-empleados-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0073e6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nuestros-empleados-btn:hover { /* Corregí el selector para el hover */
+    background: #005bb5;
+    transform: translateY(-2px);
+  }
+
+/* -------------------------------------------------------------------
+boton de certificaciones y nuestros empleados */
+
+/* Estilos para el contenedor que centra la imagen y el botón */
+.contenedor-centrado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px; /* Opcional: Espacio entre las dos secciones */
+  }
+  
+  /* Estilos para los contenedores de las imágenes */
+  .contenedor-imagen-empleaos,
+  .contenedor-imagen-certificaciones {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; /* Opcional: Espacio entre la imagen y el botón */
+  }
+  
+  /* Estilos para las imágenes (haciéndolas pequeñas) */
+  .contenedor-imagen-empleaos img,
+  .contenedor-imagen-certificaciones img {
+    max-width: 150px; /* Ajusta este valor para cambiar el ancho máximo */
+    height: auto; /* Mantiene la proporción de la imagen */
+  }
+  
+  /* Tus estilos para el botón */
+  .nuestros-empleados-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0073e6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nuestros-empleados-btn:hover {
+    background: #005bb5;
+    transform: translateY(-2px);
+  }
