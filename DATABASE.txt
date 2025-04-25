@@ -1,4 +1,6 @@
-Gmail Cartor´s DATABASE
+Gmail 
+Cartor´s DATABASE
 
+Credenciales para Gmail:
 cartorsdb@gmail.com
 cdb12345
