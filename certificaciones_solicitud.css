@@ -1,6 +1,142 @@
 /* ESTILOS PARA CERTIFICACIONES.HTML */
 
+/* Estilos generales */
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave para enlaces de anclaje */
+}
 
+body {
+    font-family: 'Arial', sans-serif; /* Por defecto para otras páginas */
+    margin: 0;
+    padding: 0;
+    /* FONDO GENERAL (cambio tuyo) */
+    background: whitesmoke;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* ---------------------------------------------------------------------
+/* Contenedor de los botones finales */
+.botones-contacto {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Reducido de 25px */
+    margin-top: 30px; /* Reducido de 40px */
+}
+
+/* Botón "Llámanos ahora" */
+.boton-llamar {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px; /* Reducido de 12px 30px */
+    background: #2ecc71;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px; /* Bordes más pequeños */
+    font-size: 0.95rem; /* Fuente más pequeña */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra más ligera */
+    transition: all 0.3s ease;
+}
+
+.boton-llamar:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón "Chatea con nosotros" (WhatsApp) */
+.boton-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px; /* Reducido de 12px 30px */
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px; /* Bordes más pequeños */
+    font-size: 0.95rem; /* Fuente más pequeña */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra más ligera */
+    transition: all 0.3s ease;
+}
+
+.boton-whatsapp:hover {
+    background: #20b358;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------------------------------------------------------------------------------------- */
+/* TIENES ALGUNA DUDA */
+.tienes-duda-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Centrar el texto dentro del contenedor */
+    margin-bottom: 20px; /* Espacio debajo de la sección */
+}
+
+.tienes-duda-container h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+/* Header estilos */
+
+header {
+    background-image: url('../images/headeria6.jpeg'); /* Cambia esto por la ruta de tu imagen */
+    background-size: cover; /* La imagen cubrirá todo el espacio */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que se repita la imagen */
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100px; /* Ajusta esto según tus necesidades */
+}
+
+header {
+    height: 90vh; /* 100% PARA QUE SE VEA TODA LA IMÁGEN DEL HEADER*/
+    /* Resto de propiedades... */
+}
+
+header .logo {
+    margin-bottom: 15px;
+}
+
+header .logo img {
+    height: 80px;
+    display: block;
+    margin: 0 auto;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #0073e6;
+}
 
 /* Sección Principal */
 main {
@@ -42,6 +178,25 @@ main {
     font-size: 1.1rem;
     color: #666;
     line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+/* Estilo para la imagen de certificados de parques infantiles */
+.playground-cert-image {
+    width: 350px; /* Tamaño intermedio, ni muy pequeño ni muy grande para la imagen de certificaciones*/
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px; /* Bordes un poco más redondeados para un estilo único */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #4CAF50; /* Borde verde para un toque distintivo */
+}
+
+.playground-cert-image:hover {
+    transform: scale(1.05); /* Zoom más sutil al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más suave */
 }
 
 /* Formulario */
