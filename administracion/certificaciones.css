@@ -236,7 +236,8 @@ footer p {
     .centrado input[type="file"],
     .centrado input[type="email"],
     .centrado select,
-    .centrado button {
+    .centrado button,
+    .eliminar-btn { /* Incluimos el botón eliminar en el ancho completo */
         width: 100%;
         text-align: center;
         margin: 5px 0;
@@ -269,7 +270,8 @@ footer p {
     .centrado input[type="file"],
     .centrado input[type="email"],
     .centrado select,
-    .centrado button {
+    .centrado button,
+    .eliminar-btn { /* Incluimos el botón eliminar en el ancho completo */
         font-size: 0.8rem;
         padding: 6px 12px;
     }
@@ -277,4 +279,97 @@ footer p {
     footer p {
         font-size: 0.8rem;
     }
+}
+
+/* Estilos para el formulario de nueva certificación */
+.formulario-nueva-certificacion {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-nueva-certificacion h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-row label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="file"],
+.form-row select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.formulario-nueva-certificacion button {
+    padding: 10px 15px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.formulario-nueva-certificacion button:hover {
+    background: #1e7e34;
+    transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+    .form-row {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .form-row label {
+        width: 150px;
+        margin-right: 15px;
+        text-align: right;
+    }
+
+    .form-row input[type="text"],
+    .form-row input[type="email"],
+    .form-row input[type="file"],
+    .form-row select {
+        flex-grow: 1;
+    }
+}
+
+/* Estilos para el botón Eliminar */
+.eliminar-btn {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.eliminar-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
 }

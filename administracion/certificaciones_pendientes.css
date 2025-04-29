@@ -1,0 +1,21 @@
+/* ESTILOS PARA CERTIFICACIONES_PENDIENTES.HTML */
+
+/* Importando los estilos base de certificaciones.css */
+@import url('certificaciones.css');
+
+/* Por ejemplo, se podría cambiar el color de algún elemento para diferenciarla */
+.centrado h2 {
+    color: #d9534f; /* Un tono de rojo para indicar "pendiente" */
+}
+
+.centrado p {
+    color: #5bc0de; /* Un tono azul claro para complementar */
+}
+
+/* Si quieres ocultar la columna "¿Certificada?" ya que todas dirán "No" */
+/*
+.centrado th:nth-child(2),
+.centrado td:nth-child(2) {
+    display: none;
+}
+*/

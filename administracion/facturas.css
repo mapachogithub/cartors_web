@@ -1,0 +1,279 @@
+/* ESTILOS PARA FACTURAS.HTML */
+
+/* Estilos base (tomados de admin.html) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background: whitesmoke;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header (tomado de admin.html) */
+header {
+    background: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .header-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav ul li a {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0073e6;
+    color: #fff;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* FIN DE LOS ESTILOS DEL HEADER (IDÉNTICOS A ADMIN.HTML) */
+/* ---------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------------------- */
+/* ESTILOS PARA EL BODY DE FACTURAS.HTML */
+/* ---------------------------------------------------------------------------------------------- */
+
+.main-container {
+    max-width: 1200px;
+    width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.invoice-list h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    display: flex; /* Para alinear el texto y la imagen */
+    align-items: center; /* Centrar verticalmente el texto y la imagen */
+    gap: 10px; /* Espacio entre el texto y la imagen */
+}
+
+.new-invoice h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Estilos para la tabla de facturas */
+.invoice-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.invoice-list th,
+.invoice-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.invoice-list th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+.invoice-list tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.invoice-list .view-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.invoice-list .view-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el formulario de nueva factura */
+.new-invoice form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.new-invoice .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-invoice label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.new-invoice input[type="text"],
+.new-invoice input[type="date"],
+.new-invoice select,
+.new-invoice textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.new-invoice textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.new-invoice .create-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.new-invoice .create-button:hover {
+    background-color: #1e7e34;
+}
+
+/* Estilo para el logo principal (lo ocultamos) */
+.page-logo {
+    display: none;
+}
+
+/* Estilo para el logo pequeño junto al título */
+.page-logo-small {
+    width: 20px; /* Ajusta el tamaño según lo "súper pequeño" que necesites */
+    height: auto;
+    vertical-align: middle; /* Alinea verticalmente con el texto */
+}
+
+/* Footer (tomado de admin.html) */
+footer {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Media query para pantallas más pequeñas (adaptado para facturas) */
+@media (max-width: 768px) {
+    .main-container {
+        width: 98%;
+        padding: 15px;
+    }
+
+    .invoice-list th,
+    .invoice-list td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .new-invoice label {
+        font-size: 0.95rem;
+    }
+
+    .new-invoice input[type="text"],
+    .new-invoice input[type="date"],
+    .new-invoice select,
+    .new-invoice textarea {
+        padding: 8px;
+        font-size: 0.95rem;
+    }
+
+    .new-invoice .create-button {
+        font-size: 1rem;
+    }
+
+    /* Ocultamos el logo grande en pantallas pequeñas también por consistencia */
+    .page-logo {
+        display: none;
+    }
+
+    .page-logo-small {
+        width: 15px; /* Un poco más pequeño en pantallas pequeñas si lo deseas */
+    }
+
+    header .header-container {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header h1 {
+        margin-bottom: 10px;
+        font-size: 1.75rem;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    nav ul li a {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
