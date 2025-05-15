@@ -9,7 +9,7 @@ body {
     font-family: 'Arial', sans-serif; /* Por defecto para otras páginas */
     margin: 0;
     padding: 0;
-    /* FONDO GENERAL (cambio tuyo) */
+    /* FONDO GENERAL */
     background: whitesmoke;
     color: #333;
     min-height: 100vh;
@@ -89,7 +89,7 @@ body {
 /* Header estilos */
 
 header {
-    background-image: url('../images/headeria6.jpeg'); /* Cambia esto por la ruta de tu imagen */
+    background-image: url('/images/headeria6.jpeg'); /* Cambiar esto por la ruta de la imagen */
     background-size: cover; /* La imagen cubrirá todo el espacio */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que se repita la imagen */

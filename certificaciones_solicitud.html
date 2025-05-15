@@ -1,189 +1,298 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="certificaciones_solicitud.css">
-    <title>Solicitud de Certificación</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="certificaciones_solicitud.css">
+  <title>Solicitud de Certificación</title>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 </head>
 <body>
 <header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="clientes.html">Clientes</a></li>
-            <li><a href="contactenos.html">Contáctanos</a></li>
-            <li><a href="galeria.html">Galería</a></li>
-            <li><a href="certificaciones_solicitud.html">Certificaciones</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="clientes.html">Clientes</a></li>
+      <li><a href="contactenos.html">Contáctanos</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="certificaciones_solicitud.html">Certificaciones</a></li>
+    </ul>
+  </nav>
 </header>
 
-    <main class="centrado">
-        <section class="intro">
-            <h2>Solicitud de certificaciones</h2>
-        </section>
+  <main class="centrado">
+    <section class="intro">
+      <h2>Solicitud de certificaciones</h2>
+    </section>
 
-        <img src="images/certificadoempresa4.jpg" alt="Certificado de empresa de parques infantiles" class="playground-cert-image" onclick="showImageModal(this.src)">
+    <img src="images/certificadoempresa4.jpg" alt="Certificado de empresa de parques infantiles" class="playground-cert-image" onclick="showImageModal(this.src)">
 
-        <div class="tienes-duda-container">
-            <h3>¿Tienes alguna duda? <br>
-            Tenemos un asesor dispuesto a atenderte ahora mismo</h3>
+    <div class="tienes-duda-container">
+      <h3>¿Tienes alguna duda? <br>
+      Tenemos un asesor dispuesto a atenderte ahora mismo</h3>
+    </div>
+    <div class="botones-contacto">
+      <a href="tel:+573113299298" class="boton-llamar">Llámanos ahora</a>
+      <a href="https://api.whatsapp.com/send?phone=573113299298&text=Hola!%20Bienvenido%20al%20whatsapp%20de%20atenci%C3%B3n%20de%20Cartor%C2%B4s%20Web%2C%20cu%C3%A9ntanos%20con%20qui%C3%A9n%20hablamos%20y%20en%C3%A9%20podemos%20colaborarte..." target="_blank" class="boton-whatsapp">Chatea con nosotros</a>
+    </div>
+
+    <BR></BR>
+    <p>Por favor, complete el siguiente formulario para iniciar su proceso de certificación.</p>
+
+    <form id="solicitudCertificacionForm">
+      <section class="formulario-seccion">
+        <h3>Información de la Empresa Solicitante</h3>
+        <div class="form-group">
+          <label for="nombre_legal">Nombre Legal de la Empresa:</label>
+          <input type="text" id="nombre_legal" name="nombre_legal" required>
         </div>
-        <div class="botones-contacto">
-            <a href="tel:+573113299298" class="boton-llamar">Llámanos ahora</a>
-            <a href="https://api.whatsapp.com/send?phone=573113299298&text=Hola!%20Bienvenido%20al%20whatsapp%20de%20atenci%C3%B3n%20de%20Cartor%C2%B4s%20Web%2C%20cu%C3%A9ntanos%20con%20qui%C3%A9n%20hablamos%20y%20en%20qu%C3%A9%20podemos%20colaborarte..." target="_blank" class="boton-whatsapp">Chatea con nosotros</a>
+        <div class="form-group">
+          <label for="nit_rut">NIT/RUT:</label>
+          <input type="text" id="nit_rut" name="nit_rut" title="Ingrese un NIT/RUT válido (números, k, K, -)">
         </div>
+        <div class="form-group">
+          <label for="direccion_principal">Dirección Principal:</label>
+          <input type="text" id="direccion_principal" name="direccion_principal" required>
+        </div>
+        <div class="form-group">
+          <label for="ciudad">Ciudad:</label>
+          <input type="text" id="ciudad" name="ciudad" required>
+        </div>
+        <div class="form-group">
+          <label for="departamento">Departamento/Estado:</label>
+          <input type="text" id="departamento" name="departamento" required>
+        </div>
+        <div class="form-group">
+          <label for="pais">País:</label>
+          <select id="pais" name="pais" required>
+            <option value="" disabled selected>Seleccionar País</option>
+            <option value="Colombia">Colombia</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="telefono_fijo">Número de Teléfono Fijo:</label>
+          <input type="tel" id="telefono_fijo" name="telefono_fijo" title="Ingrese un número de teléfono fijo válido">
+        </div>
+        <div class="form-group">
+          <label for="telefono_movil">Número de Teléfono Móvil:</label>
+          <input type="tel" id="telefono_movil" name="telefono_movil" required title="Ingrese un número de teléfono móvil válido">
+        </div>
+        <div class="form-group">
+          <label for="contacto">Contacto:</label>
+          <input type="text" id="contacto" name="contacto" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono_contacto">Teléfono de Contacto:</label>
+          <input type="tel" id="telefono_contacto" name="telefono_contacto" required title="Ingrese un número de teléfono de contacto válido">
+        </div>
+        <div class="form-group">
+          <label for="correo_contacto">Correo Electrónico de Contacto:</label>
+          <input type="email" id="correo_contacto" name="correo_contacto" required>
+        </div>
+        <div class="form-group">
+          <label for="pagina_web">Página Web (Opcional):</label>
+          <input type="url" id="pagina_web" name="pagina_web">
+        </div>
+      </section>
 
-        <BR></BR>
-        <p>Por favor, complete el siguiente formulario para iniciar su proceso de certificación.</p>
+      <section class="formulario-seccion">
+        <h3>Detalles de la Instalación a Certificar</h3>
+        <div class="form-group">
+          <label for="tipo_instalacion">Tipo de Instalación:</label>
+          <select id="tipo_instalacion" name="tipo_instalacion" required>
+            <option value="" disabled selected>Seleccionar Tipo</option>
+            <option value="cocina_industrial">Cocina Industrial</option>
+            <option value="parque_infantil_industrial">Parque Infantil Industrial</option>
+            <option value="otro">Otro</option>
+          </select>
+          <div id="otro_tipo_instalacion" style="display: none;">
+            <label for="otro_tipo">Especificar Otro Tipo:</label>
+            <input type="text" id="otro_tipo" name="otro_tipo">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre_instalacion">Nombre o Identificación de la Instalación (si aplica):</label>
+          <input type="text" id="nombre_instalacion" name="nombre_instalacion">
+        </div>
+        <div class="form-group">
+          <label for="direccion_instalacion">Dirección Exacta de la Instalación:</label>
+          <input type="text" id="direccion_instalacion" name="direccion_instalacion" required>
+        </div>
+        <div class="form-group">
+          <label for="ciudad_instalacion">Ciudad de la Instalación:</label>
+          <input type="text" id="ciudad_instalacion" name="ciudad_instalacion" required>
+        </div>
+        <div class="form-group">
+          <label for="departamento_instalacion">Departamento/Estado de la Instalación:</label>
+          <input type="text" id="departamento_instalacion" name="departamento_instalacion" required>
+        </div>
+        <div class="form-group">
+          <label for="fecha_instalacion">Fecha de la Instalación:</label>
+          <input type="date" id="fecha_instalacion" name="fecha_instalacion">
+        </div>
+      </section>
 
-        <form id="solicitudCertificacionForm">
-            <section class="formulario-seccion">
-                <h3>Información de la Empresa Solicitante</h3>
-                <div class="form-group">
-                    <label for="nombre_legal">Nombre Legal de la Empresa:</label>
-                    <input type="text" id="nombre_legal" name="nombre_legal" required>
-                </div>
-                <div class="form-group">
-                    <label for="nit_rut">NIT/RUT:</label>
-                    <input type="text" id="nit_rut" name="nit_rut" pattern="^[0-9kK-]+$" title="Ingrese un NIT/RUT válido (números, k, K, -)">
-                </div>
-                <div class="form-group">
-                    <label for="direccion_principal">Dirección Principal:</label>
-                    <input type="text" id="direccion_principal" name="direccion_principal" required>
-                </div>
-                <div class="form-group">
-                    <label for="ciudad">Ciudad:</label>
-                    <input type="text" id="ciudad" name="ciudad" required>
-                </div>
-                <div class="form-group">
-                    <label for="departamento">Departamento/Estado:</label>
-                    <input type="text" id="departamento" name="departamento" required>
-                </div>
-                <div class="form-group">
-                    <label for="pais">País:</label>
-                    <select id="pais" name="pais" required>
-                        <option value="" disabled selected>Seleccionar País</option>
-                        <option value="Colombia">Colombia</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="telefono_fijo">Número de Teléfono Fijo:</label>
-                    <input type="tel" id="telefono_fijo" name="telefono_fijo" pattern="^[0-9+-]+$" title="Ingrese un número de teléfono fijo válido">
-                </div>
-                <div class="form-group">
-                    <label for="telefono_movil">Número de Teléfono Móvil:</label>
-                    <input type="tel" id="telefono_movil" name="telefono_movil" pattern="^[0-9+-]+$" title="Ingrese un número de teléfono móvil válido" required>
-                </div>
-                <div class="form-group">
-                    <label for="contacto">Contacto:</label>
-                    <input type="text" id="contacto" name="contacto" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefono_contacto">Teléfono de Contacto:</label>
-                    <input type="tel" id="telefono_contacto" name="telefono_contacto" pattern="^[0-9+-]+$" title="Ingrese un número de teléfono de contacto válido" required>
-                </div>
-                <div class="form-group">
-                    <label for="correo_contacto">Correo Electrónico de Contacto:</label>
-                    <input type="email" id="correo_contacto" name="correo_contacto" required>
-                </div>
-                <div class="form-group">
-                    <label for="pagina_web">Página Web (Opcional):</label>
-                    <input type="url" id="pagina_web" name="pagina_web">
-                </div>
-            </section>
+      <section class="formulario-seccion">
+        <h3>Documentación Adjunta</h3>
+        <div class="form-group">
+          <label for="documento_identificacion">Cargar Documento de Identificación del Representante Legal (PDF, JPG, PNG):</label>
+          <input type="file" id="documento_identificacion" name="documento_identificacion" accept=".pdf, .jpg, .jpeg, .png" required>
+        </div>
+        <div class="form-group">
+          <label for="soporte_pago">Cargar soporte de pago del servicio prestado (PDF, JPG, PNG):</label>
+          <input type="file" id="soporte_pago" name="soporte_pago" accept=".pdf, .jpg, .jpeg, .png" required>
+        </div>
+      </section>
 
-            <section class="formulario-seccion">
-                <h3>Detalles de la Instalación a Certificar</h3>
-                <div class="form-group">
-                    <label for="tipo_instalacion">Tipo de Instalación:</label>
-                    <select id="tipo_instalacion" name="tipo_instalacion" required>
-                        <option value="" disabled selected>Seleccionar Tipo</option>
-                        <option value="cocina_industrial">Cocina Industrial</option>
-                        <option value="parque_infantil_industrial">Parque Infantil Industrial</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                    <div id="otro_tipo_instalacion" style="display: none;">
-                        <label for="otro_tipo">Especificar Otro Tipo:</label>
-                        <input type="text" id="otro_tipo" name="otro_tipo">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="nombre_instalacion">Nombre o Identificación de la Instalación (si aplica):</label>
-                    <input type="text" id="nombre_instalacion" name="nombre_instalacion">
-                </div>
-                <div class="form-group">
-                    <label for="direccion_instalacion">Dirección Exacta de la Instalación:</label>
-                    <input type="text" id="direccion_instalacion" name="direccion_instalacion" required>
-                </div>
-                <div class="form-group">
-                    <label for="ciudad_instalacion">Ciudad de la Instalación:</label>
-                    <input type="text" id="ciudad_instalacion" name="ciudad_instalacion" required>
-                </div>
-                <div class="form-group">
-                    <label for="departamento_instalacion">Departamento/Estado de la Instalación:</label>
-                    <input type="text" id="departamento_instalacion" name="departamento_instalacion" required>
-                </div>
-                <div class="form-group">
-                    <label for="fecha_instalacion">Fecha de la Instalación:</label>
-                    <input type="date" id="fecha_instalacion" name="fecha_instalacion">
-                </div>
-            </section>
+      <section class="formulario-seccion">
+        <h3>Observaciones Adicionales</h3>
+        <div class="form-group">
+          <label for="observaciones">Observaciones:</label>
+          <textarea id="observaciones" name="observaciones" rows="5"></textarea>
+        </div>
+      </section>
 
-            <section class="formulario-seccion">
-                <h3>Documentación Adjunta</h3>
-                <div class="form-group">
-                    <label for="documento_identificacion">Cargar Documento de Identificación del Representante Legal (PDF, JPG, PNG):</label>
-                    <input type="file" id="documento_identificacion" name="documento_identificacion" accept=".pdf, .jpg, .jpeg, .png" required>
-                </div>
-                <div class="form-group">
-                    <label for="soporte_pago">Cargar soporte de pago del servicio prestado (PDF, JPG, PNG):</label>
-                    <input type="file" id="soporte_pago" name="soporte_pago" accept=".pdf, .jpg, .jpeg, .png" required>
-                </div>
-            </section>
+      <button type="submit">Enviar Solicitud</button>
+    </form>
+  </main>
 
-            <section class="formulario-seccion">
-                <h3>Observaciones Adicionales</h3>
-                <div class="form-group">
-                    <label for="observaciones">Observaciones:</label>
-                    <textarea id="observaciones" name="observaciones" rows="5"></textarea>
-                </div>
-            </section>
+  <footer>
+    <p>© 2025 Cartor's SAS.</p>
+    <p>Todos los derechos reservados.</p>
+    <br>
+    <p>Codificación y edición:</p>
+    <p>Francisco Quiñones Maldonado</p>
+    <p>Soluciones Tecnológicas</p>
+  </footer>
 
-            <button type="submit">Enviar Solicitud</button>
-        </form>
-    </main>
+  <script>
+document.getElementById('tipo_instalacion').addEventListener('change', function() {
+  const otroTipoInstalacionDiv = document.getElementById('otro_tipo_instalacion');
+  if (this.value === 'otro') {
+    otroTipoInstalacionDiv.style.display = 'block';
+    document.getElementById('otro_tipo').required = true;
+  } else {
+    otroTipoInstalacionDiv.style.display = 'none';
+    document.getElementById('otro_tipo').required = false;
+    document.getElementById('otro_tipo').value = '';
+  }
+});
 
-    <footer>
-        <p>© 2025 Cartor's SAS.</p>
-        <p>Todos los derechos reservados.</p>
-        <br>
-        <p>Codificación y edición:</p>
-        <p>Francisco Quiñones Maldonado</p>
-        <p>Soluciones Tecnológicas</p>
-    </footer>
+const firebaseConfig = {
+  apiKey: "AIzaSyBlNwtnxe9h9DzRs55LORgqiW8bEtxG5UQ",
+  authDomain: "cartors-sas-web.firebaseapp.com",
+  databaseURL: "https://cartors-sas-web-default-rtdb.firebaseio.com",
+  projectId: "cartors-sas-web",
+  storageBucket: "cartors-sas-web.firebasestorage.app",
+  messagingSenderId: "25480187903",
+  appId: "1:25480187903:web:3f31137faa9bacf760a1ca"
+};
 
-    <script>
-        document.getElementById('tipo_instalacion').addEventListener('change', function() {
-            const otroTipoInstalacionDiv = document.getElementById('otro_tipo_instalacion');
-            if (this.value === 'otro') {
-                otroTipoInstalacionDiv.style.display = 'block';
-                document.getElementById('otro_tipo').required = true;
-            } else {
-                otroTipoInstalacionDiv.style.display = 'none';
-                document.getElementById('otro_tipo').required = false;
-                document.getElementById('otro_tipo').value = ''; // Limpiar el campo si se cambia a otra opción
-            }
-        });
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
 
-        document.getElementById('solicitudCertificacionForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Aquí iría el código para enviar los datos a Firebase
-            alert('¡Formulario enviado! La funcionalidad de envío a Firebase se implementará en los siguientes pasos.');
-            // Puedes agregar aquí la lógica para limpiar el formulario si lo deseas
-            this.reset();
-        });
-    </script>
+// Inicializar Firestore y Storage
+const db = firebase.firestore();
+const storage = firebase.app().storage();
+
+const solicitudCertificacionForm = document.getElementById('solicitudCertificacionForm');
+solicitudCertificacionForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Deshabilitar el botón para evitar envíos múltiples
+  const submitButton = this.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  submitButton.textContent = 'Enviando...';
+
+  // Obtener los datos del formulario
+  const formData = new FormData(this);
+  const nombre_legal = formData.get('nombre_legal');
+  const nit_rut = formData.get('nit_rut');
+  const direccion_principal = formData.get('direccion_principal');
+  const ciudad = formData.get('ciudad');
+  const departamento = formData.get('departamento');
+  const pais = formData.get('pais');
+  const telefono_fijo = formData.get('telefono_fijo');
+  const telefono_movil = formData.get('telefono_movil');
+  const contacto = formData.get('contacto');
+  const telefono_contacto = formData.get('telefono_contacto');
+  const correo_contacto = formData.get('correo_contacto');
+  const pagina_web = formData.get('pagina_web');
+  const tipo_instalacion = formData.get('tipo_instalacion');
+  const otro_tipo = formData.get('otro_tipo');
+  const nombre_instalacion = formData.get('nombre_instalacion');
+  const direccion_instalacion = formData.get('direccion_instalacion');
+  const ciudad_instalacion = formData.get('ciudad_instalacion');
+  const departamento_instalacion = formData.get('departamento_instalacion');
+  const fecha_instalacion = formData.get('fecha_instalacion');
+  const documento_identificacion_file = formData.get('documento_identificacion');
+  const soporte_pago_file = formData.get('soporte_pago');
+  const observaciones = formData.get('observaciones');
+
+  // Referencias a los documentos en Storage
+  const storageRef = storage.ref();
+  const documentoIdentificacionRef = storageRef.child(`certificaciones/${nombre_legal}_identificacion_${Date.now()}.${documento_identificacion_file.name.split('.').pop()}`);
+  const soportePagoRef = storageRef.child(`certificaciones/${nombre_legal}_pago_${Date.now()}.${soporte_pago_file.name.split('.').pop()}`);
+
+  console.log('Iniciando subida de archivos...');
+
+  // Subir archivos y luego guardar la información en Firestore
+  Promise.all([
+    documentoIdentificacionRef.put(documento_identificacion_file),
+    soportePagoRef.put(soporte_pago_file)
+  ]).then(async (snapshots) => {
+    console.log('Subida de archivos completada.');
+    const documentoIdentificacionURL = await snapshots[0].ref.getDownloadURL();
+    const soportePagoURL = await snapshots[1].ref.getDownloadURL();
+
+    console.log('URLs de descarga obtenidas:', documentoIdentificacionURL, soportePagoURL);
+
+    // Guardar la información del formulario y las URLs de los archivos en Firestore
+    db.collection('solicitudes_certificacion').add({
+      nombre_legal: nombre_legal,
+      nit_rut: nit_rut,
+      direccion_principal: direccion_principal,
+      ciudad: ciudad,
+      departamento: departamento,
+      pais: pais,
+      telefono_fijo: telefono_fijo,
+      telefono_movil: telefono_movil,
+      contacto: contacto,
+      telefono_contacto: telefono_contacto,
+      correo_contacto: correo_contacto,
+      pagina_web: pagina_web || null,
+      tipo_instalacion: tipo_instalacion,
+      otro_tipo: otro_tipo || null,
+      nombre_instalacion: nombre_instalacion || null,
+      direccion_instalacion: direccion_instalacion,
+      ciudad_instalacion: ciudad_instalacion,
+      departamento_instalacion: departamento_instalacion,
+      fecha_instalacion: fecha_instalacion || null,
+      documento_identificacion_url: documentoIdentificacionURL,
+      soporte_pago_url: soportePagoURL,
+      observaciones: observaciones || null,
+      fecha_solicitud: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      console.log('THEN de Firestore: Datos guardados con éxito.');
+      alert('¡Solicitud de certificación enviada con éxito!');
+      solicitudCertificacionForm.reset();
+    }).catch((error) => {
+      console.error('CATCH de Firestore: Error al guardar en Firestore: ', error);
+      alert('Ocurrió un error al enviar la solicitud. Por favor, inténtalo de nuevo.');
+    }).finally(() => {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Enviar Solicitud';
+    });
+
+  }).catch((error) => {
+    console.error('CATCH de Promise.all (Subida de archivos): ', error);
+    alert('Ocurrió un error al subir los archivos. Por favor, inténtalo de nuevo.');
+    submitButton.disabled = false;
+    submitButton.textContent = 'Enviar Solicitud';
+  });
+});
+  </script>
 </body>
 </html>
