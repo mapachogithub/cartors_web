@@ -153,7 +153,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Foto</th>
                         <th>Nombre y Apellido</th>
                         <th>Cargo</th>
                         <th>Cédula</th>
@@ -165,31 +164,31 @@
                 </thead>
                 <tbody id="tablaEmpleadosBody">
                     <tr>
-                        <td data-label="Foto"><img src="../fotos/Carlos_E_Torres.png" alt="Foto de Carlos E. Torres"></td>
                         <td data-label="Nombre y Apellido">Carlos Eduardo Torres</td>
                         <td data-label="Cargo">Gerente General</td>
                         <td data-label="Cédula">12345678</td>
                         <td data-label="Teléfono">+573113299298</td>
                         <td data-label="Email">cartorssas.gerencia@gmail.com</td>
                         <td data-label="Dirección">Calle 131#123-91, Bogotá</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td data-label="Foto"><img src="../fotos/Laura_Torres.png" alt="Foto de Laura Torres"></td>
                         <td data-label="Nombre y Apellido">Laura Torres Gonzalez</td>
                         <td data-label="Cargo">Administradora</td>
                         <td data-label="Cédula">87654321</td>
                         <td data-label="Teléfono">+573226848093</td>
                         <td data-label="Email">cartorssas.gerencia@gmail.com</td>
                         <td data-label="Dirección">Calle 131#123-91, Bogotá</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td data-label="Foto"><img src="../images/women_logo.png" alt="Foto de Yenny Rebolledo"></td>
                         <td data-label="Nombre y Apellido">Yenny Rebolledo</td>
                         <td data-label="Cargo">Contadora</td>
                         <td data-label="Cédula">45678912</td>
                         <td data-label="Teléfono">+573205551234</td>
                         <td data-label="Email">yennyrebolledo@gmail.com</td>
                         <td data-label="Dirección">Avenida 3 #12-45, Cali</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -270,17 +269,6 @@
                     const row = tablaEmpleadosBody.insertRow();
 
                     let cell = row.insertCell();
-                    const img = document.createElement('img');
-                    img.src = obtenerRutaFoto(empleado.nombre_apellido); // Función para obtener la ruta de la foto
-                    img.alt = `Foto de ${empleado.nombre_apellido}`;
-                    img.style.width = '50px';
-                    img.style.height = '50px';
-                    img.style.borderRadius = '50%';
-                    img.style.objectFit = 'cover';
-                    cell.appendChild(img);
-                    cell.dataset.label = 'Foto';
-
-                    cell = row.insertCell();
                     cell.textContent = empleado.nombre_apellido || 'N/A';
                     cell.dataset.label = 'Nombre y Apellido';
 
@@ -316,14 +304,9 @@
             } else {
                 const row = tablaEmpleadosBody.insertRow();
                 const cell = row.insertCell();
-                cell.colSpan = 8; // Ajustar el colspan al número de columnas
+                cell.colSpan = 7; // Ajustar el colspan al número de columnas
                 cell.textContent = 'No hay empleados registrados.';
             }
-        }
-
-        function obtenerRutaFoto(nombreApellido) {
-            const nombreSinEspacios = nombreApellido.split(' ')[0];
-            return `../fotos/${nombreSinEspacios}_Torres.png`; // Ajusta la lógica según tus rutas de fotos
         }
 
         function agregarEmpleado() {
@@ -368,7 +351,7 @@
             mostrarEmpleados(data);
         }, (error) => {
             console.error("Error al leer datos de Firebase:", error);
-            tablaEmpleadosBody.innerHTML = '<tr><td colspan="8">Error al cargar el listado de empleados.</td></tr>';
+            tablaEmpleadosBody.innerHTML = '<tr><td colspan="7">Error al cargar el listado de empleados.</td></tr>';
         });
 
         // Asigna la función al scope global para que el onclick en el HTML funcione
