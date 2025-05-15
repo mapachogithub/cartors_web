@@ -6,7 +6,102 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style_nuestros_clientes.css">
     <title>Inventario de Clientes Atendidos</title>
-    
+    <style>
+        /* Estilos adicionales para el formulario */
+        .formulario-nuevo-cliente {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .formulario-nuevo-cliente h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .form-row label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="email"],
+        .form-row input[type="date"],
+        .form-row select,
+        .form-row textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .formulario-nuevo-cliente button {
+            padding: 10px 15px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .formulario-nuevo-cliente button:hover {
+            background: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .form-row label {
+                width: 180px;
+                margin-right: 15px;
+                text-align: right;
+            }
+
+            .form-row input[type="text"],
+            .form-row input[type="email"],
+            .form-row input[type="date"],
+            .form-row select,
+            .form-row textarea {
+                flex-grow: 1;
+            }
+        }
+
+        /* Estilos para el botón Eliminar (si no están en style_nuestros_clientes.css) */
+        .eliminar-btn {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .eliminar-btn:hover {
+            background-color: #c82333;
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -29,7 +124,49 @@
     <main>
         <section class="centrado">
             <h2>Inventario de Clientes Atendidos</h2>
-            <p>Aquí se muestra el registro de los clientes atendidos, incluyendo detalles del trabajo y seguimiento.</p>
+            <p>Aquí se muestra el registro de los clientes atendidos, incluyendo detalles del trabajo y seguimiento. También puedes añadir nuevos clientes.</p>
+
+            <div class="formulario-nuevo-cliente">
+                <h3>Añadir Nuevo Cliente</h3>
+                <form id="nuevoClienteForm">
+                    <div class="form-row">
+                        <label for="cliente">Cliente:</label>
+                        <input type="text" id="cliente" name="cliente" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono">
+                    </div>
+                    <div class="form-row">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-row">
+                        <label for="fecha_trabajo">Fecha del Trabajo:</label>
+                        <input type="date" id="fecha_trabajo" name="fecha_trabajo">
+                    </div>
+                    <div class="form-row">
+                        <label for="terminado">Terminado:</label>
+                        <select id="terminado" name="terminado">
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="trabajo_realizado">Trabajo Realizado:</label>
+                        <textarea id="trabajo_realizado" name="trabajo_realizado"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label for="observaciones">Observaciones:</label>
+                        <textarea id="observaciones" name="observaciones"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label for="siguiente_control">Siguiente Fecha de Control:</label>
+                        <input type="date" id="siguiente_control" name="siguiente_control">
+                    </div>
+                    <button type="button" onclick="agregarCliente()">Añadir Cliente</button>
+                </form>
+            </div>
 
             <table>
                 <thead>
@@ -42,47 +179,16 @@
                         <th>Trabajo Realizado</th>
                         <th>Observaciones</th>
                         <th>Siguiente Fecha de Control</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="Cliente">Juan Pérez</td>
-                        <td data-label="Teléfono">123-456-789</td>
-                        <td data-label="Email">juan.perez@example.com</td>
-                        <td data-label="Fecha del Trabajo">2025-03-15</td>
-                        <td data-label="Terminado">Sí</td>
-                        <td data-label="Trabajo Realizado">Instalación de sistema eléctrico</td>
-                        <td data-label="Observaciones">Cliente satisfecho, pago completo.</td>
-                        <td data-label="Siguiente Fecha de Control">2025-09-15</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Cliente">Ana Gómez</td>
-                        <td data-label="Teléfono">987-654-321</td>
-                        <td data-label="Email">ana.gomez@example.com</td>
-                        <td data-label="Fecha del Trabajo">2025-04-01</td>
-                        <td data-label="Terminado">No</td>
-                        <td data-label="Trabajo Realizado">Reparación de tuberías</td>
-                        <td data-label="Observaciones">Falta entregar materiales.</td>
-                        <td data-label="Siguiente Fecha de Control">2025-04-15</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Cliente">Pedro Sánchez</td>
-                        <td data-label="Teléfono">555-123-456</td>
-                        <td data-label="Email">pedro.sanchez@example.com</td>
-                        <td data-label="Fecha del Trabajo">2025-02-20</td>
-                        <td data-label="Terminado">Sí</td>
-                        <td data-label="Trabajo Realizado">Mantenimiento de equipo</td>
-                        <td data-label="Observaciones">Requiere revisión en 6 meses.</td>
-                        <td data-label="Siguiente Fecha de Control">2025-08-20</td>
-                    </tr>
+                <tbody id="tablaClientesBody">
+                    <tr><td colspan="9">Cargando listado de clientes...</td></tr>
                 </tbody>
             </table>
         </section>
     </main>
 
-   
-        <!-- Footer -->
-        
     <footer>
         <p>© 2025 Cartor's SAS.</p>
         <p>Todos los derechos reservados.</p>
@@ -90,8 +196,149 @@
         <p>Codificación y edición:</p>
         <p>Francisco Quiñones Maldonado</p>
         <p>Soluciones Tecnológicas</p>
-        
     </footer>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const clientesRef = ref(database, 'clientes-atendidos'); // Nueva referencia para clientes atendidos
+        const tablaClientesBody = document.getElementById('tablaClientesBody');
+
+        function eliminarCliente(key) {
+            if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
+                const clienteRef = ref(database, `clientes-atendidos/${key}`);
+                remove(clienteRef)
+                    .then(() => {
+                        alert('Cliente eliminado con éxito.');
+                        // La tabla se actualizará automáticamente gracias al listener onValue
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar el cliente:", error);
+                        alert('Error al eliminar el cliente. Por favor, intenta de nuevo.');
+                    });
+            }
+        }
+
+        function mostrarClientes(data) {
+            tablaClientesBody.innerHTML = ''; // Limpia la tabla
+            if (data) {
+                Object.entries(data).forEach(([key, cliente]) => {
+                    const row = tablaClientesBody.insertRow();
+
+                    let cell = row.insertCell();
+                    cell.textContent = cliente.cliente || 'N/A';
+                    cell.dataset.label = 'Cliente';
+
+                    cell = row.insertCell();
+                    cell.textContent = cliente.telefono || 'N/A';
+                    cell.dataset.label = 'Teléfono';
+
+                    cell = row.insertCell();
+                    cell.textContent = cliente.email || 'N/A';
+                    cell.dataset.label = 'Email';
+
+                    cell = row.insertCell();
+                    cell.textContent = cliente.fecha_trabajo || 'N/A';
+                    cell.dataset.label = 'Fecha del Trabajo';
+
+                    cell = row.insertCell();
+                    const selectTerminado = document.createElement('select');
+                    selectTerminado.name = `terminado_${(cliente.cliente || '').toLowerCase().replace(/\s/g, '')}`;
+                    const optionSi = document.createElement('option');
+                    optionSi.value = 'Sí';
+                    optionSi.textContent = 'Sí';
+                    optionSi.selected = cliente.terminado === 'Sí';
+                    const optionNo = document.createElement('option');
+                    optionNo.value = 'No';
+                    optionNo.textContent = 'No';
+                    optionNo.selected = cliente.terminado === 'No';
+                    selectTerminado.appendChild(optionSi);
+                    selectTerminado.appendChild(optionNo);
+                    cell.appendChild(selectTerminado);
+                    cell.dataset.label = 'Terminado';
+
+                    cell = row.insertCell();
+                    cell.textContent = cliente.trabajo_realizado || 'N/A';
+                    cell.dataset.label = 'Trabajo Realizado';
+
+                    cell = row.insertCell();
+                    cell.textContent = cliente.observaciones || 'N/A';
+                    cell.dataset.label = 'Observaciones';
+
+                    cell = row.insertCell();
+                    cell.textContent = cliente.siguiente_control || 'N/A';
+                    cell.dataset.label = 'Siguiente Fecha de Control';
+
+                    // Columna de acciones con el botón Eliminar
+                    const accionesCell = row.insertCell();
+                    const eliminarButton = document.createElement('button');
+                    eliminarButton.textContent = 'Eliminar';
+                    eliminarButton.classList.add('eliminar-btn');
+                    eliminarButton.onclick = () => eliminarCliente(key); // Pasar la clave única
+                    accionesCell.appendChild(eliminarButton);
+                    accionesCell.dataset.label = 'Acciones';
+                });
+            } else {
+                const row = tablaClientesBody.insertRow();
+                const cell = row.insertCell();
+                cell.colSpan = 9; // Ajustar el colspan al número de columnas
+                cell.textContent = 'No hay clientes registrados.';
+            }
+        }
+
+        function agregarCliente() {
+            const form = document.getElementById('nuevoClienteForm');
+            const cliente = form.cliente.value;
+            const telefono = form.telefono.value;
+            const email = form.email.value;
+            const fecha_trabajo = form.fecha_trabajo.value;
+            const terminado = form.terminado.value;
+            const trabajo_realizado = form.trabajo_realizado.value;
+            const observaciones = form.observaciones.value;
+            const siguiente_control = form.siguiente_control.value;
+
+            if (cliente) {
+                const nuevoCliente = {
+                    cliente: cliente,
+                    telefono: telefono,
+                    email: email,
+                    fecha_trabajo: fecha_trabajo,
+                    terminado: terminado,
+                    trabajo_realizado: trabajo_realizado,
+                    observaciones: observaciones,
+                    siguiente_control: siguiente_control
+                };
+
+                push(clientesRef, nuevoCliente)
+                    .then(() => {
+                        alert('Cliente añadido con éxito.');
+                        form.reset();
+                    })
+                    .catch((error) => {
+                        console.error("Error al añadir el cliente:", error);
+                        alert('Error al añadir el cliente. Por favor, intenta de nuevo.');
+                    });
+            } else {
+                alert('El campo Cliente es obligatorio.');
+            }
+        }
+
+        // Escucha los cambios en la base de datos de Firebase para los clientes atendidos
+        onValue(clientesRef, (snapshot) => {
+            const data = snapshot.val();
+            mostrarClientes(data);
+        }, (error) => {
+            console.error("Error al leer datos de Firebase:", error);
+            tablaClientesBody.innerHTML = '<tr><td colspan="9">Error al cargar el listado de clientes.</td></tr>';
+        });
+
+        // Asigna la función al scope global para que el onclick en el HTML funcione
+        window.agregarCliente = agregarCliente;
+    </script>
 </body>
 </html>

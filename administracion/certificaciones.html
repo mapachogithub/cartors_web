@@ -52,10 +52,7 @@
                         <label for="observaciones">Observaciones:</label>
                         <input type="text" id="observaciones" name="observaciones">
                     </div>
-                    <div class="form-row">
-                        <label for="archivo">Subir Certificación (PDF):</label>
-                        <input type="file" accept=".pdf" id="archivo" name="archivo">
-                    </div>
+                    
                     <div class="form-row">
                         <label for="correo">Enviar al Correo:</label>
                         <input type="email" id="correo" name="correo" placeholder="correo@empresa.com">
@@ -148,78 +145,145 @@
         <p>Soluciones Tecnológicas</p>
     </footer>
 
-    <script>
-        function agregarCertificacion() {
-            const form = document.getElementById('nuevaCertificacionForm');
-            const tablaBody = document.getElementById('tablaCertificacionesBody');
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+    import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
 
-            const empresa = form.empresa.value;
-            const certificada = form.certificada.value;
-            const motivo = form.motivo.value;
-            const observaciones = form.observaciones.value;
-            const archivo = form.archivo.value; // Solo el nombre del archivo
-            const correo = form.correo.value;
+    // Inicializa Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const certificacionesRef = ref(database, 'certificaciones-emitidas'); // Nueva referencia para certificaciones emitidas
+    const tablaCertificacionesBody = document.getElementById('tablaCertificacionesBody');
 
-            if (empresa && certificada) {
-                const nuevaFila = tablaBody.insertRow();
+    function eliminarCertificacion(key) {
+        if (confirm('¿Estás seguro de que deseas eliminar esta certificación?')) {
+            const certificacionRef = ref(database, `certificaciones-emitidas/${key}`);
+            remove(certificacionRef)
+                .then(() => {
+                    alert('Certificación eliminada con éxito.');
+                    // La tabla se actualizará automáticamente gracias al listener onValue
+                })
+                .catch((error) => {
+                    console.error("Error al eliminar la certificación:", error);
+                    alert('Error al eliminar la certificación. Por favor, intenta de nuevo.');
+                });
+        }
+    }
 
-                let celda = nuevaFila.insertCell();
-                celda.textContent = empresa;
-                celda.dataset.label = 'Empresa';
+    function mostrarCertificaciones(data) {
+        tablaCertificacionesBody.innerHTML = ''; // Limpia la tabla
+        if (data) {
+            Object.entries(data).forEach(([key, certificacion]) => {
+                const row = tablaCertificacionesBody.insertRow();
 
-                celda = nuevaFila.insertCell();
-                celda.textContent = certificada;
-                celda.dataset.label = '¿Certificada?';
+                let cell = row.insertCell();
+                cell.textContent = certificacion.empresa || 'N/A';
+                cell.dataset.label = 'Empresa';
 
-                celda = nuevaFila.insertCell();
-                celda.textContent = motivo;
-                celda.dataset.label = 'Motivo';
+                cell = row.insertCell();
+                const selectCertificada = document.createElement('select');
+                selectCertificada.name = `certified_${(certificacion.empresa || '').toLowerCase().replace(/\s/g, '')}`;
+                const optionSi = document.createElement('option');
+                optionSi.value = 'Sí';
+                optionSi.textContent = 'Sí';
+                optionSi.selected = certificacion.certificada === 'Sí';
+                const optionNo = document.createElement('option');
+                optionNo.value = 'No';
+                optionNo.textContent = 'No';
+                optionNo.selected = certificacion.certificada === 'No';
+                selectCertificada.appendChild(optionSi);
+                selectCertificada.appendChild(optionNo);
+                cell.appendChild(selectCertificada);
+                cell.dataset.label = '¿Certificada?';
 
-                celda = nuevaFila.insertCell();
-                celda.textContent = observaciones;
-                celda.dataset.label = 'Observaciones';
+                cell = row.insertCell();
+                cell.textContent = certificacion.motivo || 'N/A';
+                cell.dataset.label = 'Motivo';
 
-                celda = nuevaFila.insertCell();
+                cell = row.insertCell();
+                cell.textContent = certificacion.observaciones || 'N/A';
+                cell.dataset.label = 'Observaciones';
+
+                cell = row.insertCell();
                 const inputFile = document.createElement('input');
                 inputFile.type = 'file';
                 inputFile.accept = '.pdf';
-                inputFile.name = `cert_${empresa.toLowerCase().replace(/\s/g, '')}`;
-                celda.appendChild(inputFile);
-                celda.dataset.label = 'Subir Certificación (PDF)';
+                inputFile.name = `cert_${(certificacion.empresa || '').toLowerCase().replace(/\s/g, '')}`;
+                cell.appendChild(inputFile);
+                cell.dataset.label = 'Subir Certificación (PDF)';
 
-                celda = nuevaFila.insertCell();
+                cell = row.insertCell();
                 const emailInput = document.createElement('input');
                 emailInput.type = 'email';
                 emailInput.placeholder = 'correo@empresa.com';
-                emailInput.name = `email_${empresa.toLowerCase().replace(/\s/g, '')}`;
-                emailInput.value = correo;
+                emailInput.name = `email_${(certificacion.empresa || '').toLowerCase().replace(/\s/g, '')}`;
+                emailInput.value = certificacion.correo || '';
                 const enviarButton = document.createElement('button');
                 enviarButton.textContent = 'Enviar';
-                celda.appendChild(emailInput);
-                celda.appendChild(enviarButton);
-                celda.dataset.label = 'Enviar al Correo';
+                cell.appendChild(emailInput);
+                cell.appendChild(enviarButton);
+                cell.dataset.label = 'Enviar al Correo';
 
-                // Nueva celda para el botón Eliminar
-                celda = nuevaFila.insertCell();
+                // Columna de acciones con el botón Eliminar
+                const accionesCell = row.insertCell();
                 const eliminarButton = document.createElement('button');
                 eliminarButton.textContent = 'Eliminar';
                 eliminarButton.classList.add('eliminar-btn');
-                eliminarButton.onclick = function() {
-                    eliminarFila(this);
-                };
-                celda.appendChild(eliminarButton);
-                celda.dataset.label = 'Acciones';
-
-                form.reset(); // Limpiar el formulario después de añadir
-            } else {
-                alert('Los campos Empresa y ¿Certificada? son obligatorios.');
-            }
+                eliminarButton.onclick = () => eliminarCertificacion(key); // Pasar la clave única
+                accionesCell.appendChild(eliminarButton);
+                accionesCell.dataset.label = 'Acciones';
+            });
+        } else {
+            const row = tablaCertificacionesBody.insertRow();
+            const cell = row.insertCell();
+            cell.colSpan = 8; // Ajustar el colspan al número de columnas
+            cell.textContent = 'No hay certificaciones emitidas.';
         }
+    }
 
-        function eliminarFila(boton) {
-            const fila = boton.parentNode.parentNode; // Obtiene la fila (<tr>) del botón
-            fila.remove(); // Elimina la fila de la tabla
+    function agregarCertificacion() {
+        const form = document.getElementById('nuevaCertificacionForm');
+        const empresa = form.empresa.value;
+        const certificada = form.certificada.value;
+        const motivo = form.motivo.value;
+        const observaciones = form.observaciones.value;
+        const correo = form.correo.value;
+
+        if (empresa && certificada) {
+            const nuevaCertificacion = {
+                empresa: empresa,
+                certificada: certificada,
+                motivo: motivo,
+                observaciones: observaciones,
+                correo: correo
+            };
+
+            push(certificacionesRef, nuevaCertificacion)
+                .then(() => {
+                    alert('Nueva certificación añadida con éxito.');
+                    form.reset();
+                })
+                .catch((error) => {
+                    console.error("Error al añadir la certificación:", error);
+                    alert('Error al añadir la certificación. Por favor, intenta de nuevo.');
+                });
+        } else {
+            alert('Los campos Empresa y ¿Certificada? son obligatorios.');
         }
-    </script>
+    }
+
+    // Escucha los cambios en la base de datos de Firebase para las certificaciones emitidas
+    onValue(certificacionesRef, (snapshot) => {
+        const data = snapshot.val();
+        mostrarCertificaciones(data);
+    }, (error) => {
+        console.error("Error al leer datos de Firebase:", error);
+        tablaCertificacionesBody.innerHTML = '<tr><td colspan="8">Error al cargar las certificaciones.</td></tr>';
+    });
+
+    // Asigna la función al scope global para que el onclick en el HTML funcione
+    window.agregarCertificacion = agregarCertificacion;
+</script>
 </body>
 </html>

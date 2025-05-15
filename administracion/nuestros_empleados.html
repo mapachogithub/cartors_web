@@ -6,6 +6,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="nuestros_empleados.css">
     <title>Inventario de Empleados</title>
+    <style>
+        /* Estilos adicionales para el formulario */
+        .formulario-nuevo-empleado {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .formulario-nuevo-empleado h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .form-row label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="email"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .formulario-nuevo-empleado button {
+            padding: 10px 15px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .formulario-nuevo-empleado button:hover {
+            background: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .form-row label {
+                width: 150px;
+                margin-right: 15px;
+                text-align: right;
+            }
+
+            .form-row input[type="text"],
+            .form-row input[type="email"] {
+                flex-grow: 1;
+            }
+        }
+
+        .eliminar-btn {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .eliminar-btn:hover {
+            background-color: #c82333;
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,7 +117,38 @@
     <main>
         <section class="centrado">
             <h2>Inventario de Empleados</h2>
-            <p>Aquí se muestra el registro de los empleados de la empresa con sus datos personales.</p>
+            <p>Aquí se muestra el registro de los empleados de la empresa con sus datos personales. También puedes añadir nuevos empleados.</p>
+
+            <div class="formulario-nuevo-empleado">
+                <h3>Añadir Nuevo Empleado</h3>
+                <form id="nuevoEmpleadoForm">
+                    <div class="form-row">
+                        <label for="nombre_apellido">Nombre y Apellido:</label>
+                        <input type="text" id="nombre_apellido" name="nombre_apellido" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" id="cargo" name="cargo">
+                    </div>
+                    <div class="form-row">
+                        <label for="cedula">Cédula:</label>
+                        <input type="text" id="cedula" name="cedula">
+                    </div>
+                    <div class="form-row">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono">
+                    </div>
+                    <div class="form-row">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-row">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion">
+                    </div>
+                    <button type="button" onclick="agregarEmpleado()">Añadir Empleado</button>
+                </form>
+            </div>
 
             <table>
                 <thead>
@@ -40,9 +160,10 @@
                         <th>Teléfono</th>
                         <th>Email</th>
                         <th>Dirección</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tablaEmpleadosBody">
                     <tr>
                         <td data-label="Foto"><img src="../fotos/Carlos_E_Torres.png" alt="Foto de Carlos E. Torres"></td>
                         <td data-label="Nombre y Apellido">Carlos Eduardo Torres</td>
@@ -62,7 +183,7 @@
                         <td data-label="Dirección">Calle 131#123-91, Bogotá</td>
                     </tr>
                     <tr>
-                        <td data-label="Foto"><img src="../images/women_logo.png" alt="Foto de Pedro Sánchez"></td>
+                        <td data-label="Foto"><img src="../images/women_logo.png" alt="Foto de Yenny Rebolledo"></td>
                         <td data-label="Nombre y Apellido">Yenny Rebolledo</td>
                         <td data-label="Cargo">Contadora</td>
                         <td data-label="Cédula">45678912</td>
@@ -70,7 +191,6 @@
                         <td data-label="Email">yennyrebolledo@gmail.com</td>
                         <td data-label="Dirección">Avenida 3 #12-45, Cali</td>
                     </tr>
-                    
                 </tbody>
             </table>
         </section>
@@ -84,5 +204,175 @@
         <p>Francisco Quiñones Maldonado</p>
         <p>Soluciones Tecnológicas</p>
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getDatabase, ref, onValue, push, remove, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const empleadosRef = ref(database, 'empleados'); // Nueva referencia para empleados
+        const tablaEmpleadosBody = document.getElementById('tablaEmpleadosBody');
+
+        async function guardarEmpleadosIniciales() {
+            const empleadosIniciales = [];
+            const filasIniciales = tablaEmpleadosBody.querySelectorAll('tr');
+
+            filasIniciales.forEach(fila => {
+                const nombreApellido = fila.querySelector('td[data-label="Nombre y Apellido"]')?.textContent;
+                const cargo = fila.querySelector('td[data-label="Cargo"]')?.textContent;
+                const cedula = fila.querySelector('td[data-label="Cédula"]')?.textContent;
+                const telefono = fila.querySelector('td[data-label="Teléfono"]')?.textContent;
+                const email = fila.querySelector('td[data-label="Email"]')?.textContent;
+                const direccion = fila.querySelector('td[data-label="Dirección"]')?.textContent;
+
+                if (nombreApellido && cedula) { // Asegurarse de tener datos clave
+                    empleadosIniciales.push({ nombre_apellido: nombreApellido, cargo: cargo, cedula: cedula, telefono: telefono, email: email, direccion: direccion });
+                }
+            });
+
+            // Verificar si el empleado ya existe por su cédula antes de guardar
+            for (const empleado of empleadosIniciales) {
+                const empleadoSnapshot = await get(ref(database, `empleados`));
+                let existe = false;
+                empleadoSnapshot.forEach(childSnapshot => {
+                    if (childSnapshot.val().cedula === empleado.cedula) {
+                        existe = true;
+                    }
+                });
+                if (!existe) {
+                    push(empleadosRef, empleado);
+                }
+            }
+        }
+
+        function eliminarEmpleado(key) {
+            if (confirm('¿Estás seguro de que deseas eliminar a este empleado?')) {
+                const empleadoRef = ref(database, `empleados/${key}`);
+                remove(empleadoRef)
+                    .then(() => {
+                        alert('Empleado eliminado con éxito.');
+                        // La tabla se actualizará automáticamente gracias al listener onValue
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar al empleado:", error);
+                        alert('Error al eliminar al empleado. Por favor, intenta de nuevo.');
+                    });
+            }
+        }
+
+        function mostrarEmpleados(data) {
+            tablaEmpleadosBody.innerHTML = ''; // Limpia la tabla
+            if (data) {
+                Object.entries(data).forEach(([key, empleado]) => {
+                    const row = tablaEmpleadosBody.insertRow();
+
+                    let cell = row.insertCell();
+                    const img = document.createElement('img');
+                    img.src = obtenerRutaFoto(empleado.nombre_apellido); // Función para obtener la ruta de la foto
+                    img.alt = `Foto de ${empleado.nombre_apellido}`;
+                    img.style.width = '50px';
+                    img.style.height = '50px';
+                    img.style.borderRadius = '50%';
+                    img.style.objectFit = 'cover';
+                    cell.appendChild(img);
+                    cell.dataset.label = 'Foto';
+
+                    cell = row.insertCell();
+                    cell.textContent = empleado.nombre_apellido || 'N/A';
+                    cell.dataset.label = 'Nombre y Apellido';
+
+                    cell = row.insertCell();
+                    cell.textContent = empleado.cargo || 'N/A';
+                    cell.dataset.label = 'Cargo';
+
+                    cell = row.insertCell();
+                    cell.textContent = empleado.cedula || 'N/A';
+                    cell.dataset.label = 'Cédula';
+
+                    cell = row.insertCell();
+                    cell.textContent = empleado.telefono || 'N/A';
+                    cell.dataset.label = 'Teléfono';
+
+                    cell = row.insertCell();
+                    cell.textContent = empleado.email || 'N/A';
+                    cell.dataset.label = 'Email';
+
+                    cell = row.insertCell();
+                    cell.textContent = empleado.direccion || 'N/A';
+                    cell.dataset.label = 'Dirección';
+
+                    // Columna de acciones con el botón Eliminar
+                    const accionesCell = row.insertCell();
+                    const eliminarButton = document.createElement('button');
+                    eliminarButton.textContent = 'Eliminar';
+                    eliminarButton.classList.add('eliminar-btn');
+                    eliminarButton.onclick = () => eliminarEmpleado(key); // Pasar la clave única
+                    accionesCell.appendChild(eliminarButton);
+                    accionesCell.dataset.label = 'Acciones';
+                });
+            } else {
+                const row = tablaEmpleadosBody.insertRow();
+                const cell = row.insertCell();
+                cell.colSpan = 8; // Ajustar el colspan al número de columnas
+                cell.textContent = 'No hay empleados registrados.';
+            }
+        }
+
+        function obtenerRutaFoto(nombreApellido) {
+            const nombreSinEspacios = nombreApellido.split(' ')[0];
+            return `../fotos/${nombreSinEspacios}_Torres.png`; // Ajusta la lógica según tus rutas de fotos
+        }
+
+        function agregarEmpleado() {
+            const form = document.getElementById('nuevoEmpleadoForm');
+            const nombre_apellido = form.nombre_apellido.value;
+            const cargo = form.cargo.value;
+            const cedula = form.cedula.value;
+            const telefono = form.telefono.value;
+            const email = form.email.value;
+            const direccion = form.direccion.value;
+
+            if (nombre_apellido && cedula) {
+                const nuevoEmpleado = {
+                    nombre_apellido: nombre_apellido,
+                    cargo: cargo,
+                    cedula: cedula,
+                    telefono: telefono,
+                    email: email,
+                    direccion: direccion
+                };
+
+                push(empleadosRef, nuevoEmpleado)
+                    .then(() => {
+                        alert('Empleado añadido con éxito.');
+                        form.reset();
+                    })
+                    .catch((error) => {
+                        console.error("Error al añadir el empleado:", error);
+                        alert('Error al añadir el empleado. Por favor, intenta de nuevo.');
+                    });
+            } else {
+                alert('Los campos Nombre y Apellido y Cédula son obligatorios.');
+            }
+        }
+
+        // Al cargar la página, guarda los empleados iniciales en Firebase
+        guardarEmpleadosIniciales();
+
+        // Escucha los cambios en la base de datos de Firebase para los empleados
+        onValue(empleadosRef, (snapshot) => {
+            const data = snapshot.val();
+            mostrarEmpleados(data);
+        }, (error) => {
+            console.error("Error al leer datos de Firebase:", error);
+            tablaEmpleadosBody.innerHTML = '<tr><td colspan="8">Error al cargar el listado de empleados.</td></tr>';
+        });
+
+        // Asigna la función al scope global para que el onclick en el HTML funcione
+        window.agregarEmpleado = agregarEmpleado;
+    </script>
 </body>
 </html>
