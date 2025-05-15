@@ -1,6 +1,6 @@
 /* ESTILOS PARA FACTURAS.HTML */
 
-/* Estilos base (tomados de admin.html) */
+/* Estilos base */
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +14,7 @@ body {
     line-height: 1.6;
 }
 
-/* Header (tomado de admin.html) */
+/* Header */
 header {
     background: #fff;
     padding: 20px 0;
@@ -61,14 +61,7 @@ nav ul li a:hover {
     color: #fff;
 }
 
-/* ---------------------------------------------------------------------------------------------- */
-/* FIN DE LOS ESTILOS DEL HEADER (IDÉNTICOS A ADMIN.HTML) */
-/* ---------------------------------------------------------------------------------------------- */
-
-/* ---------------------------------------------------------------------------------------------- */
-/* ESTILOS PARA EL BODY DE FACTURAS.HTML */
-/* ---------------------------------------------------------------------------------------------- */
-
+/* Contenedor principal */
 .main-container {
     max-width: 1200px;
     width: 95%;
@@ -82,6 +75,7 @@ nav ul li a:hover {
     gap: 30px;
 }
 
+/* Sección de listado de facturas */
 .invoice-list h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -89,21 +83,11 @@ nav ul li a:hover {
     margin-bottom: 15px;
     border-bottom: 2px solid #eee;
     padding-bottom: 10px;
-    display: flex; /* Para alinear el texto y la imagen */
-    align-items: center; /* Centrar verticalmente el texto y la imagen */
-    gap: 10px; /* Espacio entre el texto y la imagen */
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.new-invoice h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-}
-
-/* Estilos para la tabla de facturas */
 .invoice-list table {
     width: 100%;
     border-collapse: collapse;
@@ -112,9 +96,12 @@ nav ul li a:hover {
 
 .invoice-list th,
 .invoice-list td {
-    padding: 10px;
+    padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #eee;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    color: #333;
 }
 
 .invoice-list th {
@@ -134,13 +121,23 @@ nav ul li a:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .invoice-list .view-button:hover {
     background-color: #0056b3;
 }
 
-/* Estilos para el formulario de nueva factura */
+/* Sección de nueva factura */
+.new-invoice h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
 .new-invoice form {
     display: flex;
     flex-direction: column;
@@ -156,21 +153,17 @@ nav ul li a:hover {
     font-weight: bold;
     margin-bottom: 5px;
     color: #555;
+    font-size: 1rem;
 }
 
 .new-invoice input[type="text"],
 .new-invoice input[type="date"],
-.new-invoice select,
-.new-invoice textarea {
+.new-invoice input[type="number"],
+.new-invoice select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-}
-
-.new-invoice textarea {
-    resize: vertical;
-    min-height: 100px;
 }
 
 .new-invoice .create-button {
@@ -188,44 +181,68 @@ nav ul li a:hover {
     background-color: #1e7e34;
 }
 
-/* Estilo para el logo principal (lo ocultamos) */
-.page-logo {
-    display: none;
-}
-
-/* Estilo para el logo pequeño junto al título */
+/* Logo pequeño */
 .page-logo-small {
-    width: 20px; /* Ajusta el tamaño según lo "súper pequeño" que necesites */
+    width: 20px;
     height: auto;
-    vertical-align: middle; /* Alinea verticalmente con el texto */
+    vertical-align: middle;
 }
 
-/* Footer (tomado de admin.html) */
+/* Footer */
 footer {
     background: #fff;
     padding: 20px;
     text-align: center;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    color: #666;
 }
 
 footer p {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
     margin: 5px 0;
 }
 
-/* Media query para pantallas más pequeñas (adaptado para facturas) */
+/* Estilos para el botón Eliminar (reutilizado de certificaciones) */
+.eliminar-btn {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.eliminar-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .main-container {
         width: 98%;
         padding: 15px;
+        gap: 20px;
+    }
+
+    .invoice-list h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
     }
 
     .invoice-list th,
     .invoice-list td {
-        padding: 8px;
+        padding: 8px 10px;
         font-size: 0.9rem;
+    }
+
+    .new-invoice h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
     }
 
     .new-invoice label {
@@ -234,29 +251,25 @@ footer p {
 
     .new-invoice input[type="text"],
     .new-invoice input[type="date"],
-    .new-invoice select,
-    .new-invoice textarea {
+    .new-invoice input[type="number"],
+    .new-invoice select {
         padding: 8px;
         font-size: 0.95rem;
     }
 
     .new-invoice .create-button {
         font-size: 1rem;
-    }
-
-    /* Ocultamos el logo grande en pantallas pequeñas también por consistencia */
-    .page-logo {
-        display: none;
+        padding: 8px 12px;
     }
 
     .page-logo-small {
-        width: 15px; /* Un poco más pequeño en pantallas pequeñas si lo deseas */
+        width: 15px;
     }
 
     header .header-container {
-        justify-content: center;
         flex-direction: column;
         align-items: center;
+        padding: 15px;
     }
 
     header h1 {

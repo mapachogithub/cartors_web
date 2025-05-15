@@ -25,10 +25,36 @@
     </header>
 
     <div class="main-container">
+        <section class="new-invoice">
+            <h2>Crear Nueva Factura</h2>
+            <form id="newInvoiceForm">
+                <div class="form-group">
+                    <label for="cliente">Cliente:</label>
+                    <input type="text" id="cliente" name="cliente" required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaEmision">Fecha de Emisión:</label>
+                    <input type="date" id="fechaEmision" name="fechaEmision">
+                </div>
+                <div class="form-group">
+                    <label for="valorTotal">Valor Total:</label>
+                    <input type="number" id="valorTotal" name="valorTotal" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado">
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Pagada">Pagada</option>
+                        <option value="Anulada">Anulada</option>
+                    </select>
+                </div>
+                <button type="button" class="create-button" onclick="agregarFactura()">Crear Factura</button>
+            </form>
+        </section>
+
         <section class="invoice-list">
             <h2>Listado de Facturas <img src="../images/facturas-logo.png" alt="Logo de Facturas" class="page-logo-small"></h2>
-
-            <table>
+            <table id="tablaFacturas">
                 <thead>
                     <tr>
                         <th>ID Factura</th>
@@ -39,55 +65,11 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>FAC-2025-001</td>
-                        <td>Cliente A</td>
-                        <td>2025-04-20</td>
-                        <td>$150.000</td>
-                        <td>Pagada</td>
-                        <td><button class="view-button">Ver</button></td>
-                    </tr>
-                    <tr>
-                        <td>FAC-2025-002</td>
-                        <td>Cliente B</td>
-                        <td>2025-04-25</td>
-                        <td>$280.500</td>
-                        <td>Pendiente</td>
-                        <td><button class="view-button">Ver</button></td>
-                    </tr>
+                <tbody id="tablaFacturasBody">
                     </tbody>
             </table>
         </section>
-
-        <section class="new-invoice">
-            <h2>Crear Nueva Factura</h2>
-            <form id="newInvoiceForm">
-                <div class="form-group">
-                    <label for="cliente">Cliente:</label>
-                    <select id="cliente" name="cliente">
-                        <option value="">Seleccionar Cliente</option>
-                        <option value="clienteA">Cliente A</option>
-                        <option value="clienteB">Cliente B</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="fechaEmision">Fecha de Emisión:</label>
-                        <input type="date" id="fechaEmision" name="fechaEmision">
-                    </div>
-                    <div class="form-group">
-                        <label for="items">Ítems:</label>
-                        <textarea id="items" name="items" placeholder="Descripción, Cantidad, Precio Unitario (separado por comas en cada línea)"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="valorTotal">Valor Total:</label>
-                        <input type="text" id="valorTotal" name="valorTotal" readonly>
-                    </div>
-                    <button type="submit" class="create-button">Crear Factura</button>
-                </form>
-            </section>
     </div>
-
 
     <footer>
         <p>© 2025 Cartor's SAS.</p>
@@ -97,5 +79,116 @@
         <p>Francisco Quiñones Maldonado</p>
         <p>Soluciones Tecnológicas</p>
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const facturasRef = ref(database, 'facturas'); // Referencia a la colección de facturas
+        const tablaFacturasBody = document.getElementById('tablaFacturasBody');
+
+        function eliminarFactura(key) {
+            if (confirm('¿Estás seguro de que deseas eliminar esta factura?')) {
+                const facturaRef = ref(database, `facturas/${key}`);
+                remove(facturaRef)
+                    .then(() => {
+                        alert('Factura eliminada con éxito.');
+                        // La tabla se actualizará automáticamente gracias al listener onValue
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar la factura:", error);
+                        alert('Error al eliminar la factura. Por favor, intenta de nuevo.');
+                    });
+            }
+        }
+
+        function mostrarFacturas(data) {
+            tablaFacturasBody.innerHTML = ''; // Limpia la tabla
+            if (data) {
+                Object.entries(data).forEach(([key, factura]) => {
+                    const row = tablaFacturasBody.insertRow();
+
+                    let cell = row.insertCell();
+                    cell.textContent = key; // Usamos la clave de Firebase como ID de factura
+                    cell.dataset.label = 'ID Factura';
+
+                    cell = row.insertCell();
+                    cell.textContent = factura.cliente || 'N/A';
+                    cell.dataset.label = 'Cliente';
+
+                    cell = row.insertCell();
+                    cell.textContent = factura.fechaEmision || 'N/A';
+                    cell.dataset.label = 'Fecha Emisión';
+
+                    cell = row.insertCell();
+                    cell.textContent = factura.valorTotal ? `$${parseFloat(factura.valorTotal).toLocaleString('es-CO')}` : 'N/A';
+                    cell.dataset.label = 'Valor Total';
+
+                    cell = row.insertCell();
+                    cell.textContent = factura.estado || 'N/A';
+                    cell.dataset.label = 'Estado';
+
+                    // Columna de acciones con el botón Eliminar
+                    const accionesCell = row.insertCell();
+                    const eliminarButton = document.createElement('button');
+                    eliminarButton.textContent = 'Eliminar';
+                    eliminarButton.classList.add('eliminar-btn');
+                    eliminarButton.onclick = () => eliminarFactura(key); // Pasar la clave única
+                    accionesCell.appendChild(eliminarButton);
+                    accionesCell.dataset.label = 'Acciones';
+                });
+            } else {
+                const row = tablaFacturasBody.insertRow();
+                const cell = row.insertCell();
+                cell.colSpan = 6; // Ajustar el colspan al número de columnas
+                cell.textContent = 'No hay facturas registradas.';
+            }
+        }
+
+        function agregarFactura() {
+            const form = document.getElementById('newInvoiceForm');
+            const cliente = form.cliente.value;
+            const fechaEmision = form.fechaEmision.value;
+            const valorTotal = form.valorTotal.value;
+            const estado = form.estado.value;
+
+            if (cliente && valorTotal) {
+                const nuevaFactura = {
+                    cliente: cliente,
+                    fechaEmision: fechaEmision,
+                    valorTotal: parseFloat(valorTotal),
+                    estado: estado
+                };
+
+                push(facturasRef, nuevaFactura)
+                    .then(() => {
+                        alert('Nueva factura añadida con éxito.');
+                        form.reset();
+                    })
+                    .catch((error) => {
+                        console.error("Error al añadir la factura:", error);
+                        alert('Error al añadir la factura. Por favor, intenta de nuevo.');
+                    });
+            } else {
+                alert('Los campos Cliente y Valor Total son obligatorios.');
+            }
+        }
+
+        // Escucha los cambios en la base de datos de Firebase para las facturas
+        onValue(facturasRef, (snapshot) => {
+            const data = snapshot.val();
+            mostrarFacturas(data);
+        }, (error) => {
+            console.error("Error al leer datos de Firebase:", error);
+            tablaFacturasBody.innerHTML = '<tr><td colspan="6">Error al cargar las facturas.</td></tr>';
+        });
+
+        // Asigna la función al scope global para que el onclick en el HTML funcione
+        window.agregarFactura = agregarFactura;
+    </script>
 </body>
 </html>
