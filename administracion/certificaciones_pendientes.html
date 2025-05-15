@@ -6,6 +6,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="certificaciones_pendientes.css">
     <title>Certificaciones Pendientes</title>
+    <style>
+        /* Estilos adicionales para la tabla y el botón */
+        .listado-certificados {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .listado-certificados h3 {
+            margin-top: 0;
+            color: #337ab7; /* Azul Bootstrap */
+            margin-bottom: 15px;
+        }
+
+        .listado-certificados table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .listado-certificados th, .listado-certificados td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .listado-certificados th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .eliminar-btn {
+            background-color: #d9534f; /* Rojo Bootstrap */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .eliminar-btn:hover {
+            background-color: #c9302c;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,35 +74,66 @@
     <main>
         <section class="centrado">
             <h2>Certificaciones Pendientes</h2>
-            <p>Aquí se muestra el listado de empresas que aún no han sido certificadas.</p>
+            <p>Aquí puedes ver y eliminar las certificaciones pendientes, e ingresar nuevas.</p>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Empresa</th>
-                        <th>¿Certificada?</th>
-                        <th>Motivo</th>
-                        <th>Observaciones</th>
-                        <th>Subir Certificación (PDF)</th>
-                        <th>Enviar al Correo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="Empresa">Eco Energy</td>
-                        <td data-label="¿Certificada?">No</td>
-                        <td data-label="Motivo">Falta de documentación</td>
-                        <td data-label="Observaciones">Pendiente de auditoría.</td>
-                        <td data-label="Subir Certificación (PDF)">
-                            <input type="file" accept=".pdf" name="cert_ecoenergy">
-                        </td>
-                        <td data-label="Enviar al Correo">
-                            <input type="email" placeholder="correo@empresa.com" name="email_ecoenergy">
-                            <button>Enviar</button>
-                        </td>
-                    </tr>
+            <div class="ingreso-datos">
+                <h3>Ingresar Aquí Una Nueva Certificación Pendiente</h3>
+                <br>
+                <form id="formulario-nueva-certificacion">
+                    <label for="nombre_legal">Nombre Empresa:</label>
+                    <input type="text" id="nombre_legal" required><br><br>
+
+                    <label for="nit_rut">NIT/RUT:</label>
+                    <input type="text" id="nit_rut" required><br><br>
+
+                    <label for="contacto">Contacto:</label>
+                    <input type="text" id="contacto"><br><br>
+
+                    <label for="correo_contacto">Correo Contacto:</label>
+                    <input type="email" id="correo_contacto"><br><br>
+
+                    <label for="tipo_instalacion">Tipo Instalación:</label>
+                    <input type="text" id="tipo_instalacion"><br><br>
+
+                    <label for="nombre_instalacion">Nombre Instalación:</label>
+                    <input type="text" id="nombre_instalacion"><br><br>
+
+                    <label for="ciudad_instalacion">Ciudad Instalación:</label>
+                    <input type="text" id="ciudad_instalacion"><br><br>
+
+                    <label for="departamento_instalacion">Departamento Instalación:</label>
+                    <input type="text" id="departamento_instalacion"><br><br>
+
+                    <label for="observaciones">Observaciones:</label>
+                    <textarea id="observaciones"></textarea><br><br>
+
+                    <button type="button" onclick="guardarNuevaCertificacion()">Guardar Certificación</button>
+                </form>
+            </div>
+
+            <div class="listado-certificados">
+                <h3>Listado de Certificaciones Pendientes</h3>
+                <table id="tabla-pendientes">
+                    <thead>
+                        <tr>
+                            <th>Nombre Empresa</th>
+                            <th>NIT/RUT</th>
+                            <th>Contacto</th>
+                            <th>Correo Contacto</th>
+                            <th>Tipo Instalación</th>
+                            <th>Nombre Instalación</th>
+                            <th>Ciudad Instalación</th>
+                            <th>Departamento Instalación</th>
+                            <th>Observaciones</th>
+                            <th>Fecha Solicitud</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-pendientes">
+                        <tr><td colspan="11">Cargando listado...</td></tr>
                     </tbody>
-            </table>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -68,5 +145,112 @@
         <p>Francisco Quiñones Maldonado</p>
         <p>Soluciones Tecnológicas</p>
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const solicitudesRef = ref(database, 'solicitudes-certificacion'); // Referencia a donde se guardan las solicitudes
+        const listaPendientesTabla = document.getElementById('lista-pendientes'); // Referencia al tbody
+
+        function eliminarCertificacion(key) {
+            if (confirm('¿Estás seguro de que deseas eliminar esta certificación?')) {
+                const certificacionRef = ref(database, `solicitudes-certificacion/${key}`);
+                remove(certificacionRef)
+                    .then(() => {
+                        alert('Certificación eliminada con éxito.');
+                        // La tabla se actualizará automáticamente gracias al listener onValue
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar la certificación:", error);
+                        alert('Error al eliminar la certificación. Por favor, intenta de nuevo.');
+                    });
+            }
+        }
+
+        function mostrarListadoPendientes(data) {
+            listaPendientesTabla.innerHTML = ''; // Limpia la tabla
+            if (data) {
+                Object.entries(data).forEach(([key, solicitud]) => {
+                    const row = listaPendientesTabla.insertRow();
+                    row.insertCell().textContent = solicitud.nombre_legal || 'N/A';
+                    row.insertCell().textContent = solicitud.nit_rut || 'N/A';
+                    row.insertCell().textContent = solicitud.contacto || 'N/A';
+                    row.insertCell().textContent = solicitud.correo_contacto || 'N/A';
+                    row.insertCell().textContent = solicitud.tipo_instalacion === 'otro' ? solicitud.otro_tipo : solicitud.tipo_instalacion || 'N/A';
+                    row.insertCell().textContent = solicitud.nombre_instalacion || 'N/A';
+                    row.insertCell().textContent = solicitud.ciudad_instalacion || 'N/A';
+                    row.insertCell().textContent = solicitud.departamento_instalacion || 'N/A';
+                    row.insertCell().textContent = solicitud.observaciones || 'N/A';
+                    row.insertCell().textContent = solicitud.fecha_solicitud ? new Date(solicitud.fecha_solicitud).toLocaleDateString() : 'N/A';
+
+                    // Columna de acciones con el botón Eliminar
+                    const accionesCell = row.insertCell();
+                    const eliminarButton = document.createElement('button');
+                    eliminarButton.textContent = 'Eliminar';
+                    eliminarButton.classList.add('eliminar-btn');
+                    eliminarButton.onclick = () => eliminarCertificacion(key); // Pasar la clave única
+                    accionesCell.appendChild(eliminarButton);
+                });
+            } else {
+                const row = listaPendientesTabla.insertRow();
+                const cell = row.insertCell();
+                cell.colSpan = 11;
+                cell.textContent = 'No hay certificaciones pendientes.';
+            }
+        }
+
+        function guardarNuevaCertificacion() {
+            const nombreLegal = document.getElementById('nombre_legal').value;
+            const nitRut = document.getElementById('nit_rut').value;
+            const contacto = document.getElementById('contacto').value;
+            const correoContacto = document.getElementById('correo_contacto').value;
+            const tipoInstalacion = document.getElementById('tipo_instalacion').value;
+            const nombreInstalacion = document.getElementById('nombre_instalacion').value;
+            const ciudadInstalacion = document.getElementById('ciudad_instalacion').value;
+            const departamentoInstalacion = document.getElementById('departamento_instalacion').value;
+            const observaciones = document.getElementById('observaciones').value;
+            const fechaSolicitud = Date.now(); // Timestamp actual
+
+            const nuevaCertificacion = {
+                nombre_legal: nombreLegal,
+                nit_rut: nitRut,
+                contacto: contacto,
+                correo_contacto: correoContacto,
+                tipo_instalacion: tipoInstalacion,
+                nombre_instalacion: nombreInstalacion,
+                ciudad_instalacion: ciudadInstalacion,
+                departamento_instalacion: departamentoInstalacion,
+                observaciones: observaciones,
+                fecha_solicitud: fechaSolicitud
+            };
+
+            push(solicitudesRef, nuevaCertificacion)
+                .then(() => {
+                    alert('Nueva certificación pendiente guardada con éxito.');
+                    document.getElementById('formulario-nueva-certificacion').reset();
+                })
+                .catch((error) => {
+                    console.error("Error al guardar la certificación:", error);
+                    alert('Error al guardar la certificación. Por favor, intenta de nuevo.');
+                });
+        }
+
+        // Escucha los cambios en la base de datos de Firebase
+        onValue(solicitudesRef, (snapshot) => {
+            const data = snapshot.val();
+            mostrarListadoPendientes(data);
+        }, (error) => {
+            console.error("Error al leer datos de Firebase:", error);
+            listaPendientesTabla.innerHTML = '<tr><td colspan="11">Error al cargar las solicitudes.</td></tr>';
+        });
+
+        // Asigna la función al scope global para que el onclick en el HTML funcione
+        window.guardarNuevaCertificacion = guardarNuevaCertificacion;
+    </script>
 </body>
 </html>
