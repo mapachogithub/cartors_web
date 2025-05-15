@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="certificaciones_solicitud.css">
   <title>Solicitud de Certificación</title>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 </head>
 <body>
 <header>
@@ -135,18 +132,6 @@
       </section>
 
       <section class="formulario-seccion">
-        <h3>Documentación Adjunta</h3>
-        <div class="form-group">
-          <label for="documento_identificacion">Cargar Documento de Identificación del Representante Legal (PDF, JPG, PNG):</label>
-          <input type="file" id="documento_identificacion" name="documento_identificacion" accept=".pdf, .jpg, .jpeg, .png" required>
-        </div>
-        <div class="form-group">
-          <label for="soporte_pago">Cargar soporte de pago del servicio prestado (PDF, JPG, PNG):</label>
-          <input type="file" id="soporte_pago" name="soporte_pago" accept=".pdf, .jpg, .jpeg, .png" required>
-        </div>
-      </section>
-
-      <section class="formulario-seccion">
         <h3>Observaciones Adicionales</h3>
         <div class="form-group">
           <label for="observaciones">Observaciones:</label>
@@ -167,132 +152,83 @@
     <p>Soluciones Tecnológicas</p>
   </footer>
 
-  <script>
-document.getElementById('tipo_instalacion').addEventListener('change', function() {
-  const otroTipoInstalacionDiv = document.getElementById('otro_tipo_instalacion');
-  if (this.value === 'otro') {
-    otroTipoInstalacionDiv.style.display = 'block';
-    document.getElementById('otro_tipo').required = true;
-  } else {
-    otroTipoInstalacionDiv.style.display = 'none';
-    document.getElementById('otro_tipo').required = false;
-    document.getElementById('otro_tipo').value = '';
-  }
-});
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { firebaseConfig } from './firebaseConfig.js';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBlNwtnxe9h9DzRs55LORgqiW8bEtxG5UQ",
-  authDomain: "cartors-sas-web.firebaseapp.com",
-  databaseURL: "https://cartors-sas-web-default-rtdb.firebaseio.com",
-  projectId: "cartors-sas-web",
-  storageBucket: "cartors-sas-web.firebasestorage.app",
-  messagingSenderId: "25480187903",
-  appId: "1:25480187903:web:3f31137faa9bacf760a1ca"
-};
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-// Inicializar Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Inicializar Firestore y Storage
-const db = firebase.firestore();
-const storage = firebase.app().storage();
-
-const solicitudCertificacionForm = document.getElementById('solicitudCertificacionForm');
-solicitudCertificacionForm.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  // Deshabilitar el botón para evitar envíos múltiples
-  const submitButton = this.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  submitButton.textContent = 'Enviando...';
-
-  // Obtener los datos del formulario
-  const formData = new FormData(this);
-  const nombre_legal = formData.get('nombre_legal');
-  const nit_rut = formData.get('nit_rut');
-  const direccion_principal = formData.get('direccion_principal');
-  const ciudad = formData.get('ciudad');
-  const departamento = formData.get('departamento');
-  const pais = formData.get('pais');
-  const telefono_fijo = formData.get('telefono_fijo');
-  const telefono_movil = formData.get('telefono_movil');
-  const contacto = formData.get('contacto');
-  const telefono_contacto = formData.get('telefono_contacto');
-  const correo_contacto = formData.get('correo_contacto');
-  const pagina_web = formData.get('pagina_web');
-  const tipo_instalacion = formData.get('tipo_instalacion');
-  const otro_tipo = formData.get('otro_tipo');
-  const nombre_instalacion = formData.get('nombre_instalacion');
-  const direccion_instalacion = formData.get('direccion_instalacion');
-  const ciudad_instalacion = formData.get('ciudad_instalacion');
-  const departamento_instalacion = formData.get('departamento_instalacion');
-  const fecha_instalacion = formData.get('fecha_instalacion');
-  const documento_identificacion_file = formData.get('documento_identificacion');
-  const soporte_pago_file = formData.get('soporte_pago');
-  const observaciones = formData.get('observaciones');
-
-  // Referencias a los documentos en Storage
-  const storageRef = storage.ref();
-  const documentoIdentificacionRef = storageRef.child(`certificaciones/${nombre_legal}_identificacion_${Date.now()}.${documento_identificacion_file.name.split('.').pop()}`);
-  const soportePagoRef = storageRef.child(`certificaciones/${nombre_legal}_pago_${Date.now()}.${soporte_pago_file.name.split('.').pop()}`);
-
-  console.log('Iniciando subida de archivos...');
-
-  // Subir archivos y luego guardar la información en Firestore
-  Promise.all([
-    documentoIdentificacionRef.put(documento_identificacion_file),
-    soportePagoRef.put(soporte_pago_file)
-  ]).then(async (snapshots) => {
-    console.log('Subida de archivos completada.');
-    const documentoIdentificacionURL = await snapshots[0].ref.getDownloadURL();
-    const soportePagoURL = await snapshots[1].ref.getDownloadURL();
-
-    console.log('URLs de descarga obtenidas:', documentoIdentificacionURL, soportePagoURL);
-
-    // Guardar la información del formulario y las URLs de los archivos en Firestore
-    db.collection('solicitudes_certificacion').add({
-      nombre_legal: nombre_legal,
-      nit_rut: nit_rut,
-      direccion_principal: direccion_principal,
-      ciudad: ciudad,
-      departamento: departamento,
-      pais: pais,
-      telefono_fijo: telefono_fijo,
-      telefono_movil: telefono_movil,
-      contacto: contacto,
-      telefono_contacto: telefono_contacto,
-      correo_contacto: correo_contacto,
-      pagina_web: pagina_web || null,
-      tipo_instalacion: tipo_instalacion,
-      otro_tipo: otro_tipo || null,
-      nombre_instalacion: nombre_instalacion || null,
-      direccion_instalacion: direccion_instalacion,
-      ciudad_instalacion: ciudad_instalacion,
-      departamento_instalacion: departamento_instalacion,
-      fecha_instalacion: fecha_instalacion || null,
-      documento_identificacion_url: documentoIdentificacionURL,
-      soporte_pago_url: soportePagoURL,
-      observaciones: observaciones || null,
-      fecha_solicitud: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
-      console.log('THEN de Firestore: Datos guardados con éxito.');
-      alert('¡Solicitud de certificación enviada con éxito!');
-      solicitudCertificacionForm.reset();
-    }).catch((error) => {
-      console.error('CATCH de Firestore: Error al guardar en Firestore: ', error);
-      alert('Ocurrió un error al enviar la solicitud. Por favor, inténtalo de nuevo.');
-    }).finally(() => {
-      submitButton.disabled = false;
-      submitButton.textContent = 'Enviar Solicitud';
+    document.getElementById('tipo_instalacion').addEventListener('change', function() {
+      const otroTipoInstalacionDiv = document.getElementById('otro_tipo_instalacion');
+      if (this.value === 'otro') {
+        otroTipoInstalacionDiv.style.display = 'block';
+        document.getElementById('otro_tipo').required = true;
+      } else {
+        otroTipoInstalacionDiv.style.display = 'none';
+        document.getElementById('otro_tipo').required = false;
+        document.getElementById('otro_tipo').value = '';
+      }
     });
 
-  }).catch((error) => {
-    console.error('CATCH de Promise.all (Subida de archivos): ', error);
-    alert('Ocurrió un error al subir los archivos. Por favor, inténtalo de nuevo.');
-    submitButton.disabled = false;
-    submitButton.textContent = 'Enviar Solicitud';
-  });
-});
+    const solicitudCertificacionForm = document.getElementById('solicitudCertificacionForm');
+    solicitudCertificacionForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const submitButton = this.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
+
+      const formData = new FormData(this);
+      const empresaData = {
+        nombre_legal: formData.get('nombre_legal'),
+        nit_rut: formData.get('nit_rut'),
+        direccion_principal: formData.get('direccion_principal'),
+        ciudad: formData.get('ciudad'),
+        departamento: formData.get('departamento'),
+        pais: formData.get('pais'),
+        telefono_fijo: formData.get('telefono_fijo'),
+        telefono_movil: formData.get('telefono_movil'),
+        contacto: formData.get('contacto'),
+        telefono_contacto: formData.get('telefono_contacto'),
+        correo_contacto: formData.get('correo_contacto'),
+        pagina_web: formData.get('pagina_web'),
+      };
+
+      const instalacionData = {
+        tipo_instalacion: formData.get('tipo_instalacion'),
+        otro_tipo: formData.get('otro_tipo'),
+        nombre_instalacion: formData.get('nombre_instalacion'),
+        direccion_instalacion: formData.get('direccion_instalacion'),
+        ciudad_instalacion: formData.get('ciudad_instalacion'),
+        departamento_instalacion: formData.get('departamento_instalacion'),
+        fecha_instalacion: formData.get('fecha_instalacion'),
+      };
+
+      const observaciones = formData.get('observaciones');
+
+      try {
+        const solicitudData = {
+          ...empresaData,
+          ...instalacionData,
+          observaciones: observaciones,
+          fecha_solicitud: new Date().toISOString()
+        };
+
+        const docRef = await addDoc(collection(db, 'solicitudes_certificacion'), solicitudData);
+        console.log('Document written with ID: ', docRef.id);
+        alert('¡Solicitud de certificación enviada con éxito!');
+        solicitudCertificacionForm.reset();
+
+      } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+        alert('Ocurrió un error al enviar la solicitud. Por favor, inténtalo de nuevo.');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Enviar Solicitud';
+      }
+    });
   </script>
 </body>
 </html>
