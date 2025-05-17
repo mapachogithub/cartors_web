@@ -19,62 +19,6 @@ body {
     min-height: 100vh;
 }
 
-/* ---------------------------------------------------------------------
-Header estilos */
-
-header {
-    background-image: url('../images/headeria6.jpeg'); /* Cambia esto por la ruta de tu imagen */
-    background-size: cover; /* La imagen cubrirá todo el espacio */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que se repita la imagen */
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100px; /* Ajusta esto según tus necesidades */
-}
-
-header {
-    height: 90vh; /* 100% PARA QUE SE VEA TODA LA IMÁGEN DEL HEADER*/
-    /* Resto de propiedades... */
-}
-
-header .logo {
-    margin-bottom: 15px;
-}
-
-header .logo img {
-    height: 80px;
-    display: block;
-    margin: 0 auto;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #0073e6;
-}
-
-/* ---------------------------------------------------------------------
-index.html estilos */
-
 /* Contenido centrado (primera parte de index.html) */
 .centrado {
     text-align: center;
@@ -1111,34 +1055,3 @@ clientes.html estilos */
 
 
 /* ---------------------------------------------------------------------
-
-Footer estilos */
-footer {
-    background: none; /* Sin fondo negro, hereda el whitesmoke del body */
-    color: #000; /* Letras en negro */
-    text-align: center;
-    padding: 30px 0; /* Más espacio vertical para que respire */
-    width: 100%; /* Ocupa todo el ancho */
-    font-size: 1rem; /* Tamaño de fuente legible */
-    line-height: 2; /* Más espacio entre líneas para evitar que se corten o se vean apretadas */
-}
-
-footer p {
-    margin: 8px 0; /* Espaciado uniforme entre párrafos, más amplio para mejor legibilidad */
-}
-
-footer .social-icons {
-    margin-top: 20px; /* Más espacio entre el texto y los íconos */
-}
-
-footer .social-icons a {
-    color: #000; /* Íconos en negro */
-    margin: 0 20px; /* Más espacio horizontal entre íconos para que no se vean apelotonados */
-    font-size: 1.8rem; /* Íconos más grandes para mejor visibilidad */
-    text-decoration: none; /* Sin subrayado */
-    transition: color 0.3s ease;
-}
-
-footer .social-icons a:hover {
-    color: #0073e6; /* Azul al pasar el mouse, consistente con el sitio */
-}
