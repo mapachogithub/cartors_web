@@ -1,0 +1,130 @@
+<! asfalt lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctenos - Cartor's SAS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<!-- Header -->
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="clientes.html">Clientes</a></li>
+            <li><a href="contactenos.html">Contáctanos</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="certificaciones_solicitud.html">Certificaciones</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <h1>Contáctanos</h1>
+            <p>En Cartor's SAS estamos listos para ayudarte. Ponte en contacto con nosotros para cualquier consulta, solicitud de servicio o información adicional.</p>
+
+            <div class="contact-info">
+                <h2>Cartor's SAS</h2>
+                <p><i class="fas fa-map-marker-alt"></i> Dirección: Calle 131 #123-91, Bogotá, Colombia</p>
+                <p><i class="fas fa-envelope"></i> Email: cartorssas.gerencia@gmail.com</p>
+                <p><i class="fas fa-phone"></i> Teléfono: +573113299298</p>
+            </div>
+
+            <div class="contact-buttons">
+                <a href="#" class="social-btn facebook-btn">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+
+                <a href="#" class="social-btn instagram-btn">
+                    <i class="fab fa-instagram"></i> Instagram
+                    </a>
+
+                <a href="tel:+573113299298" class="call-btn">
+                    <i class="fas fa-phone"></i> Llámanos
+                    </a>
+            </div>
+
+            <form class="contact-form">
+                <h2>Envíanos un mensaje</h2>
+                <div class="form-group">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="mensaje" name="mensaje" placeholder="Tu mensaje" rows="5" required></textarea>
+                </div>
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Cartor's SAS.</p>
+        <p>Todos los derechos reservados.</p>
+        <br>
+        <p>Codificación y edición:</p>
+        <p>Francisco Quiñones Maldonado</p>
+        <p>Soluciones Tecnológicas</p>
+        
+    </footer>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBlNwtnxe9h9DzRs55LORgqiW8bEtxG5UQ",
+        authDomain: "cartors-sas-web.firebaseapp.com",
+        projectId: "cartors-sas-web",
+        storageBucket: "cartors-sas-web.firebasestorage.app",
+        messagingSenderId: "25480187903",
+        appId: "1:25480187903:web:3f31137faa9bacf760a1ca"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      // -----------------------------------------------------------------------------------------
+      // CÓDIGO PARA LA BASE DE DATOS EN FIREBASE
+
+      const contactForm = document.querySelector('form.contact-form'); // Selector más específico
+
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+
+        const nombre = document.getElementById('nombre').value;
+        const email = document.getElementById('email').value;
+        const mensaje = document.getElementById('mensaje').value;
+
+        // Crea un objeto con los datos del formulario
+        const formData = {
+          nombre: nombre,
+          email: email,
+          mensaje: mensaje,
+          timestamp: new Date().toISOString() // Opcional: agrega una marca de tiempo
+        };
+
+        // Obtén una referencia a la base de datos y a la ubicación donde quieres guardar los datos
+        const messagesRef = ref(database, 'mensajes-contacto'); // 'mensajes-contacto' será el nombre de la colección en tu base de datos
+
+        // Envía los datos a Firebase
+        push(messagesRef, formData)
+          .then(() => {
+            alert('¡Mensaje enviado correctamente!');
+            contactForm.reset(); // Limpia el formulario después del envío
+          })
+          .catch((error) => {
+            console.error('Error al enviar el mensaje:', error);
+            alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
+          });
+      });
+    </script>
+</body>
+</html>
