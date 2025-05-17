@@ -575,7 +575,7 @@ Aquí tengo los estilos para la página de inicio de sesión.
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('/images/wallpaperdarkindistries.jpg') no-repeat center center; /* Imagen de fondo. */
+    background: url('..//images/wallpaperdarkindistries.jpg') no-repeat center center; /* Imagen de fondo. */
     background-size: cover; /* Cubre todo el espacio. */
     position: relative;
 }
