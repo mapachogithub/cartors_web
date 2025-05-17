@@ -48,4 +48,4 @@ según la necesidad del cliente y mantenimiento a
 la misma.
 Procurando la satisfacción del cliente al 100%.
 
-Haz de toda la Codificación en html, css, js, phyton para correr la página desde Visual Studio Code y Xammp.
+Nota: Hacer de toda la Codificación en html, css, js, phyton para correr la página desde Visual Studio Code, con base de datos en firebase.

@@ -387,36 +387,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajustes responsive para pantallas más pequeñas en la sección de contacto. */
-@media (max-width: 768px) {
-    .centrado {
-        padding: 15px;
-    }
-
-    .formulario h2 {
-        font-size: 1.4rem;
-    }
-
-    .formulario h3 {
-        font-size: 0.9rem;
-    }
-
-    .boton-destacado {
-        padding: 8px 20px;
-        font-size: 0.9rem;
-    }
-
-    .botones-contacto {
-        flex-direction: column; /* Apila los botones verticalmente. */
-        gap: 10px;
-    }
-
-    .boton-llamar, .boton-whatsapp {
-        padding: 7px 15px;
-        font-size: 0.85rem;
-    }
-}
-
 /* --------------------------------------------------------------------------------------------------- */
 /* Sección específica para Mantenimiento e Instalación de Cocinas Industriales. */
 .kitchen-section {
@@ -605,7 +575,7 @@ Aquí tengo los estilos para la página de inicio de sesión.
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('../images/wallpaperdarkindustries.jpg') no-repeat center center; /* Imagen de fondo. */
+    background: url('/images/wallpaperdarkindistries.jpg') no-repeat center center; /* Imagen de fondo. */
     background-size: cover; /* Cubre todo el espacio. */
     position: relative;
 }
@@ -792,38 +762,6 @@ Aquí tengo los estilos para la página de inicio de sesión.
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive para la sección de login. */
-@media (max-width: 768px) {
-    .login-container {
-        padding: 30px 20px;
-        margin: 20px 15px;
-    }
-    
-    .login-container h2 {
-        font-size: 1.5rem;
-    }
-    
-    .input-box input {
-        padding: 12px 15px 12px 40px;
-    }
-    
-    .login-btn {
-        padding: 10px 20px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .remember-forgot {
-        flex-direction: column; /* Apila los elementos verticalmente. */
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .login-container {
-        backdrop-filter: blur(5px); /* Reduce el desenfoque en pantallas pequeñas. */
-    }
-}
 /* ---------------------------------------------------------------------
 Estilos para contactenos.html.
 */
@@ -1064,17 +1002,3 @@ Estilos para clientes.html.
     max-width: 600px;
     margin: 0 auto;
 }
-
-/* Ajustes responsive para la sección de clientes. */
-@media screen and (min-width: 768px) {
-    .clients-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .client-card {
-        margin: 30px 0;
-    }
-}
-
