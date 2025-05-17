@@ -13,6 +13,15 @@ body {
     color: #333;
     line-height: 1.6;
 }
+/* ------------------------------------------------------------------------------------------------- */
+/* Logo de bienvenida */
+.small-logo {
+    max-width: 150px; /* O el tamaño que se quiera, por ejemplo, 30px, 40px, etc. */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Para centrarlo si es necesario, o controlar el margen */
+    margin: 0 auto; /* Para centrarlo horizontalmente si es un elemento de bloque */
+}
+/* ------------------------------------------------------------------------------------------------- */
 
 /* Sección de Bienvenida */
 .welcome-section {
