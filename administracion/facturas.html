@@ -7,7 +7,6 @@
     <title>Facturas</title>
 </head>
 <body>
-    <!-- Llamando al objeto admin_header a este html -->
     <div id="admin-header-placeholder"></div>
 
     <div class="main-container">
@@ -52,24 +51,35 @@
                     </tr>
                 </thead>
                 <tbody id="tablaFacturasBody">
-                    </tbody>
+                </tbody>
             </table>
         </section>
+
+        <section class="monthly-summary">
+            <h2>Resumen Anual y Mensual de Facturas</h2>
+            <div id="yearlySummaryContainer">
+                </div>
+            <div class="total-general-box">
+                <h3>Total General de Facturas: <span id="totalGeneralFacturas"></span></h3>
+            </div>
+        </section>
+
     </div>
 
-    <!-- Llamando al objeto footer_objetc.js a este html -->
     <div id="admin-footer-placeholder"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
-        import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
+        import { firebaseConfig } from './firebaseConfig.js'; // <- ¡Verifica esta ruta!
 
         // Inicializa Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const facturasRef = ref(database, 'facturas'); // Referencia a la colección de facturas
         const tablaFacturasBody = document.getElementById('tablaFacturasBody');
+        const yearlySummaryContainer = document.getElementById('yearlySummaryContainer'); // Nuevo contenedor para el resumen anual
+        const totalGeneralFacturasSpan = document.getElementById('totalGeneralFacturas');
 
         function eliminarFactura(key) {
             if (confirm('¿Estás seguro de que deseas eliminar esta factura?')) {
@@ -87,9 +97,19 @@
         }
 
         function mostrarFacturas(data) {
-            tablaFacturasBody.innerHTML = ''; // Limpia la tabla
+            tablaFacturasBody.innerHTML = ''; // Limpia la tabla existente
+            yearlySummaryContainer.innerHTML = ''; // Limpia el resumen anual/mensual
+            let totalGeneral = 0;
+            const facturasPorAño = {}; // Nuevo objeto para agrupar facturas por año
+
             if (data) {
-                Object.entries(data).forEach(([key, factura]) => {
+                // Primero, ordenamos las facturas por fecha para que los años y meses salgan en orden
+                const sortedFacturas = Object.entries(data).sort(([, a], [, b]) => {
+                    return new Date(a.fechaEmision) - new Date(b.fechaEmision);
+                });
+
+                sortedFacturas.forEach(([key, factura]) => {
+                    // Agrega la factura a la tabla principal
                     const row = tablaFacturasBody.insertRow();
 
                     let cell = row.insertCell();
@@ -104,8 +124,9 @@
                     cell.textContent = factura.fechaEmision || 'N/A';
                     cell.dataset.label = 'Fecha Emisión';
 
+                    const valor = parseFloat(factura.valorTotal);
                     cell = row.insertCell();
-                    cell.textContent = factura.valorTotal ? `$${parseFloat(factura.valorTotal).toLocaleString('es-CO')}` : 'N/A';
+                    cell.textContent = valor ? `$${valor.toLocaleString('es-CO')}` : 'N/A';
                     cell.dataset.label = 'Valor Total';
 
                     cell = row.insertCell();
@@ -120,12 +141,82 @@
                     eliminarButton.onclick = () => eliminarFactura(key); // Pasar la clave única
                     accionesCell.appendChild(eliminarButton);
                     accionesCell.dataset.label = 'Acciones';
+
+                    // Preparar para el resumen anual y mensual
+                    if (factura.fechaEmision && valor) {
+                        const date = new Date(factura.fechaEmision);
+                        const year = date.getFullYear();
+                        const month = date.getMonth(); // 0-11
+                        const monthName = new Date(year, month, 1).toLocaleString('es-ES', { month: 'long' }); // Solo el nombre del mes
+                        const yearMonthKey = `${year}-${month.toString().padStart(2, '0')}`; // Clave para ordenar meses dentro del año
+
+                        if (!facturasPorAño[year]) {
+                            facturasPorAño[year] = {
+                                total: 0,
+                                meses: {}
+                            };
+                        }
+                        if (!facturasPorAño[year].meses[yearMonthKey]) {
+                            facturasPorAño[year].meses[yearMonthKey] = {
+                                name: monthName, // Guardamos el nombre del mes para mostrarlo
+                                total: 0,
+                                facturas: []
+                            };
+                        }
+                        facturasPorAño[year].total += valor;
+                        facturasPorAño[year].meses[yearMonthKey].total += valor;
+                        facturasPorAño[year].meses[yearMonthKey].facturas.push({ id: key, ...factura });
+                        totalGeneral += valor;
+                    }
                 });
+
+                // Generar los cuadros de resumen por año
+                const sortedYears = Object.keys(facturasPorAño).sort((a, b) => parseInt(a) - parseInt(b));
+
+                sortedYears.forEach(year => {
+                    const yearData = facturasPorAño[year];
+                    const yearBox = document.createElement('div');
+                    yearBox.classList.add('year-summary-box'); // Nueva clase para el contenedor anual
+                    yearBox.innerHTML = `
+                        <h2>${year}</h2>
+                        <div class="monthly-summary-grid">
+                            </div>
+                        <p class="yearly-total">Total Anual: <strong>$${yearData.total.toLocaleString('es-CO')}</strong></p>
+                    `;
+                    const monthlyGrid = yearBox.querySelector('.monthly-summary-grid');
+
+                    // Generar los cuadros de resumen por mes dentro de cada año
+                    const sortedMonths = Object.keys(yearData.meses).sort(); // Ordena los meses por su clave (ej: "2025-01", "2025-05")
+                    sortedMonths.forEach(monthKey => {
+                        const monthData = yearData.meses[monthKey];
+                        const monthBox = document.createElement('div');
+                        monthBox.classList.add('month-box');
+                        monthBox.innerHTML = `
+                            <h3>${monthData.name} ${year}</h3>
+                            <ul class="monthly-invoice-list">
+                                ${monthData.facturas.map(f => `
+                                    <li>
+                                        ID: ${f.id} - Cliente: ${f.cliente} - Valor: $${parseFloat(f.valorTotal).toLocaleString('es-CO')}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                            <p class="monthly-total">Total del mes: <strong>$${monthData.total.toLocaleString('es-CO')}</strong></p>
+                        `;
+                        monthlyGrid.appendChild(monthBox);
+                    });
+                    yearlySummaryContainer.appendChild(yearBox);
+                });
+
+
+                // Mostrar el total general
+                totalGeneralFacturasSpan.textContent = `$${totalGeneral.toLocaleString('es-CO')}`;
+
             } else {
                 const row = tablaFacturasBody.insertRow();
                 const cell = row.insertCell();
                 cell.colSpan = 6; // Ajustar el colspan al número de columnas
                 cell.textContent = 'No hay facturas registradas.';
+                totalGeneralFacturasSpan.textContent = '$0,00'; // Si no hay facturas, el total es 0
             }
         }
 
@@ -165,10 +256,15 @@
         }, (error) => {
             console.error("Error al leer datos de Firebase:", error);
             tablaFacturasBody.innerHTML = '<tr><td colspan="6">Error al cargar las facturas.</td></tr>';
+            totalGeneralFacturasSpan.textContent = '$0,00';
         });
 
         // Asigna la función al scope global para que el onclick en el HTML funcione
         window.agregarFactura = agregarFactura;
+
+        // Si los scripts admin_header.js y footer_objetc.js ya manejan la inserción del HTML,
+        // estas líneas de script al final del body serán suficientes.
+        // Si no aparecen, la lógica de inserción está en esos JS o las rutas a los .html están mal.
     </script>
 
     <script src="../administracion/OBJECTS JS/admin_header.js"></script>

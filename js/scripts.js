@@ -20,7 +20,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Funciones para el modal de login
+// Funciones para el login
 function showLoginModal() {
   const modal = document.getElementById("loginModal");
   if (modal) {
@@ -35,7 +35,7 @@ function hideLoginModal() {
   }
 }
 
-// Funciones para el modal de imagen ampliada
+// Funciones para la imagen ampliada
 function showImageModal(src) {
   const modal = document.getElementById("imageModal");
   const enlargedImage = document.getElementById("enlargedImage");
@@ -52,7 +52,7 @@ function hideImageModal() {
   }
 }
 
-// Cerrar modales al hacer clic fuera de ellos
+// Cerrar efecto al hacer clic fuera de ellos
 window.onclick = function(event) {
   const loginModal = document.getElementById("loginModal");
   const imageModal = document.getElementById("imageModal");
@@ -65,7 +65,7 @@ window.onclick = function(event) {
   }
 };
 
-// Mostrar el modal de login si hay un error al cargar la página
+// Mostrar el efecto de login si hay un error al cargar la página
 window.onload = function() {
   <?php if ($errorMessage): ?>
       showLoginModal();

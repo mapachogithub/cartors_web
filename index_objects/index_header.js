@@ -1,58 +1,127 @@
 // index_header.js
 const indexHeaderContent = `
     <style>
-        /* Header */
-        
+
 header {
-    background-image: url('../images/headeria6.jpeg'); /* Cambia esto por la ruta de tu imagen */
-    background-size: cover; /* La imagen cubrirá todo el espacio */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que se repita la imagen */
-    color: #fff;
-    padding: 20px;
+    background-color: #2c3e50; /* Azul oscuro principal */
+    padding: 30px 0 0 0; /* Padding superior, sin padding inferior para la franja */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Cambiado a columna para apilar el nav y la franja */
+    justify-content: center;
     align-items: center;
-    min-height: 100px; /* Ajusta esto según tus necesidades */
+    min-height: 100px;
+    position: relative; /* Necesario para la franja de abajo */
 }
 
-header {
-    height: 90vh; /* 100% PARA QUE SE VEA TODA LA IMÁGEN DEL HEADER*/
-    /* Resto de propiedades... */
-}
-
-header .logo {
-    margin-bottom: 15px;
-}
-
-header .logo img {
-    height: 80px;
-    display: block;
+nav {
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px 20px 20px; /* Añadido padding inferior para separar el menú de la franja */
+    flex-grow: 1; /* Permite que el nav ocupe el espacio disponible */
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 25px;
 }
 
 nav ul li a {
-    color: black;
     text-decoration: none;
-    font-weight: bold;
+    color: #ecf0f1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25em;
+    font-weight: 600;
+    padding: 12px 0;
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    display: block;
 }
 
 nav ul li a:hover {
-    color: #0073e6;
+    color: #3498db;
+    transform: translateY(-2px);
 }
 
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px;
+    background-color: #3498db;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a.active {
+    color: #3498db;
+    border-bottom: 4px solid #3498db;
+    padding-bottom: 8px;
+}
+
+/* Franja inferior del header */
+header::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 25px; /* Altura de la franja */
+    background-color: #6dae44; /* Verde corporativo, similar al de la imagen */
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1); /* Sombra interna sutil */
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    header::after {
+        height: 20px; /* Ajuste para pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px 0 0 0;
+        min-height: 80px;
+    }
+
+    nav ul li a {
+        font-size: 1em;
+    }
+
+    header::after {
+        height: 15px;
+    }
+}
+        
     </style>
 
 

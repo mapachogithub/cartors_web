@@ -1,4 +1,4 @@
-<! asfalt lang="es">
+<!DOCTYPE html> <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<!-- Header -->
-    <!-- Header llamado desde un objeto js -->
-         <div id="admin-header-placeholder"></div>
-        <script src="index_objects/index_header.js"></script>
+<div id="admin-header-placeholder"></div>
+    <script src="index_objects/index_header.js"></script>
 
     <section class="contact-section">
         <div class="contact-container">
@@ -54,16 +52,15 @@
         </div>
     </section>
 
-    <!-- Llamando al objeto footer_objetc.js a este html -->
     <div id="admin-footer-placeholder"></div>
-    <script src="../administracion/OBJECTS JS/footer_objetc.js"></script>   
+    <script src="../administracion/OBJECTS JS/footer_objetc.js"></script>    
 
     <script type="module">
-      // Import the functions you need from the SDKs you need
+      // Importo las funciones que necesito de Firebase. ¡Así no cargo todo lo que no uso!
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
       import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
-      // Your web app's Firebase configuration
+      // Esta es la configuración de mi aplicación de Firebase. ¡Es importante que estos datos sean correctos!
       const firebaseConfig = {
         apiKey: "AIzaSyBlNwtnxe9h9DzRs55LORgqiW8bEtxG5UQ",
         authDomain: "cartors-sas-web.firebaseapp.com",
@@ -73,42 +70,45 @@
         appId: "1:25480187903:web:3f31137faa9bacf760a1ca"
       };
 
-      // Initialize Firebase
+      // Inicializo Firebase con la configuración que tengo.
       const app = initializeApp(firebaseConfig);
       const database = getDatabase(app);
 
       // -----------------------------------------------------------------------------------------
-      // CÓDIGO PARA LA BASE DE DATOS EN FIREBASE
+      // Este es el código para guardar los mensajes en la base de datos de Firebase.
 
-      const contactForm = document.querySelector('form.contact-form'); // Selector más específico
+      // Primero, agarro el formulario de contacto. Me aseguro de que sea el correcto usando el selector de clase.
+      const contactForm = document.querySelector('form.contact-form'); 
 
+      // Le añado un "escuchador" de eventos para cuando alguien envíe el formulario.
       contactForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+        event.preventDefault(); // Esto es clave: evito que el formulario se envíe como lo haría normalmente, así lo manejo yo con JS.
 
+        // Tomo los valores que el usuario escribió en los campos del formulario.
         const nombre = document.getElementById('nombre').value;
         const email = document.getElementById('email').value;
         const mensaje = document.getElementById('mensaje').value;
 
-        // Crea un objeto con los datos del formulario
+        // Creo un objeto con toda la información del formulario.
         const formData = {
           nombre: nombre,
           email: email,
           mensaje: mensaje,
-          timestamp: new Date().toISOString() // Opcional: agrega una marca de tiempo
+          timestamp: new Date().toISOString() // Agrego la fecha y hora para saber cuándo se envió el mensaje. ¡Muy útil!
         };
 
-        // Obtén una referencia a la base de datos y a la ubicación donde quieres guardar los datos
-        const messagesRef = ref(database, 'mensajes-contacto'); // 'mensajes-contacto' será el nombre de la colección en tu base de datos
+        // Obtengo una referencia a la "colección" donde quiero guardar los mensajes en Firebase.
+        const messagesRef = ref(database, 'mensajes-contacto'); // "mensajes-contacto" es como llamé a mi colección en la base de datos.
 
-        // Envía los datos a Firebase
+        // Envío los datos a Firebase. ¡Esto es lo que hace la magia!
         push(messagesRef, formData)
           .then(() => {
-            alert('¡Mensaje enviado correctamente!');
-            contactForm.reset(); // Limpia el formulario después del envío
+            alert('¡Mensaje enviado correctamente! Pronto un asesor se comunicará contigo.'); // Le aviso al usuario que todo salió bien.
+            contactForm.reset(); // Limpio el formulario para que pueda enviar otro mensaje si quiere.
           })
           .catch((error) => {
-            console.error('Error al enviar el mensaje:', error);
-            alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
+            console.error('Error al enviar el mensaje:', error); // Si algo sale mal, lo muestro en la consola para depurar.
+            alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.'); // Y le doy un mensaje de error al usuario.
           });
       });
     </script>

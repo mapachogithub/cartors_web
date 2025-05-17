@@ -17,7 +17,7 @@ const adminHeaderContent = `
                 <li><a href="nuestros_clientes.html">Clientes</a></li>
                 <li><a href="mensajes_de_contacto.html">Mensajes</a></li>
                 <li><a href="certificaciones.html">Certificaciones</a></li>
-                <li><a href="certificaciones_pendientes.html">Por Emitir</a></li>
+                <li><a href="certificaciones_pendientes.html">Certificaciones Pendientes</a></li>
                 <li><a href="facturas.html">Facturas</a></li>
                 <li><a href="../index.html" class="logout-link">Cerrar Sesión</a></li>
             </ul>

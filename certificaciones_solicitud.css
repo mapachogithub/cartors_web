@@ -84,60 +84,6 @@ body {
 }
 
 
-/* ------------------------------------------------------------------------------------------------------ */
-
-/* Header estilos */
-
-header {
-    background-image: url('/images/headeria6.jpeg'); /* Cambiar esto por la ruta de la imagen */
-    background-size: cover; /* La imagen cubrirá todo el espacio */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que se repita la imagen */
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100px; /* Ajusta esto según tus necesidades */
-}
-
-header {
-    height: 90vh; /* 100% PARA QUE SE VEA TODA LA IMÁGEN DEL HEADER*/
-    /* Resto de propiedades... */
-}
-
-header .logo {
-    margin-bottom: 15px;
-}
-
-header .logo img {
-    height: 80px;
-    display: block;
-    margin: 0 auto;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #0073e6;
-}
-
 /* Sección Principal */
 main {
     flex-grow: 1; /* Permite que el main crezca para ocupar el espacio restante */

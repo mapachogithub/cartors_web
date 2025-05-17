@@ -1,0 +1,9 @@
+Entregas previas:
+
+
+Entregas funcinoales al dpto administrativo de Cartor´s
+Entrega #1: 15 - 05 - 2025
+Obervaciones: 
+- Crear html en el admi para leer los mensajes enviados
+- Rediseñar el header del admin 
+- Rediseñar header general
