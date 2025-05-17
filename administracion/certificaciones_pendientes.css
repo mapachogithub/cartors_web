@@ -1,10 +1,114 @@
-/* ESTILOS PARA CERTIFICACIONES_PENDIENTES.HTML */
-@import url('certificaciones.css');
+/* MIS ESTILOS PARA CERTIFICACIONES_PENDIENTES.HTML */
+@import url('certificaciones.css'); /* Importo los estilos generales de certificaciones.css */
 
-.centrado h2 { color: #d9534f; } /* Rojo: pendiente */
-.centrado p { color: #5bc0de; } /* Azul claro */
+.centrado h2 { color: #d9534f; } /* Rojo para el título principal, para indicar "pendiente" */
+.centrado p { color: #5bc0de; } /* Azul claro para el párrafo descriptivo */
 
-.listado-certificados h3 { display: block; }
-.listado-certificados table { width: 98%; margin: 0 auto; }
-.listado-certificados { overflow-x: auto; }
-.listado-certificados th { color: white; }
+.listado-certificados h3 { display: block; } /* Aseguro que el título del listado se vea bien */
+.listado-certificados table { width: 98%; margin: 0 auto; } /* La tabla casi al ancho completo y centrada */
+.listado-certificados { overflow-x: auto; } /* Para que la tabla se pueda desplazar si es muy ancha en móviles */
+.listado-certificados th { color: white; } /* Texto blanco para los encabezados de la tabla */
+
+/* Estilos para el formulario de ingreso de nuevas certificaciones pendientes */
+.formulario-nueva-certificacion {
+    background-color: #f9f9f9; /* Fondo gris claro para el contenedor del formulario */
+    padding: 20px; /* Espaciado interno */
+    margin-bottom: 30px; /* Margen inferior para separarlo de la tabla */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+}
+
+.formulario-nueva-certificacion h3 {
+    font-family: 'Poppins', sans-serif; /* Fuente Poppins para el título del formulario */
+    font-weight: 500; /* Grosor de la fuente */
+    color: #333; /* Color de texto oscuro */
+    margin-bottom: 15px; /* Margen inferior */
+    text-align: center; /* Título centrado */
+}
+
+.formulario-nueva-certificacion form {
+    display: flex; /* Uso flexbox para organizar los campos */
+    flex-direction: column; /* Quiero que cada fila de label/input se apile verticalmente */
+    gap: 15px; /* Espacio entre cada renglón completo de label + input */
+}
+
+.form-row {
+    display: flex; /* Cada `form-row` contendrá el label y el input/textarea en la misma línea */
+    flex-direction: row; /* Coloca el label y el input uno al lado del otro */
+    align-items: center; /* Alinea verticalmente el label y el input al centro */
+    gap: 10px; /* Espacio entre el label y el input */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea si el espacio es muy pequeño */
+}
+
+.form-row label {
+    font-weight: bold; /* Label en negrita */
+    color: #555; /* Color de texto gris oscuro */
+    min-width: 150px; /* Doy un ancho mínimo al label para que los inputs se alineen mejor */
+    text-align: right; /* Alineo el texto del label a la derecha para un aspecto más limpio */
+}
+
+.form-row input,
+.form-row textarea { /* Ahora textarea comparte los mismos estilos generales que input */
+    flex-grow: 1; /* El input/textarea debe crecer para ocupar el espacio restante en la fila */
+    padding: 8px; /* Relleno interno */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    font-size: 1rem; /* Tamaño de fuente estándar */
+    max-width: calc(100% - 160px); /* Calculo el ancho máximo, restando el min-width del label y el gap */
+}
+
+.formulario-nueva-certificacion button {
+    padding: 10px 15px; /* Relleno para el botón */
+    background: #007bff; /* Color de fondo azul */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    font-family: 'Noto Sans', sans-serif; /* Fuente del botón */
+    font-size: 1rem; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave para efectos hover */
+    align-self: center; /* Centro el botón horizontalmente dentro del formulario */
+    margin-top: 15px; /* Margen superior para separarlo de los campos */
+}
+
+.formulario-nueva-certificacion button:hover {
+    background: #0056b3; /* Azul más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Pequeño levantamiento al pasar el ratón */
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    /* En pantallas más pequeñas, vuelvo a apilar el label y el input/textarea para ahorrar espacio vertical */
+    .form-row {
+        flex-direction: column; /* Apilo verticalmente */
+        align-items: flex-start; /* Alineo a la izquierda */
+        gap: 5px; /* Reduzco el espacio */
+    }
+
+    .form-row label {
+        text-align: left; /* Alineo los labels a la izquierda */
+        min-width: unset; /* Quito el ancho mínimo fijo para los labels */
+    }
+
+    .form-row input,
+    .form-row textarea {
+        max-width: 100%; /* Ocupa el ancho completo disponible */
+    }
+}
+
+/* Estilos para el botón Eliminar en la tabla (lo dejo igual, no es parte del formulario de ingreso) */
+.eliminar-btn {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.eliminar-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}

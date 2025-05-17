@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="certificaciones_pendientes.css">
     <title>Certificaciones Pendientes</title>
-        
 </head>
 <body>
-    <!-- Llamando al objeto admin_header a este html -->
     <div id="admin-header-placeholder"></div>
 
     <main>
@@ -17,37 +15,45 @@
             <h2>Certificaciones Pendientes</h2>
             <p>Aquí puedes ver y eliminar las certificaciones pendientes, e ingresar nuevas.</p>
 
-            <div class="ingreso-datos">
+            <div class="formulario-nueva-certificacion">
                 <h3>Ingresar Aquí Una Nueva Certificación Pendiente</h3>
-                <br>
                 <form id="formulario-nueva-certificacion">
-                    <label for="nombre_legal">Nombre Empresa:</label>
-                    <input type="text" id="nombre_legal" required><br><br>
-
-                    <label for="nit_rut">NIT/RUT:</label>
-                    <input type="text" id="nit_rut" required><br><br>
-
-                    <label for="contacto">Contacto:</label>
-                    <input type="text" id="contacto"><br><br>
-
-                    <label for="correo_contacto">Correo Contacto:</label>
-                    <input type="email" id="correo_contacto"><br><br>
-
-                    <label for="tipo_instalacion">Tipo Instalación:</label>
-                    <input type="text" id="tipo_instalacion"><br><br>
-
-                    <label for="nombre_instalacion">Nombre Instalación:</label>
-                    <input type="text" id="nombre_instalacion"><br><br>
-
-                    <label for="ciudad_instalacion">Ciudad Instalación:</label>
-                    <input type="text" id="ciudad_instalacion"><br><br>
-
-                    <label for="departamento_instalacion">Departamento Instalación:</label>
-                    <input type="text" id="departamento_instalacion"><br><br>
-
-                    <label for="observaciones">Observaciones:</label>
-                    <textarea id="observaciones"></textarea><br><br>
-
+                    <div class="form-row">
+                        <label for="nombre_legal">Nombre Empresa:</label>
+                        <input type="text" id="nombre_legal" name="nombre_legal" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="nit_rut">NIT/RUT:</label>
+                        <input type="text" id="nit_rut" name="nit_rut" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="contacto">Contacto:</label>
+                        <input type="text" id="contacto" name="contacto">
+                    </div>
+                    <div class="form-row">
+                        <label for="correo_contacto">Correo Contacto:</label>
+                        <input type="email" id="correo_contacto" name="correo_contacto">
+                    </div>
+                    <div class="form-row">
+                        <label for="tipo_instalacion">Tipo Instalación:</label>
+                        <input type="text" id="tipo_instalacion" name="tipo_instalacion">
+                    </div>
+                    <div class="form-row">
+                        <label for="nombre_instalacion">Nombre Instalación:</label>
+                        <input type="text" id="nombre_instalacion" name="nombre_instalacion">
+                    </div>
+                    <div class="form-row">
+                        <label for="ciudad_instalacion">Ciudad Instalación:</label>
+                        <input type="text" id="ciudad_instalacion" name="ciudad_instalacion">
+                    </div>
+                    <div class="form-row">
+                        <label for="departamento_instalacion">Departamento Instalación:</label>
+                        <input type="text" id="departamento_instalacion" name="departamento_instalacion">
+                    </div>
+                    <div class="form-row">
+                        <label for="observaciones">Observaciones:</label>
+                        <input type="text" id="observaciones" name="observaciones">
+                    </div>
                     <button type="button" onclick="guardarNuevaCertificacion()">Guardar Certificación</button>
                 </form>
             </div>
@@ -78,7 +84,6 @@
         </section>
     </main>
 
-    <!-- Llamando al objeto footer_objetc.js a este html -->
     <div id="admin-footer-placeholder"></div>
 
     <script type="module">
