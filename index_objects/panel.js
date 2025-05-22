@@ -8,6 +8,7 @@ const SidePanel = {
 
         let ulContent = `
             <li><a href="loginstarpage.html">Administración</a></li>
+            <li><a href="">-------------------------------</a></li>
         `;
 
         // Añadir enlaces a secciones solo si estamos en index.html
