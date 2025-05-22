@@ -12,13 +12,7 @@ const indexHeaderContent = `
                     
                 </div>
             </div>
-            <div class="header-right-actions">
-                <button class="menu-toggle" aria-label="Abrir menú">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                </div>
+            
         </div>
         <nav class="header-nav">
             <ul>
