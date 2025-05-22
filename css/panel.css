@@ -16,7 +16,7 @@ Estilos para el Panel de Control Flotante
     font-size: 1.5rem;   /* Tamaño de fuente por defecto */
     border-radius: 50%; /* Botón redondo */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    background-color: #3498db; /* Color azul */
+    background-color: #0f1445; /* Color azul */
     color: white;        /* Color de icono/texto blanco */
     border: none;        /* Sin borde por defecto */
     cursor: pointer;     /* Indica que es clickeable */
@@ -44,7 +44,7 @@ Estilos para el Panel de Control Flotante
     right: -100%; /* Ocultarlo completamente fuera de la vista */
     width: 300px; /* Ancho por defecto para desktop */
     height: 100vh;
-    background-color: #3498db; /* ¡FONDO AZUL PARA EL PANEL CUANDO ESTÁ DESPLEGADO! */
+    background-color: #0d334d; /* BACKGROUNG GENERAL COLOR - ¡FONDO AZUL PARA EL PANEL CUANDO ESTÁ DESPLEGADO! */
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
     transition: right 0.3s ease; /* Transición para mostrar/ocultar */
     z-index: 1001; /* Mayor z-index que el botón del panel, y también que cualquier header */
