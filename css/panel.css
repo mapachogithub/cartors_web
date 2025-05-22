@@ -16,7 +16,7 @@ Estilos para el Panel de Control Flotante
     font-size: 1.5rem;   /* Tamaño de fuente por defecto */
     border-radius: 50%; /* Botón redondo */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    background-color: #0f1445; /* Color azul */
+    background-color: #0d334d; /* Color azul de la bolita del menú*/
     color: white;        /* Color de icono/texto blanco */
     border: none;        /* Sin borde por defecto */
     cursor: pointer;     /* Indica que es clickeable */
@@ -34,7 +34,7 @@ Estilos para el Panel de Control Flotante
 }
 
 .toggle-panel-btn:hover {
-    background-color: #2980b9; /* Color azul más oscuro al pasar el ratón */
+    background-color: #2980b9; /* Color azul impacto, al pasar el ratón */
     transform: scale(1.05);    /* Ligeramente más grande al pasar el ratón */
 }
 
@@ -115,17 +115,14 @@ Estilos para el Panel de Control Flotante
 }
 
 .panel-close-text-link {
-    color: #8B0000 !important; /* Rojo oscuro, !important para asegurar que sobrescriba otros estilos */
-    font-weight: bold; /* Hacerlo más notorio */
-    display: inline-block; /* Para que text-align: right funcione en el padre si el li no es flex */
-    padding: 10px 0; /* Ajusta el padding para que no se vea como un botón de menú normal */
-    background-color: transparent !important; /* Asegura que no tenga fondo al pasar el ratón */
+        color: #6dae44 !important; /* Un verde distintivo para "Iniciar Sesión" */
+        font-weight: 600 !important;
+        transition: color 0.3s ease;
 }
 
 .panel-close-text-link:hover {
-    color: #FF4500 !important; /* Rojo más claro al pasar el ratón */
-    background-color: transparent !important; /* Asegura que no tenga fondo al pasar el ratón */
-    transform: none !important; /* Evita cualquier transformación de escala */
+    color: #8ac052 !important;
+    text-shadow: 0 0 8px rgba(109, 174, 68, 0.4) !important;
 }
 
 
