@@ -1,3 +1,5 @@
+// scripts.js
+
 // Manejo del formulario de registro (si existe un elemento con id="registroForm")
 document.addEventListener('DOMContentLoaded', function() {
     const registroForm = document.getElementById('registroForm');
@@ -52,29 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
             hideImageModal();
         });
     }
-
-    // Funciones para el panel de control flotante
-    const togglePanelBtn = document.getElementById('togglePanelBtn');
-    const sidePanel = document.getElementById('sidePanel');
-    // REMOVIDO: Ya no necesitamos obtener closePanelBtn aquí si usamos onclick directamente en HTML
-    // const closePanelBtn = document.getElementById('closePanel'); // Esto ya no es necesario si la 'x' usa onclick="hideSidePanel()"
-
-    if (togglePanelBtn) {
-        togglePanelBtn.addEventListener('click', function() {
-            sidePanel.classList.toggle('open');
-        });
-    }
-
-    // REMOVIDO: Ya no necesitamos este listener si la 'x' usa onclick="hideSidePanel()"
-    // if (closePanelBtn) {
-    //     closePanelBtn.addEventListener('click', function() {
-    //         sidePanel.classList.remove('open');
-    //     });
-    // }
 });
 
 
-// Efecto de desplazamiento suave para los enlaces con anclas
+// Efecto de desplazamiento suave para los enlaces
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -110,7 +93,7 @@ function showImageModal(src) {
     const enlargedImage = document.getElementById("enlargedImage");
     if (modal && enlargedImage) {
         enlargedImage.src = src;
-        modal.style.display = "flex"; // Usar flex para centrar contenido con justify-content y align-items en CSS
+        modal.style.display = "flex";
     }
 }
 
@@ -121,20 +104,12 @@ function hideImageModal() {
     }
 }
 
-// NUEVA FUNCIÓN: Para ocultar el panel lateral. Se llama desde el HTML con onclick="hideSidePanel()"
-function hideSidePanel() {
-    const sidePanel = document.getElementById('sidePanel');
-    if (sidePanel) {
-        sidePanel.classList.remove('open');
-    }
-}
-
-// Cerrar modales al hacer clic fuera de ellos
+// Cerrar modales (excepto el panel, que es manejado por panel.js)
 window.onclick = function(event) {
     const loginModal = document.getElementById("loginModal");
     const imageModal = document.getElementById("imageModal");
-    const sidePanel = document.getElementById("sidePanel");
-    const togglePanelBtn = document.getElementById('togglePanelBtn');
+    // const sidePanel = document.getElementById("sidePanel"); // Eliminado, lo maneja panel.js
+    // const togglePanelBtn = document.getElementById('togglePanelBtn'); // Eliminado, lo maneja panel.js
 
     if (event.target === loginModal) {
         loginModal.style.display = "none";
@@ -142,9 +117,5 @@ window.onclick = function(event) {
     if (event.target === imageModal) {
         imageModal.style.display = "none";
     }
-    // Cerrar panel lateral si se hace clic fuera de él y no es el botón de toggle
-    // Asegúrate de que `sidePanel` no sea `null` antes de usarlo.
-    if (sidePanel && sidePanel.classList.contains('open') && event.target !== sidePanel && !sidePanel.contains(event.target) && event.target !== togglePanelBtn) {
-        sidePanel.classList.remove('open');
-    }
+    // La lógica de cerrar el panel al hacer clic fuera ahora está en panel.js
 };

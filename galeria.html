@@ -71,5 +71,14 @@
     <script src="administracion/OBJECTS JS/footer_objetc.js"></script>   
 
     <script src="js/scripts.js"></script>
+
+        <script src="/index_objects/panel.js"></script>
+    <script>
+        // Llama al método render del objeto SidePanel cuando el DOM esté completamente cargado.
+        // Esto insertará el HTML y CSS del panel en el body.
+        document.addEventListener('DOMContentLoaded', () => {
+            SidePanel.render();
+        });
+    </script>
 </body>
 </html>
