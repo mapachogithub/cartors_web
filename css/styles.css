@@ -616,7 +616,7 @@ Estilos para galeria.html.
 }
 
 .side-panel h3 {
-    color: #333; /* NOTA: Con el fondo rgba(22, 71, 134, 0.9) este color será difícil de ver. Considera cambiarlo a blanco o un color claro. */
+    color: #333; /* Considerar cambiarlo a blanco o un color claro. */
     font-size: 1.4rem;
     margin-bottom: 20px;
     text-align: center;

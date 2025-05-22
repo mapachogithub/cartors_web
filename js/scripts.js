@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Funciones para el panel de control flotante
     const togglePanelBtn = document.getElementById('togglePanelBtn');
     const sidePanel = document.getElementById('sidePanel');
-    const closePanelBtn = document.getElementById('closePanel');
+    // REMOVIDO: Ya no necesitamos obtener closePanelBtn aquí si usamos onclick directamente en HTML
+    // const closePanelBtn = document.getElementById('closePanel'); // Esto ya no es necesario si la 'x' usa onclick="hideSidePanel()"
 
     if (togglePanelBtn) {
         togglePanelBtn.addEventListener('click', function() {
@@ -64,11 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (closePanelBtn) {
-        closePanelBtn.addEventListener('click', function() {
-            sidePanel.classList.remove('open');
-        });
-    }
+    // REMOVIDO: Ya no necesitamos este listener si la 'x' usa onclick="hideSidePanel()"
+    // if (closePanelBtn) {
+    //     closePanelBtn.addEventListener('click', function() {
+    //         sidePanel.classList.remove('open');
+    //     });
+    // }
 });
 
 
@@ -119,6 +121,14 @@ function hideImageModal() {
     }
 }
 
+// NUEVA FUNCIÓN: Para ocultar el panel lateral. Se llama desde el HTML con onclick="hideSidePanel()"
+function hideSidePanel() {
+    const sidePanel = document.getElementById('sidePanel');
+    if (sidePanel) {
+        sidePanel.classList.remove('open');
+    }
+}
+
 // Cerrar modales al hacer clic fuera de ellos
 window.onclick = function(event) {
     const loginModal = document.getElementById("loginModal");
@@ -133,6 +143,7 @@ window.onclick = function(event) {
         imageModal.style.display = "none";
     }
     // Cerrar panel lateral si se hace clic fuera de él y no es el botón de toggle
+    // Asegúrate de que `sidePanel` no sea `null` antes de usarlo.
     if (sidePanel && sidePanel.classList.contains('open') && event.target !== sidePanel && !sidePanel.contains(event.target) && event.target !== togglePanelBtn) {
         sidePanel.classList.remove('open');
     }
