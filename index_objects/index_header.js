@@ -9,10 +9,15 @@ const indexHeaderContent = `
                 <div class="logo-area">
                     <img src="images/logoia1.jpeg" alt="Logo de Cartor's SAS" class="logo-header">
                     <h1>Cartor's SAS </h1>
-                    
                 </div>
             </div>
-            
+            <div class="header-right-actions">
+                <button class="menu-toggle" aria-label="Abrir menú">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                </div>
         </div>
         <nav class="header-nav">
             <ul>
@@ -280,7 +285,7 @@ const headerStyles = `
         }
 
         .menu-toggle {
-            display: block; /* Muestro el botón de hamburguesa en pantallas más pequeñas */
+            display: none; /* CAMBIO CLAVE: Oculto el botón de hamburguesa de este header en pantallas más pequeñas */
             position: static;
             right: auto;
             top: auto;
