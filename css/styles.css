@@ -1074,7 +1074,7 @@ Adaptación para pantallas más pequeñas (móviles y tabletas)
     .boton-llamar,
     .boton-whatsapp {
         width: 80%; /* Asegurar que los botones ocupen un buen ancho */
-        max-width: 300px; /* Limitar ancho para que no se estiren demasiado */
+        max-width: 300px; /* Limitar el ancho para que no se estiren demasiado */
         margin: 0 auto; /* Centrar los botones apilados */
         padding: 10px 20px; /* Ajustar padding */
         font-size: 0.9rem; /* Reducir tamaño de fuente */
@@ -1185,66 +1185,7 @@ Adaptación para pantallas más pequeñas (móviles y tabletas)
         font-size: 1rem; /* Reducir tamaño de párrafo de tarjeta */
     }
 
-    /* Panel de Control Flotante */
-    .control-panel-container {
-        top: auto; /* Desactivar top fijo para móviles */
-        bottom: 20px; /* Colocarlo en la parte inferior */
-        right: 20px; /* Mantenerlo a la derecha */
-        transform: none; /* Eliminar transformación */
     }
-
-    .toggle-panel-btn {
-        padding: 8px 12px; /* Reducir padding del botón de toggle */
-        font-size: 1.2rem; /* Reducir tamaño de fuente */
-        border-radius: 50%; /* Hacerlo redondo */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .side-panel {
-        width: 100%; /* Panel de lado a lado en móvil */
-        right: -100%; /* Ocultarlo completamente */
-        border-radius: 0; /* Sin bordes redondeados */
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
-        padding-top: 60px; /* Espacio para la "x" de cerrar */
-        justify-content: flex-start; /* Alinear contenido al inicio */
-        /* Asegurar que el panel cubra toda la altura si es necesario */
-        height: 100vh;
-        top: 0; /* Alinearlo arriba */
-    }
-
-    .side-panel.open {
-        right: 0; /* Mostrar el panel completamente */
-    }
-
-    .close-panel {
-        position: absolute; /* Posicionarlo absolutamente dentro del panel */
-        top: 15px; /* Espacio desde arriba */
-        right: 15px; /* Espacio desde la derecha */
-        font-size: 1.8rem; /* Tamaño de la "x" */
-    }
-
-    .side-panel h3 {
-        font-size: 1.2rem; /* Reducir tamaño de título del panel */
-        margin-bottom: 15px;
-    }
-
-    .side-panel ul {
-        flex-grow: 0; /* No permitir que la lista crezca infinitamente, ya que el panel es 100vh */
-    }
-
-    .side-panel ul li a {
-        padding: 12px 15px; /* Ajustar padding de enlaces */
-        font-size: 0.95rem; /* Ajustar tamaño de fuente */
-    }
-
-    /* Botón de login flotante (parte superior derecha) */
-    .login-btn {
-        padding: 10px 20px; /* Reducir padding */
-        font-size: 0.85rem; /* Reducir tamaño de fuente */
-        top: 15px;
-        right: 15px;
-    }
-}
 
 @media (max-width: 480px) {
     /* Ajustes específicos para teléfonos muy pequeños */

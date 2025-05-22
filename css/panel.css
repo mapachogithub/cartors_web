@@ -1,0 +1,203 @@
+/* ---------------------------------------------------------------------
+Estilos para el Panel de Control Flotante
+--------------------------------------------------------------------- */
+
+/* Panel de Control Flotante - Base para desktop */
+.control-panel-container {
+    position: fixed; /* Asegura que esté fijo en la pantalla */
+    top: 15px;       /* Posición por defecto para pantallas grandes (desktop) */
+    right: 20px;
+    transform: none; /* Eliminar cualquier transformación previa */
+    z-index: 1000;   /* Asegura que esté por encima de la mayoría de los elementos */
+}
+
+.toggle-panel-btn {
+    padding: 12px 18px; /* Padding por defecto para desktop */
+    font-size: 1.5rem;   /* Tamaño de fuente por defecto */
+    border-radius: 50%; /* Botón redondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    background-color: #3498db; /* Color azul */
+    color: white;        /* Color de icono/texto blanco */
+    border: none;        /* Sin borde por defecto */
+    cursor: pointer;     /* Indica que es clickeable */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+}
+
+.toggle-panel-btn:hover {
+    background-color: #2980b9; /* Color azul más oscuro al pasar el ratón */
+    transform: scale(1.05);    /* Ligeramente más grande al pasar el ratón */
+}
+
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Ocultarlo completamente fuera de la vista */
+    width: 300px; /* Ancho por defecto para desktop */
+    height: 100vh;
+    background-color: #3498db; /* ¡FONDO AZUL PARA EL PANEL CUANDO ESTÁ DESPLEGADO! */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    transition: right 0.3s ease; /* Transición para mostrar/ocultar */
+    z-index: 1001; /* Mayor z-index que el botón del panel, y también que cualquier header */
+    padding-top: 60px; /* Aumentado el espacio superior para la 'x' en desktop también! */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: white; /* Color de texto predeterminado para el panel */
+    overflow-y: auto; /* Permite desplazamiento si el contenido es demasiado largo */
+}
+
+.side-panel.open {
+    right: 0; /* Muestra el panel deslizándose desde la derecha */
+}
+
+.close-panel {
+    position: absolute;
+    top: 15px;      /* Posición desde arriba del panel */
+    right: 15px;    /* Posición desde la derecha del panel */
+    font-size: 1.8rem;
+    color: white;   /* ¡COLOR BLANCO PARA LA 'X' SOBRE FONDO AZUL! */
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 1003; /* ¡IMPORTANTE: Asegura que la 'x' esté por encima de todo! */
+}
+
+.close-panel:hover {
+    color: #f0f0f0; /* Ligeramente más claro al pasar el ratón */
+}
+
+.side-panel h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    color: white; /* ¡COLOR BLANCO PARA EL TÍTULO DEL PANEL! */
+}
+
+.side-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.side-panel ul li {
+    width: 100%;
+}
+
+.side-panel ul li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white; /* ¡COLOR BLANCO PARA LOS ENLACES DEL PANEL! */
+    font-size: 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.side-panel ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Fondo blanco sutil al pasar el ratón */
+    color: white; /* Asegura que el texto permanezca blanco */
+}
+
+/* Estilos para el nuevo enlace "Cerrar panel" */
+.close-panel-text-item {
+    text-align: right; /* Alinea el contenido de este <li> a la derecha */
+    margin-top: 20px; /* Espacio superior para separarlo de "Contáctanos" */
+    padding-right: 20px; /* Ajusta el padding a la derecha para que no se pegue al borde */
+}
+
+.panel-close-text-link {
+    color: #14086e !important; /* Rojo oscuro, !important para asegurar que sobrescriba otros estilos */
+    font-weight: bold; /* Hacerlo más notorio */
+    display: inline-block; /* Para que text-align: right funcione en el padre si el li no es flex */
+    padding: 10px 0; /* Ajusta el padding para que no se vea como un botón de menú normal */
+    background-color: transparent !important; /* Asegura que no tenga fondo al pasar el ratón */
+}
+
+.panel-close-text-link:hover {
+    color: #FF4500 !important; /* Rojo más claro al pasar el ratón */
+    background-color: transparent !important; /* Asegura que no tenga fondo al pasar el ratón */
+    transform: none !important; /* Evita cualquier transformación de escala */
+}
+
+
+/* ---------------------------------------------------------------------
+Media Queries para el Panel de Control Flotante (COMPORTAMIENTO MÓVIL)
+--------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .control-panel-container {
+        top: 20px;
+        right: 20px;
+        bottom: auto;
+        left: auto;
+        width: auto;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+        box-shadow: none;
+        z-index: 1000;
+    }
+
+    .toggle-panel-btn {
+        padding: 8px 12px;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #3498db;
+        color: white;
+        border: none;
+    }
+
+    .toggle-panel-btn:hover {
+        background-color: #2980b9;
+    }
+
+    .side-panel {
+        width: 100%;
+        border-radius: 0;
+        padding-top: 60px;
+        z-index: 1002;
+    }
+
+    .close-panel {
+        top: 15px;
+        right: 15px;
+        color: white;
+        font-size: 1.8rem;
+        z-index: 1003;
+    }
+
+    .side-panel h3,
+    .side-panel ul li a {
+        color: white;
+    }
+
+    .side-panel ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Ajustes específicos para el enlace "Cerrar panel" en móvil */
+    .close-panel-text-item {
+        margin-top: 15px; /* Ligeramente menos margen en móvil */
+        padding-right: 15px; /* Ajusta el padding a la derecha */
+    }
+
+    .panel-close-text-link {
+        font-size: 0.95rem; /* Un poco más pequeño en móvil */
+        padding: 8px 0;
+    }
+}
+
+/* Opcional: Ajustes para pantallas muy pequeñas (ej. smartphones pequeños) */
+@media (max-width: 480px) {
+    .control-panel-container {
+        top: 15px;
+        right: 15px;
+    }
+    /* .side-panel {
+        padding-top: 50px;
+    } */
+    .close-panel-text-item {
+        padding-right: 10px;
+    }
+    .panel-close-text-link {
+        font-size: 0.9rem;
+    }
+}

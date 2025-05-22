@@ -1090,3 +1090,1332 @@ Estilos para clientes.html.
     max-width: 600px;
     margin: 0 auto;
 }
+
+-------------------------------------------------------
+Con panel de control:
+/* ---------------------------------------------------------------------
+Importación de fuentes de Google Fonts
+Aquí importo las fuentes que voy a usar en el diseño.
+*/
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap');
+
+/* ---------------------------------------------------------------------
+Estilos generales
+Estos son los estilos base para toda la página.
+*/
+html {
+    scroll-behavior: smooth; /* Esto hace que el desplazamiento sea suave al navegar. */
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Mi fuente predeterminada. */
+    margin: 0;
+    padding: 0;
+    /* Fondo general de la página (¡puedes cambiarlo aquí si quieres!) */
+    background: whitesmoke;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Este es el contenedor centrado que uso en la primera parte de mi index.html. */
+.centrado {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.centrado h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.centrado p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+/* Estilo para la imagen de bienvenida que aparece en index.html. */
+.welcome-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcome-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+/* Estilos para el logo principal que se muestra en la sección inicial. */
+
+.main-logo {
+    display: block; /* Para que se centre bien. */
+    margin: 20px auto; /* Centra el logo horizontalmente y le da espacio. */
+    height: 60px; /* Aquí le doy el tamaño al logo. */
+    max-width: 100%; /* Para que no se desborde en móviles. */
+    object-fit: contain; /* Mantiene la proporción de la imagen. */
+}
+
+/* Si el logo debe ir muy cerca del h1, puedes ajustar el margen inferior del h1. */
+.centrado h1 {
+    margin-bottom: 10px; /* Ejemplo de ajuste de margen para el h1. */
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+/* Estilo para la ventana modal de imagen ampliada (el "pop-up" de las imágenes). */
+.image-modal {
+    display: none; /* Por defecto está oculto. */
+    position: fixed; /* Permanece en la misma posición al hacer scroll. */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente. */
+    z-index: 1002; /* Para que esté por encima de todo. */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.close-image {
+    position: absolute; /* Para posicionarlo libremente dentro del modal. */
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff; /* Color blanco para que se vea bien. */
+    cursor: pointer; /* Indica que es clickeable. */
+}
+
+.close-image:hover {
+    color: #0073e6; /* Cambia de color al pasar el ratón. */
+}
+
+/* Sección de "Cartor's" (la segunda parte de index.html). */
+.cartors-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cartors-container h2 {
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.cartors-container p {
+    line-height: 1.6;
+    color: #666;
+    text-align: justify;
+}
+
+/* Lista de servicios (en index.html). */
+.services-list {
+    list-style: none; /* Elimina los puntos de la lista. */
+    padding: 0;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.services-list li {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services-list li:hover {
+    transform: translateY(-5px); /* Se eleva un poco al pasar el ratón. */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.services-list li a {
+    color: #333; /* Color del texto del enlace. */
+    text-decoration: none; /* Sin subrayado. */
+    display: block; /* Para que toda el área del elemento sea clickeable. */
+}
+
+.services-list li a:hover {
+    color: #0073e6; /* Color azul al pasar el ratón, para consistencia. */
+}
+
+/* Galería dentro del contenedor de Cartor's (en index.html). */
+.cartors-container .gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cartors-container .gallery img {
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.cartors-container .gallery img:hover {
+    transform: scale(1.05); /* Se agranda un poco al pasar el ratón. */
+}
+
+/* Estilo específico para las imágenes en index.html. */
+.index-image {
+    background: none; /* Me aseguro de que no tengan un fondo inesperado. */
+}
+
+/* ------------------------------------------------------------------------------------------------------- */
+
+/* Estilo del botón LOGIN. */
+
+/* Este es el botón fijo que aparece debajo de la imagen de bienvenida. */
+.login-btn {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 8px 16px; /* Tamaño del padding. */
+    background: linear-gradient(135deg, #2c3e50 0%, #1abc9c 100%); /* Gradiente de fondo. */
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px; /* Tamaño de la fuente. */
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, #34495e 0%, #16a085 100%); /* Cambia el gradiente al pasar el ratón. */
+    transform: translateY(-2px); /* Se eleva ligeramente. */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilos para el modal de login. */
+.modal {
+    display: none; /* Oculto por defecto. */
+    position: fixed; /* Fijo en la pantalla. */
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro. */
+    z-index: 1001; /* Para que esté por encima de la mayoría de los elementos. */
+}
+
+.modal-content {
+    background: #fff;
+    margin: 15% auto; /* Centra el contenido vertical y horizontalmente. */
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #34495e; /* Cambia el color al pasar el ratón. */
+}
+
+.close {
+    float: right; /* Para que la "x" de cerrar se alinee a la derecha. */
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+
+.close:hover {
+    color: #0073e6; /* Cambia de color al pasar el ratón. */
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* Estilos para la sección de contacto. */
+.centrado {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px; /* Padding. */
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil. */
+}
+
+.formulario {
+    padding: 0;
+}
+
+.formulario h2 {
+    font-size: 1.8rem; /* Tamaño de la fuente. */
+    color: #2c3e50;
+    margin: 0 0 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.formulario h3 {
+    font-size: 1.1rem; /* Tamaño de la fuente. */
+    color: #555;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.formulario p {
+    font-size: 1rem; /* Tamaño de la fuente. */
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Botón destacado para ir al formulario. */
+.boton-destacado {
+    display: inline-block;
+    padding: 10px 25px; /* Padding del botón. */
+    background: #0073e6; /* Color de fondo. */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px; /* Bordes redondeados. */
+    font-size: 1rem; /* Tamaño de la fuente. */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra. */
+    transition: all 0.3s ease;
+}
+
+.boton-destacado:hover {
+    background: #005bb5; /* Color al pasar el ratón. */
+    transform: translateY(-2px); /* Se eleva un poco. */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor de los botones finales de contacto (Llámanos, WhatsApp). */
+.botones-contacto {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los botones. */
+    margin-top: 30px; /* Margen superior. */
+}
+
+/* Botón "Llámanos ahora". */
+.boton-llamar {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px; /* Padding. */
+    background: #2ecc71; /* Color de fondo. */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px; /* Bordes redondeados. */
+    font-size: 0.95rem; /* Tamaño de la fuente. */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra. */
+    transition: all 0.3s ease;
+}
+
+.boton-llamar:hover {
+    background: #27ae60; /* Color al pasar el ratón. */
+    transform: translateY(-2px); /* Se eleva un poco. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón "Chatea con nosotros" (WhatsApp). */
+.boton-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px; /* Padding. */
+    background: #25D366; /* Color de fondo de WhatsApp. */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px; /* Bordes redondeados. */
+    font-size: 0.95rem; /* Tamaño de la fuente. */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra. */
+    transition: all 0.3s ease;
+}
+
+.boton-whatsapp:hover {
+    background: #20b358; /* Color al pasar el ratón. */
+    transform: translateY(-2px); /* Se eleva un poco. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------------------------------------------------------------------------------------- */
+/* Sección específica para Mantenimiento e Instalación de Cocinas Industriales. */
+.kitchen-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kitchen-section h2 {
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.kitchen-section p {
+    line-height: 1.6;
+    color: #666;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.kitchen-section .gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.kitchen-section .gallery img {
+    width: 48%; /* Para que quepan dos imágenes en una fila. */
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.kitchen-section .gallery img:hover {
+    transform: scale(1.05); /* Se agranda al pasar el ratón. */
+}
+
+/* Sección específica para Mantenimiento e Instalación de Parques Infantiles. */
+.playground-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.playground-section h2 {
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.playground-section p {
+    line-height: 1.6;
+    color: #666;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.playground-section .gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.playground-section .gallery img {
+    width: 48%; /* Para que quepan dos imágenes en una fila. */
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.playground-section .gallery img:hover {
+    transform: scale(1.05); /* Se agranda al pasar el ratón. */
+}
+
+/* ---------------------------------------------------------------------
+Estilos para galeria.html.
+*/
+
+/* Sección Hero (la parte superior de galeria.html). */
+.hero {
+    background: whitesmoke; /* Color de fondo. */
+    color: #fff;
+    padding: 100px 20px; /* Espacio interno. */
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #000000; /* Color del texto. */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #000000; /* Color del texto. */
+}
+
+/* Galería principal (en galeria.html). */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas. */
+    gap: 20px; /* Espacio entre las imágenes. */
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden; /* Oculta lo que se salga del contenedor. */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    height: 300px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla. */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1); /* Agranda la imagen al pasar el ratón. */
+}
+
+/* El texto que aparece al pasar el ratón sobre las imágenes de la galería. */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente. */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0; /* Oculto por defecto. */
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1; /* Muestra el overlay al pasar el ratón. */
+}
+
+.overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #0073e6; /* Color azul. */
+    font-weight: bold;
+}
+
+.overlay p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* -------------------------------------------------------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------------------------------------------------------- */
+
+.login-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../images/wallpaperdarkindistries.jpg') no-repeat center center; /* Imagen de fondo. */
+    background-size: cover; /* Cubre todo el espacio. */
+    position: relative;
+}
+
+.login-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Capa oscura semitransparente sobre la imagen. */
+    z-index: 0;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1; /* Para que esté por encima de la capa oscura. */
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1); /* Fondo blanco semitransparente. */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del contenedor. */
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    margin: 20px;
+}
+
+.login-container h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 15px 20px 15px 45px; /* Espacio para el icono. */
+    background: rgba(255, 255, 255, 0.1); /* Fondo del input. */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus {
+    border-color: #0073e6; /* Borde azul al enfocar. */
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.input-box .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.input-box label {
+    position: absolute;
+    left: 45px; /* Posiciona la etiqueta. */
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    pointer-events: none; /* Ignora eventos de ratón. */
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: 0; /* Mueve la etiqueta arriba. */
+    left: 45px;
+    font-size: 0.8rem;
+    background: rgba(0, 114, 230, 0.8); /* Fondo para la etiqueta movida. */
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.remember-forgot input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #0073e6; /* Color del checkbox. */
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.remember-forgot a:hover {
+    color: #0073e6; /* Cambia el color al pasar el ratón. */
+    text-decoration: underline;
+}
+
+.login-container button {
+    background: #0073e6; /* Color del botón. */
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.login-container button:hover {
+    background: #005bb5; /* Color al pasar el ratón. */
+    transform: translateY(-2px); /* Se eleva un poco. */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.create-account {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.create-account a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.create-account a:hover {
+    color: #0073e6; /* Cambia el color al pasar el ratón. */
+    text-decoration: underline;
+}
+
+/* El botón de inicio flotante. */
+.login-btn {
+    position: fixed; /* Permanece fijo en la pantalla. */
+    top: 20px;
+    right: 20px;
+    padding: 12px 25px;
+    background: #0073e6;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Está por encima de todo. */
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #005bb5; /* Cambia el color al pasar el ratón. */
+    transform: translateY(-2px); /* Se eleva un poco. */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------------------------------------------------------------------
+Estilos para contactenos.html.
+*/
+
+.contact-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0); /* Gradiente de fondo. */
+    padding: 40px 20px;
+}
+
+.contact-container {
+    max-width: 1000px;
+    width: 100%;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+}
+
+.contact-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-container p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.contact-info {
+    margin-bottom: 40px;
+}
+
+.contact-info h2 { /* Si hay un h2 aquí, como "CONTÁCTANOS", estos son sus estilos. */
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: #0073e6; /* Color del icono. */
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los botones. */
+    margin-bottom: 40px;
+}
+
+.social-btn, .call-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-btn i, .call-btn i {
+    margin-right: 8px; /* Espacio junto al icono. */
+}
+
+.facebook-btn {
+    background: #3b5998; /* Color de Facebook. */
+}
+
+.facebook-btn:hover {
+    background: #2d4373;
+    transform: translateY(-3px); /* Se eleva un poco. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.instagram-btn {
+    background: #e1306c; /* Color de Instagram. */
+}
+
+.instagram-btn:hover {
+    background: #b9255b;
+    transform: translateY(-3px); /* Se eleva un poco. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.call-btn {
+    background: #2ecc71; /* Color verde para el botón de llamada. */
+}
+
+.call-btn:hover {
+    background: #27ae60;
+    transform: translateY(-3px); /* Se eleva un poco. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form h2 { /* Estilos para el título "Formulario de contacto". */
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    max-width: 500px; /* Ancho máximo para los campos. */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    background: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #0073e6; /* Borde azul al enfocar. */
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente. */
+}
+
+.contact-form button {
+    padding: 12px 30px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #34495e; /* Cambia el color al pasar el ratón. */
+    transform: translateY(-3px); /* Se eleva un poco. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------------------------------------------------------------
+Estilos para clientes.html.
+*/
+
+.clients-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0); /* Gradiente de fondo. */
+    padding: 60px 20px;
+}
+
+.clients-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+}
+
+.clients-container h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.clients-container > p {
+    font-size: 1.4rem;
+    color: #666;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.client-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-card:hover {
+    transform: translateY(-8px); /* Se eleva un poco al pasar el ratón. */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.client-card img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.client-card h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.client-card p {
+    font-size: 1.3rem;
+    color: #555;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------
+Estilos Responsive
+Adaptación para pantallas más pequeñas (móviles y tabletas)
+--------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    /* Ajustes generales para pantallas medianas (tabletas) */
+    body {
+        font-size: 0.95rem; /* Ligeramente más pequeña para tabletas */
+    }
+
+    .centrado,
+    .cartors-container,
+    .kitchen-section,
+    .playground-section,
+    .contact-container,
+    .clients-container {
+        padding: 15px; /* Reducir el padding en contenedores */
+        margin: 15px auto; /* Ajustar márgenes */
+    }
+
+    .centrado h1,
+    .cartors-container h2,
+    .kitchen-section h2,
+    .playground-section h2,
+    .contact-container h1 {
+        font-size: 2rem; /* Reducir tamaño de títulos principales */
+    }
+
+    .centrado p,
+    .cartors-container p,
+    .kitchen-section p,
+    .playground-section p,
+    .contact-container p {
+        font-size: 1rem; /* Reducir tamaño de párrafos */
+    }
+
+    /* Galería de imágenes en index.html */
+    .cartors-container .gallery,
+    .kitchen-section .gallery,
+    .playground-section .gallery {
+        flex-direction: column; /* Apilar imágenes verticalmente */
+        align-items: center; /* Centrar imágenes apiladas */
+        gap: 15px; /* Espacio entre imágenes */
+    }
+
+    .cartors-container .gallery img,
+    .kitchen-section .gallery img,
+    .playground-section .gallery img {
+        width: 80%; /* Hacer que las imágenes ocupen más ancho */
+        max-width: 300px; /* Limitar el ancho máximo para que no sean demasiado grandes */
+    }
+
+    /* Lista de servicios */
+    .services-list li {
+        padding: 12px; /* Reducir padding de ítems de lista */
+        font-size: 1rem; /* Ajustar tamaño de fuente */
+    }
+
+    /* Botones de contacto en index.html */
+    .botones-contacto {
+        flex-direction: column; /* Apilar botones verticalmente */
+        gap: 15px; /* Espacio entre botones */
+    }
+
+    .boton-destacado,
+    .boton-llamar,
+    .boton-whatsapp {
+        width: 80%; /* Asegurar que los botones ocupen un buen ancho */
+        max-width: 300px; /* Limitar ancho para que no se estiren demasiado */
+        margin: 0 auto; /* Centrar los botones apilados */
+        padding: 10px 20px; /* Ajustar padding */
+        font-size: 0.9rem; /* Reducir tamaño de fuente */
+    }
+
+    /* Login Section */
+    .login-container {
+        max-width: 90%; /* Ocupar casi todo el ancho disponible */
+        padding: 30px; /* Reducir padding */
+        margin: 15px; /* Ajustar margen para pantallas pequeñas */
+    }
+
+    .login-container h2 {
+        font-size: 1.8rem; /* Ajustar tamaño de título */
+    }
+
+    .input-box input {
+        padding: 12px 15px 12px 40px; /* Ajustar padding y espacio para icono */
+    }
+
+    .input-box .icon,
+    .input-box label {
+        left: 10px; /* Ajustar posición del icono y label */
+    }
+
+    .input-box input:focus ~ label,
+    .input-box input:valid ~ label {
+        left: 10px; /* Mantener posición de label al enfocarse */
+        font-size: 0.75rem; /* Ajustar tamaño de label */
+    }
+
+    .remember-forgot {
+        flex-direction: column; /* Apilar recordar y olvidar */
+        align-items: flex-start; /* Alinear al inicio */
+        gap: 10px; /* Espacio entre elementos */
+    }
+
+    .login-container button {
+        padding: 12px; /* Ajustar padding del botón de login */
+        font-size: 0.95rem; /* Ajustar tamaño de fuente */
+    }
+
+    /* Galería principal (galeria.html) */
+    .gallery {
+        grid-template-columns: 1fr; /* Una columna por imagen */
+        padding: 20px 15px; /* Ajustar padding */
+    }
+
+    .gallery-item {
+        height: 250px; /* Ajustar altura de los ítems de galería */
+    }
+
+    .overlay h3 {
+        font-size: 1.3rem; /* Reducir tamaño de título en overlay */
+    }
+
+    .overlay p {
+        font-size: 0.9rem; /* Reducir tamaño de párrafo en overlay */
+    }
+
+    /* Contacto */
+    .contact-info p {
+        font-size: 1rem; /* Ajustar tamaño de texto de contacto */
+    }
+
+    .contact-buttons {
+        flex-direction: column; /* Apilar botones sociales */
+        gap: 15px;
+    }
+
+    .social-btn, .call-btn {
+        width: 80%; /* Ancho completo para botones sociales */
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 10px 20px; /* Ajustar padding */
+        font-size: 1rem; /* Ajustar tamaño de fuente */
+    }
+
+    .form-group input,
+    .form-group textarea {
+        max-width: 100%; /* Permitir que los campos de formulario ocupen todo el ancho disponible */
+    }
+
+    .contact-form button {
+        padding: 10px 25px; /* Ajustar padding del botón de enviar */
+        font-size: 1rem; /* Ajustar tamaño de fuente */
+    }
+
+    /* Clientes */
+    .clients-container h1 {
+        font-size: 2.5rem; /* Reducir tamaño de título de clientes */
+    }
+
+    .clients-container > p {
+        font-size: 1.1rem; /* Reducir tamaño de párrafo de clientes */
+    }
+
+    .client-card {
+        padding: 20px; /* Reducir padding de tarjeta de cliente */
+        width: 95%; /* Ocupar más ancho en móvil */
+    }
+
+    .client-card h2 {
+        font-size: 1.8rem; /* Reducir tamaño de título de tarjeta */
+    }
+
+    .client-card p {
+        font-size: 1rem; /* Reducir tamaño de párrafo de tarjeta */
+    }
+
+    /* Panel de Control Flotante */
+.control-panel-container {
+    top: 9px; /* Colocarlo en la parte inferior */
+    right: 20px; /* Mantenerlo a la derecha */
+    transform: none; /* Eliminar transformación */
+}
+
+.toggle-panel-btn {
+    padding: 8px 12px; /* Reducir padding del botón de toggle */
+    font-size: 1.2rem; /* Reducir tamaño de fuente */
+    border-radius: 50%; /* Hacerlo redondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Color de fondo por defecto (transparente o el que tengas) */
+    background-color: transparent; 
+}
+
+/* Media query para dispositivos móviles (ej. hasta 768px de ancho) */
+@media (max-width: 768px) {
+    .toggle-panel-btn {
+        background-color: #3498db; /* Cambia a tu color deseado, ej. un azul */
+        color: white; /* Asegura que el texto sea visible */
+        border: 1px solid #2980b9; /* Añade un borde si quieres */
+    }
+
+    .side-panel {
+        width: 100%; /* Panel de lado a lado en móvil */
+        right: -100%; /* Ocultarlo completamente */
+        border-radius: 0; /* Sin bordes redondeados */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
+        padding-top: 60px; /* Espacio para la "x" de cerrar */
+        justify-content: flex-start; /* Alinear contenido al inicio */
+        /* Asegurar que el panel cubra toda la altura si es necesario */
+        height: 100vh;
+        top: 0; /* Alinearlo arriba */
+    }
+}
+
+.side-panel.open {
+    right: 0; /* Mostrar el panel completamente */
+}
+
+.close-panel {
+    position: absolute; /* Posicionarlo absolutamente dentro del panel */
+    top: 15px; /* Espacio desde arriba */
+    right: 15px; /* Espacio desde la derecha */
+    font-size: 1.8rem; /* Tamaño de la "x" */
+}
+
+.side-panel h3 {
+    font-size: 1.2rem; /* Reducir tamaño de título del panel */
+    margin-bottom: 15px;
+}
+
+.side-panel ul {
+    flex-grow: 0; /* No permitir que la lista crezca infinitamente, ya que el panel es 100vh */
+}
+
+.side-panel ul li a {
+    padding: 12px 15px; /* Ajustar padding de enlaces */
+    font-size: 0.95rem; /* Ajustar tamaño de fuente */
+}
+
+    /* Botón de login flotante (parte superior derecha) */
+    .login-btn {
+        padding: 10px 20px; /* Reducir padding */
+        font-size: 0.85rem; /* Reducir tamaño de fuente */
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes específicos para teléfonos muy pequeños */
+    body {
+        font-size: 0.9rem;
+    }
+
+    .centrado h1,
+    .cartors-container h2,
+    .kitchen-section h2,
+    .playground-section h2,
+    .contact-container h1 {
+        font-size: 1.8rem; /* Más pequeño para pantallas muy pequeñas */
+    }
+
+    .centrado p,
+    .cartors-container p,
+    .kitchen-section p,
+    .playground-section p,
+    .contact-container p {
+        font-size: 0.9rem;
+    }
+
+    .welcome-image {
+        width: 150px; /* Imagen de bienvenida un poco más pequeña */
+    }
+
+    .main-logo {
+        height: 50px; /* Logo un poco más pequeño */
+    }
+
+    .login-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .login-container button {
+        font-size: 0.9rem;
+    }
+
+    .social-btn, .call-btn {
+        font-size: 0.9rem;
+    }
+
+    .contact-form button {
+        font-size: 0.95rem;
+    }
+
+    .clients-container h1 {
+        font-size: 2rem;
+    }
+
+    .clients-container > p {
+        font-size: 1rem;
+    }
+
+    .client-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .client-card p {
+        font-size: 0.9rem;
+    }
+
+    /* Asegurar que el modal de imagen no sea demasiado grande en pantallas muy pequeñas */
+    .image-modal img {
+        max-width: 95%;
+        max-height: 95%;
+    }
+}
