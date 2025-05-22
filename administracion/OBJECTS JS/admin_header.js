@@ -290,7 +290,8 @@ const headerStyles = `
         }
 
         .header-nav.open {
-            max-height: 280px;
+            max-height: calc(100vh - 80px); /* Modificado para ocupar más espacio y permitir scroll */
+            overflow-y: auto; /* Añadido para permitir el desplazamiento */
             padding: 10px 15px;
         }
 

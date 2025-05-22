@@ -14,7 +14,7 @@ const SidePanel = {
         // Añadir enlaces a secciones solo si estamos en index.html
         if (isIndexPage) {
             ulContent += `
-                <li><a href="#welcome-section">Inicio</a></li>
+                <li><a href="#welcome-section">Bienvenid@</a></li>
                 <li><a href="#servicios-section">Nuestros Servicios</a></li>
                 <li><a href="#kitchen-section">Cocinas Industriales</a></li>
                 <li><a href="#playground-section">Parques Infantiles</a></li>
@@ -22,7 +22,7 @@ const SidePanel = {
         }
 
         ulContent += `
-            <li><a> - Pestañas - </a></li>
+            <li><a href="./index.html">Inicio</a></li>
             <li><a href="certificaciones_solicitud.html">Certificaciones</a></li>
             <li><a href="galeria.html">Galería</a></li>
             <li><a href="clientes.html">Clientes</a></li>
