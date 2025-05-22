@@ -564,11 +564,105 @@ Estilos para galeria.html.
     color: #555;
 }
 
-/* ---------------------------------------------------------------------
-Estilos para loginstarpage.html.
+/* -------------------------------------------------------------------------------------------------------- */
+/* --- Panel de Control Flotante --- */
+.control-panel-container {
+    position: fixed;
+    /* Antes: top: 50%; */
+    top: 150px; /* Ajusta este valor. Es la altura de tu header + un pequeño margen */
+    right: 0; /* Posiciona el contenedor a la derecha */
+    /* Antes: transform: translateY(-50%); - Ya no es necesario si el top es fijo */
+    transform: none; /* Elimina la transformación que lo centraba verticalmente */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
 
-Aquí tengo los estilos para la página de inicio de sesión.
-*/
+.toggle-panel-btn {
+    background-color: rgba(0, 115, 230, 0.7); /* Azul con transparencia */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px; /* Bordes redondeados solo a la izquierda */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.toggle-panel-btn:hover {
+    background-color: rgba(0, 91, 181, 0.8); /* Azul más oscuro al pasar el mouse */
+}
+
+.side-panel {
+    position: fixed;
+    /* Antes: top: 0; */
+    top: 0; /* Mantenlo en 0 para que empiece desde arriba de la ventana */
+    right: -250px; /* CORREGIDO: antes era -300px, ahora es igual al width para ocultarlo completamente. */
+    width: 250px; /* Ancho del panel */
+    height: 100%; /* Ocupa toda la altura de la ventana */
+    background-color: rgba(22, 71, 134, 0.9); /* Azul semitransparente */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: right 0.3s ease; /* Transición suave para el movimiento */
+    z-index: 999; /* Ligeramente por debajo del botón para que no lo cubra */
+    display: flex;
+    flex-direction: column;
+    /* Añade padding-top para que el contenido no quede debajo del header */
+    padding-top: 80px; /* Ajusta esto para que el contenido del panel empiece debajo del header */
+}
+
+.side-panel.open {
+    right: 0; /* Muestra el panel deslizándose hacia la derecha */
+}
+
+.side-panel h3 {
+    color: #333; /* NOTA: Con el fondo rgba(22, 71, 134, 0.9) este color será difícil de ver. Considera cambiarlo a blanco o un color claro. */
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white; /* SUGERENCIA: Cambiado a blanco para mejor contraste */
+}
+
+.side-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Permite que la lista ocupe el espacio disponible */
+}
+
+.side-panel ul li {
+    margin-bottom: 10px;
+}
+
+.side-panel ul li a {
+    display: block;
+    padding: 10px 15px;
+    background-color: rgba(0, 115, 230, 0.1); /* Fondo ligero para los elementos del menú */
+    color: white; /* SUGERENCIA: Cambiado a blanco para mejor contraste */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.side-panel ul li a:hover {
+    background-color: rgba(0, 115, 230, 0.2); /* Fondo más oscuro al pasar el mouse */
+    color: #f0f0f0; /* Color ligeramente diferente al pasar el mouse */
+}
+
+.close-panel {
+    font-size: 2rem;
+    color: white; /* SUGERENCIA: Cambiado a blanco para mejor contraste */
+    cursor: pointer;
+    align-self: flex-end; /* Alinea la "x" a la derecha superior */
+    margin-bottom: 10px;
+}
+
+.close-panel:hover {
+    color: #f0f0f0; /* Color ligeramente diferente al pasar el mouse */
+}
+
+
+/* -------------------------------------------------------------------------------------------------------- */
 
 .login-section {
     min-height: 100vh;
@@ -926,12 +1020,12 @@ Estilos para clientes.html.
 */
 
 .clients-section {
-    background: linear-gradient(135deg, #f9f9f9, #e0e0e0); /* Gradiente de fondo. */
-    padding: 60px 20px;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0); /* Gradiente de fondo. */
+    padding: 60px 20px;
 }
 
 .clients-container {
@@ -1001,4 +1095,316 @@ Estilos para clientes.html.
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------
+Estilos Responsive
+Adaptación para pantallas más pequeñas (móviles y tabletas)
+--------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    /* Ajustes generales para pantallas medianas (tabletas) */
+    body {
+        font-size: 0.95rem; /* Ligeramente más pequeña para tabletas */
+    }
+
+    .centrado,
+    .cartors-container,
+    .kitchen-section,
+    .playground-section,
+    .contact-container,
+    .clients-container {
+        padding: 15px; /* Reducir el padding en contenedores */
+        margin: 15px auto; /* Ajustar márgenes */
+    }
+
+    .centrado h1,
+    .cartors-container h2,
+    .kitchen-section h2,
+    .playground-section h2,
+    .contact-container h1 {
+        font-size: 2rem; /* Reducir tamaño de títulos principales */
+    }
+
+    .centrado p,
+    .cartors-container p,
+    .kitchen-section p,
+    .playground-section p,
+    .contact-container p {
+        font-size: 1rem; /* Reducir tamaño de párrafos */
+    }
+
+    /* Galería de imágenes en index.html */
+    .cartors-container .gallery,
+    .kitchen-section .gallery,
+    .playground-section .gallery {
+        flex-direction: column; /* Apilar imágenes verticalmente */
+        align-items: center; /* Centrar imágenes apiladas */
+        gap: 15px; /* Espacio entre imágenes */
+    }
+
+    .cartors-container .gallery img,
+    .kitchen-section .gallery img,
+    .playground-section .gallery img {
+        width: 80%; /* Hacer que las imágenes ocupen más ancho */
+        max-width: 300px; /* Limitar el ancho máximo para que no sean demasiado grandes */
+    }
+
+    /* Lista de servicios */
+    .services-list li {
+        padding: 12px; /* Reducir padding de ítems de lista */
+        font-size: 1rem; /* Ajustar tamaño de fuente */
+    }
+
+    /* Botones de contacto en index.html */
+    .botones-contacto {
+        flex-direction: column; /* Apilar botones verticalmente */
+        gap: 15px; /* Espacio entre botones */
+    }
+
+    .boton-destacado,
+    .boton-llamar,
+    .boton-whatsapp {
+        width: 80%; /* Asegurar que los botones ocupen un buen ancho */
+        max-width: 300px; /* Limitar ancho para que no se estiren demasiado */
+        margin: 0 auto; /* Centrar los botones apilados */
+        padding: 10px 20px; /* Ajustar padding */
+        font-size: 0.9rem; /* Reducir tamaño de fuente */
+    }
+
+    /* Login Section */
+    .login-container {
+        max-width: 90%; /* Ocupar casi todo el ancho disponible */
+        padding: 30px; /* Reducir padding */
+        margin: 15px; /* Ajustar margen para pantallas pequeñas */
+    }
+
+    .login-container h2 {
+        font-size: 1.8rem; /* Ajustar tamaño de título */
+    }
+
+    .input-box input {
+        padding: 12px 15px 12px 40px; /* Ajustar padding y espacio para icono */
+    }
+
+    .input-box .icon,
+    .input-box label {
+        left: 10px; /* Ajustar posición del icono y label */
+    }
+
+    .input-box input:focus ~ label,
+    .input-box input:valid ~ label {
+        left: 10px; /* Mantener posición de label al enfocarse */
+        font-size: 0.75rem; /* Ajustar tamaño de label */
+    }
+
+    .remember-forgot {
+        flex-direction: column; /* Apilar recordar y olvidar */
+        align-items: flex-start; /* Alinear al inicio */
+        gap: 10px; /* Espacio entre elementos */
+    }
+
+    .login-container button {
+        padding: 12px; /* Ajustar padding del botón de login */
+        font-size: 0.95rem; /* Ajustar tamaño de fuente */
+    }
+
+    /* Galería principal (galeria.html) */
+    .gallery {
+        grid-template-columns: 1fr; /* Una columna por imagen */
+        padding: 20px 15px; /* Ajustar padding */
+    }
+
+    .gallery-item {
+        height: 250px; /* Ajustar altura de los ítems de galería */
+    }
+
+    .overlay h3 {
+        font-size: 1.3rem; /* Reducir tamaño de título en overlay */
+    }
+
+    .overlay p {
+        font-size: 0.9rem; /* Reducir tamaño de párrafo en overlay */
+    }
+
+    /* Contacto */
+    .contact-info p {
+        font-size: 1rem; /* Ajustar tamaño de texto de contacto */
+    }
+
+    .contact-buttons {
+        flex-direction: column; /* Apilar botones sociales */
+        gap: 15px;
+    }
+
+    .social-btn, .call-btn {
+        width: 80%; /* Ancho completo para botones sociales */
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 10px 20px; /* Ajustar padding */
+        font-size: 1rem; /* Ajustar tamaño de fuente */
+    }
+
+    .form-group input,
+    .form-group textarea {
+        max-width: 100%; /* Permitir que los campos de formulario ocupen todo el ancho disponible */
+    }
+
+    .contact-form button {
+        padding: 10px 25px; /* Ajustar padding del botón de enviar */
+        font-size: 1rem; /* Ajustar tamaño de fuente */
+    }
+
+    /* Clientes */
+    .clients-container h1 {
+        font-size: 2.5rem; /* Reducir tamaño de título de clientes */
+    }
+
+    .clients-container > p {
+        font-size: 1.1rem; /* Reducir tamaño de párrafo de clientes */
+    }
+
+    .client-card {
+        padding: 20px; /* Reducir padding de tarjeta de cliente */
+        width: 95%; /* Ocupar más ancho en móvil */
+    }
+
+    .client-card h2 {
+        font-size: 1.8rem; /* Reducir tamaño de título de tarjeta */
+    }
+
+    .client-card p {
+        font-size: 1rem; /* Reducir tamaño de párrafo de tarjeta */
+    }
+
+    /* Panel de Control Flotante */
+    .control-panel-container {
+        top: auto; /* Desactivar top fijo para móviles */
+        bottom: 20px; /* Colocarlo en la parte inferior */
+        right: 20px; /* Mantenerlo a la derecha */
+        transform: none; /* Eliminar transformación */
+    }
+
+    .toggle-panel-btn {
+        padding: 8px 12px; /* Reducir padding del botón de toggle */
+        font-size: 1.2rem; /* Reducir tamaño de fuente */
+        border-radius: 50%; /* Hacerlo redondo */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .side-panel {
+        width: 100%; /* Panel de lado a lado en móvil */
+        right: -100%; /* Ocultarlo completamente */
+        border-radius: 0; /* Sin bordes redondeados */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
+        padding-top: 60px; /* Espacio para la "x" de cerrar */
+        justify-content: flex-start; /* Alinear contenido al inicio */
+        /* Asegurar que el panel cubra toda la altura si es necesario */
+        height: 100vh;
+        top: 0; /* Alinearlo arriba */
+    }
+
+    .side-panel.open {
+        right: 0; /* Mostrar el panel completamente */
+    }
+
+    .close-panel {
+        position: absolute; /* Posicionarlo absolutamente dentro del panel */
+        top: 15px; /* Espacio desde arriba */
+        right: 15px; /* Espacio desde la derecha */
+        font-size: 1.8rem; /* Tamaño de la "x" */
+    }
+
+    .side-panel h3 {
+        font-size: 1.2rem; /* Reducir tamaño de título del panel */
+        margin-bottom: 15px;
+    }
+
+    .side-panel ul {
+        flex-grow: 0; /* No permitir que la lista crezca infinitamente, ya que el panel es 100vh */
+    }
+
+    .side-panel ul li a {
+        padding: 12px 15px; /* Ajustar padding de enlaces */
+        font-size: 0.95rem; /* Ajustar tamaño de fuente */
+    }
+
+    /* Botón de login flotante (parte superior derecha) */
+    .login-btn {
+        padding: 10px 20px; /* Reducir padding */
+        font-size: 0.85rem; /* Reducir tamaño de fuente */
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes específicos para teléfonos muy pequeños */
+    body {
+        font-size: 0.9rem;
+    }
+
+    .centrado h1,
+    .cartors-container h2,
+    .kitchen-section h2,
+    .playground-section h2,
+    .contact-container h1 {
+        font-size: 1.8rem; /* Más pequeño para pantallas muy pequeñas */
+    }
+
+    .centrado p,
+    .cartors-container p,
+    .kitchen-section p,
+    .playground-section p,
+    .contact-container p {
+        font-size: 0.9rem;
+    }
+
+    .welcome-image {
+        width: 150px; /* Imagen de bienvenida un poco más pequeña */
+    }
+
+    .main-logo {
+        height: 50px; /* Logo un poco más pequeño */
+    }
+
+    .login-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .login-container button {
+        font-size: 0.9rem;
+    }
+
+    .social-btn, .call-btn {
+        font-size: 0.9rem;
+    }
+
+    .contact-form button {
+        font-size: 0.95rem;
+    }
+
+    .clients-container h1 {
+        font-size: 2rem;
+    }
+
+    .clients-container > p {
+        font-size: 1rem;
+    }
+
+    .client-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .client-card p {
+        font-size: 0.9rem;
+    }
+
+    /* Asegurar que el modal de imagen no sea demasiado grande en pantallas muy pequeñas */
+    .image-modal img {
+        max-width: 95%;
+        max-height: 95%;
+    }
 }

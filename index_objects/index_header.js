@@ -8,7 +8,8 @@ const indexHeaderContent = `
                 </button>
                 <div class="logo-area">
                     <img src="images/logoia1.jpeg" alt="Logo de Cartor's SAS" class="logo-header">
-                    <h1>Cartor's SAS</h1>
+                    <h1>Cartor's SAS </h1>
+                    
                 </div>
             </div>
             <div class="header-right-actions">

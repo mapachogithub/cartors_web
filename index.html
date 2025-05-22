@@ -1,49 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartor's SAS</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header llamado desde un objeto js -->
-         <div id="admin-header-placeholder"></div>
-        <script src="index_objects/index_header.js"></script>
-
-
-    <!-- Contenido principal -->
+    <div id="admin-header-placeholder"></div>
+    <script src="index_objects/index_header.js"></script>
     <main>
-        <!-- Sección de bienvenida -->
-        <section class="centrado">
-            <h1>Cartor's SAS</h1>
+        <section class="centrado" id="welcome-section"> <h1>Cartor's SAS</h1>
             
-            <!-- LOGO -->
             <img src="images/logopng.png" alt="Logo de Cartor's SAS" class="main-logo">
-
 
             <p>Somos una empresa dedicada a la instalación y mantenimiento de cocinas y equipos industriales, así como a la instalación, mantenimiento y certificación de parques para niños de la compañía Soft Play.</p>
             <img src="images/FOTO1WELCOME.jpg" alt="Imagen de bienvenida" class="welcome-image index-image" onclick="showImageModal(this.src)">
         </section>
-        <!-- Config para la imagen ampliada de la bienvenida -->
         <div id="imageModal" class="image-modal">
             <span class="close-image" onclick="hideImageModal()">×</span>
             <img id="enlargedImage" src="" alt="Imagen ampliada">
         </div>
 
-        <!-- Sección de servicios -->
-        <section class="cartors-container">
+        <section class="cartors-container" id="servicios-section">
             <h2>Nuestros servicios</h2>
             <p>En Cartor's ofrecemos los mejores productos y servicios para satisfacer tus necesidades. Nuestra experiencia nos respalda y estamos comprometidos con la calidad.</p>
             
-            <!-- Lista de servicios con enlaces a las secciones -->
             <ul class="services-list">
                 <li><a href="certificaciones_solicitud.html">Certificaciones.</a></li>
                 <li><a href="#kitchen-section">Mantenimiento e instalación de cocinas industriales.</a></li>
                 <li><a href="#playground-section">Mantenimiento e instalación de parques infantiles.</a></li>
             </ul>
 
-            <!-- Galería de imágenes -->
             <div class="gallery">
                 <img src="images/cocinasindust1.jpg" alt="Cocina Industrial 1" class="index-image" loading="lazy">
                 <img src="images/cocinasindust2.jpg" alt="Cocina Industrial 2" class="index-image" loading="lazy">
@@ -51,10 +38,8 @@
             </div>
         </section>
 
-        <!-- Sección Mantenimiento e Instalación de Cocinas Industriales -->
         <section class="centrado">
-            <section id="kitchen-section" class="cartors-container kitchen-section">
-                <h2>Mantenimiento e Instalación de Cocinas Industriales</h2>
+            <section id="kitchen-section" class="cartors-container kitchen-section"> <h2>Mantenimiento e Instalación de Cocinas Industriales</h2>
                 <p>En Cartor's SAS, ofrecemos soluciones completas para cocinas industriales, desde la instalación profesional de equipos hasta su mantenimiento periódico. Nos aseguramos de que tus cocinas funcionen al máximo rendimiento, cumpliendo con los estándares de seguridad e higiene. Nuestro equipo técnico está capacitado para trabajar con marcas líderes, garantizando durabilidad y eficiencia en cada proyecto.</p>
                 <p>¿Por qué elegirnos? Realizamos diagnósticos precisos, ofrecemos mantenimientos preventivos y correctivos, y adaptamos nuestras instalaciones a las necesidades de tu negocio, ya sea un restaurante, hotel o industria alimentaria.</p>
                 <div class="gallery">
@@ -64,10 +49,8 @@
             </section>
         </section>
 
-        <!-- Sección Mantenimiento e Instalación de Parques Infantiles -->
         <section class="centrado">
-            <section id="playground-section" class="cartors-container playground-section">
-                <h2>Mantenimiento e Instalación de Parques Infantiles</h2>
+            <section id="playground-section" class="cartors-container playground-section"> <h2>Mantenimiento e Instalación de Parques Infantiles</h2>
                 <p>En Cartor's SAS, somos expertos en la instalación y mantenimiento de parques infantiles, trabajando con marcas reconocidas como Soft Play. Diseñamos e instalamos áreas de juego seguras, duraderas y divertidas, adaptadas a las necesidades de escuelas, parques o espacios recreativos. Además, ofrecemos certificación para garantizar que cumplen con las normativas de seguridad.</p>
                 <p>Nuestro servicio incluye inspecciones regulares, reparaciones y mantenimiento preventivo para que los parques estén siempre en óptimas condiciones. Confía en nosotros para crear un espacio donde los niños puedan jugar con tranquilidad.</p>
                 <div class="gallery">
@@ -77,12 +60,9 @@
             </section>
         </section>
 
-<!-- Sección de contacto -->
-        <section class="centrado">
-            <div class="formulario">
+    <section class="centrado" id="contact-section"> <div class="formulario">
                 <br>
-                <h2>CONTÁCTANOS</h2BOMBAZO>	
-                <h2>Déjanos atenderte</h2>
+                <h2>CONTÁCTANOS</h2> <h2>Déjanos atenderte</h2>
                 <br>
                 <h3>¡Haz clic y déjanos tus datos! En breve te responderemos para ayudarte con lo que necesites.</h3>
                 <p>Hazlo fácil: completa nuestro formulario de contacto y empecemos a trabajar juntos.</p>
@@ -96,13 +76,31 @@
             </div>
         </section>
         
+    </main>
 
-    <!-- Llamando al objeto footer_objetc.js a este html -->
+    <div class="control-panel-container">
+        <button id="togglePanelBtn" class="toggle-panel-btn">☰</button>
+        <div id="sidePanel" class="side-panel">
+            <span class="close-panel" onclick="hideSidePanel()">×</span>
+            <h3>Panel</h3>
+            <ul>
+                <li><a href="/loginstarpage.html" onclick="hideSidePanel()">Administración</a></li>
+                <li><a href="#welcome-section" onclick="hideSidePanel()">Inicio</a></li>
+                <li><a href="#servicios-section" onclick="hideSidePanel()">Nuestros Servicios</a></li>
+                <li><a href="#kitchen-section" onclick="hideSidePanel()">Cocinas Industriales</a></li>
+                <li><a href="#playground-section" onclick="hideSidePanel()">Parques Infantiles</a></li>
+                <li><a href="certificaciones_solicitud.html" onclick="hideSidePanel()">Certificaciones</a></li>
+                <li><a href="galeria.html" onclick="hideSidePanel()">Galería</a></li>
+                <li><a href="clientes.html" onclick="hideSidePanel()">Clientes</a></li>
+                <li><a href="contactenos.html" onclick="hideSidePanel()">Contáctanos</a></li>
+            </ul>
+        </div>
+    </div>
     <div id="admin-footer-placeholder"></div>
     <script src="administracion/OBJECTS JS/footer_objetc.js"></script>    
 
-    <!-- Scripts -->
     <script src="js/scripts.js"></script>
+
 
 </body>
 </html>
