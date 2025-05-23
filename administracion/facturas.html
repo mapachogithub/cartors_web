@@ -14,6 +14,10 @@
             <h2>Crear Nueva Factura</h2>
             <form id="newInvoiceForm">
                 <div class="form-group">
+                    <label for="nombreFactura">Nombre o # de Factura:</label>
+                    <input type="text" id="nombreFactura" name="nombreFactura" required>
+                </div>
+                <div class="form-group">
                     <label for="cliente">Cliente:</label>
                     <input type="text" id="cliente" name="cliente" required>
                 </div>
@@ -42,7 +46,7 @@
             <table id="tablaFacturas">
                 <thead>
                     <tr>
-                        <th>ID Factura</th>
+                        <th>Nombre o # de Factura</th>
                         <th>Cliente</th>
                         <th>Fecha Emisión</th>
                         <th>Valor Total</th>
@@ -61,6 +65,7 @@
                 </div>
             <div class="total-general-box">
                 <h3>Total General de Facturas: <span id="totalGeneralFacturas"></span></h3>
+                <p>IVA (19%) del Total General: <span id="ivaTotalGeneralFacturas"></span></p>
             </div>
         </section>
 
@@ -71,15 +76,18 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
-        import { firebaseConfig } from './firebaseConfig.js'; // <- ¡Verifica esta ruta!
+        import { firebaseConfig } from './firebaseConfig.js'; // ¡Verifica esta ruta!
 
         // Inicializa Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const facturasRef = ref(database, 'facturas'); // Referencia a la colección de facturas
         const tablaFacturasBody = document.getElementById('tablaFacturasBody');
-        const yearlySummaryContainer = document.getElementById('yearlySummaryContainer'); // Nuevo contenedor para el resumen anual
+        const yearlySummaryContainer = document.getElementById('yearlySummaryContainer');
         const totalGeneralFacturasSpan = document.getElementById('totalGeneralFacturas');
+        const ivaTotalGeneralFacturasSpan = document.getElementById('ivaTotalGeneralFacturas');
+
+        const IVA_RATE = 0.19; // 19% IVA
 
         function eliminarFactura(key) {
             if (confirm('¿Estás seguro de que deseas eliminar esta factura?')) {
@@ -87,7 +95,6 @@
                 remove(facturaRef)
                     .then(() => {
                         alert('Factura eliminada con éxito.');
-                        // La tabla se actualizará automáticamente gracias al listener onValue
                     })
                     .catch((error) => {
                         console.error("Error al eliminar la factura:", error);
@@ -97,24 +104,22 @@
         }
 
         function mostrarFacturas(data) {
-            tablaFacturasBody.innerHTML = ''; // Limpia la tabla existente
-            yearlySummaryContainer.innerHTML = ''; // Limpia el resumen anual/mensual
+            tablaFacturasBody.innerHTML = '';
+            yearlySummaryContainer.innerHTML = '';
             let totalGeneral = 0;
-            const facturasPorAño = {}; // Nuevo objeto para agrupar facturas por año
+            const facturasPorAño = {};
 
             if (data) {
-                // Primero, ordenamos las facturas por fecha para que los años y meses salgan en orden
                 const sortedFacturas = Object.entries(data).sort(([, a], [, b]) => {
                     return new Date(a.fechaEmision) - new Date(b.fechaEmision);
                 });
 
                 sortedFacturas.forEach(([key, factura]) => {
-                    // Agrega la factura a la tabla principal
                     const row = tablaFacturasBody.insertRow();
 
                     let cell = row.insertCell();
-                    cell.textContent = key; // Usamos la clave de Firebase como ID de factura
-                    cell.dataset.label = 'ID Factura';
+                    cell.textContent = factura.nombreFactura || 'N/A'; // Mostrar el nombre de la factura
+                    cell.dataset.label = 'Nombre Factura';
 
                     cell = row.insertCell();
                     cell.textContent = factura.cliente || 'N/A';
@@ -125,68 +130,70 @@
                     cell.dataset.label = 'Fecha Emisión';
 
                     const valor = parseFloat(factura.valorTotal);
+                    const ivaValor = valor * IVA_RATE;
                     cell = row.insertCell();
-                    cell.textContent = valor ? `$${valor.toLocaleString('es-CO')}` : 'N/A';
+                    cell.innerHTML = `$${valor ? valor.toLocaleString('es-CO') : 'N/A'}<br><small>IVA (19%): $${ivaValor.toLocaleString('es-CO')}</small>`;
                     cell.dataset.label = 'Valor Total';
 
                     cell = row.insertCell();
                     cell.textContent = factura.estado || 'N/A';
                     cell.dataset.label = 'Estado';
 
-                    // Columna de acciones con el botón Eliminar
                     const accionesCell = row.insertCell();
                     const eliminarButton = document.createElement('button');
                     eliminarButton.textContent = 'Eliminar';
                     eliminarButton.classList.add('eliminar-btn');
-                    eliminarButton.onclick = () => eliminarFactura(key); // Pasar la clave única
+                    eliminarButton.onclick = () => eliminarFactura(key);
                     accionesCell.appendChild(eliminarButton);
                     accionesCell.dataset.label = 'Acciones';
 
-                    // Preparar para el resumen anual y mensual
                     if (factura.fechaEmision && valor) {
                         const date = new Date(factura.fechaEmision);
                         const year = date.getFullYear();
-                        const month = date.getMonth(); // 0-11
-                        const monthName = new Date(year, month, 1).toLocaleString('es-ES', { month: 'long' }); // Solo el nombre del mes
-                        const yearMonthKey = `${year}-${month.toString().padStart(2, '0')}`; // Clave para ordenar meses dentro del año
+                        const month = date.getMonth();
+                        const monthName = new Date(year, month, 1).toLocaleString('es-ES', { month: 'long' });
+                        const yearMonthKey = `${year}-${month.toString().padStart(2, '0')}`;
 
                         if (!facturasPorAño[year]) {
                             facturasPorAño[year] = {
                                 total: 0,
+                                ivaTotal: 0,
                                 meses: {}
                             };
                         }
                         if (!facturasPorAño[year].meses[yearMonthKey]) {
                             facturasPorAño[year].meses[yearMonthKey] = {
-                                name: monthName, // Guardamos el nombre del mes para mostrarlo
+                                name: monthName,
                                 total: 0,
+                                ivaTotal: 0,
                                 facturas: []
                             };
                         }
                         facturasPorAño[year].total += valor;
+                        facturasPorAño[year].ivaTotal += ivaValor;
                         facturasPorAño[year].meses[yearMonthKey].total += valor;
+                        facturasPorAño[year].meses[yearMonthKey].ivaTotal += ivaValor;
                         facturasPorAño[year].meses[yearMonthKey].facturas.push({ id: key, ...factura });
                         totalGeneral += valor;
                     }
                 });
 
-                // Generar los cuadros de resumen por año
                 const sortedYears = Object.keys(facturasPorAño).sort((a, b) => parseInt(a) - parseInt(b));
 
                 sortedYears.forEach(year => {
                     const yearData = facturasPorAño[year];
                     const yearBox = document.createElement('div');
-                    yearBox.classList.add('year-summary-box'); // Nueva clase para el contenedor anual
+                    yearBox.classList.add('year-summary-box');
                     yearBox.innerHTML = `
                         <h2>${year}</h2>
                         <div class="monthly-summary-grid">
                             </div>
-                        <p class="yearly-total">Total Anual: <strong>$${yearData.total.toLocaleString('es-CO')}</strong></p>
+                        <p class="yearly-total">Total Anual: <strong>$${yearData.total.toLocaleString('es-CO')}</strong><br>
+                        IVA (19%) del Total Anual: <strong>$${yearData.ivaTotal.toLocaleString('es-CO')}</strong></p>
                     `;
                     const monthlyGrid = yearBox.querySelector('.monthly-summary-grid');
 
-                    // Generar los cuadros de resumen por mes dentro de cada año
-                    const sortedMonths = Object.keys(yearData.meses).sort(); // Ordena los meses por su clave (ej: "2025-01", "2025-05")
+                    const sortedMonths = Object.keys(yearData.meses).sort();
                     sortedMonths.forEach(monthKey => {
                         const monthData = yearData.meses[monthKey];
                         const monthBox = document.createElement('div');
@@ -194,41 +201,49 @@
                         monthBox.innerHTML = `
                             <h3>${monthData.name} ${year}</h3>
                             <ul class="monthly-invoice-list">
-                                ${monthData.facturas.map(f => `
+                                ${monthData.facturas.map(f => {
+                                    const facturaValor = parseFloat(f.valorTotal);
+                                    const facturaIVA = facturaValor * IVA_RATE;
+                                    return `
                                     <li>
-                                        ID: ${f.id} - Cliente: ${f.cliente} - Valor: $${parseFloat(f.valorTotal).toLocaleString('es-CO')}
+                                        Nombre: ${f.nombreFactura || 'N/A'} - Cliente: ${f.cliente} - Valor: $${facturaValor.toLocaleString('es-CO')}<br>
+                                        <small>IVA (19%): $${facturaIVA.toLocaleString('es-CO')}</small>
                                     </li>
-                                `).join('')}
+                                `;
+                                }).join('')}
                             </ul>
-                            <p class="monthly-total">Total del mes: <strong>$${monthData.total.toLocaleString('es-CO')}</strong></p>
+                            <p class="monthly-total">Total del mes: <strong>$${monthData.total.toLocaleString('es-CO')}</strong><br>
+                            IVA (19%) del mes: <strong>$${monthData.ivaTotal.toLocaleString('es-CO')}</strong></p>
                         `;
                         monthlyGrid.appendChild(monthBox);
                     });
                     yearlySummaryContainer.appendChild(yearBox);
                 });
 
-
-                // Mostrar el total general
                 totalGeneralFacturasSpan.textContent = `$${totalGeneral.toLocaleString('es-CO')}`;
+                ivaTotalGeneralFacturasSpan.textContent = `$${(totalGeneral * IVA_RATE).toLocaleString('es-CO')}`;
 
             } else {
                 const row = tablaFacturasBody.insertRow();
                 const cell = row.insertCell();
-                cell.colSpan = 6; // Ajustar el colspan al número de columnas
+                cell.colSpan = 6;
                 cell.textContent = 'No hay facturas registradas.';
-                totalGeneralFacturasSpan.textContent = '$0,00'; // Si no hay facturas, el total es 0
+                totalGeneralFacturasSpan.textContent = '$0,00';
+                ivaTotalGeneralFacturasSpan.textContent = '$0,00';
             }
         }
 
         function agregarFactura() {
             const form = document.getElementById('newInvoiceForm');
-            const cliente = form.cliente.value;
+            const nombreFactura = form.nombreFactura.value; // Capturar el nombre de la factura
+            const cliente = form.cliente.value; // Capturar el cliente del campo de texto
             const fechaEmision = form.fechaEmision.value;
             const valorTotal = form.valorTotal.value;
             const estado = form.estado.value;
 
-            if (cliente && valorTotal) {
+            if (nombreFactura && cliente && valorTotal) {
                 const nuevaFactura = {
+                    nombreFactura: nombreFactura,
                     cliente: cliente,
                     fechaEmision: fechaEmision,
                     valorTotal: parseFloat(valorTotal),
@@ -245,11 +260,10 @@
                         alert('Error al añadir la factura. Por favor, intenta de nuevo.');
                     });
             } else {
-                alert('Los campos Cliente y Valor Total son obligatorios.');
+                alert('Los campos Nombre de Factura, Cliente y Valor Total son obligatorios.');
             }
         }
 
-        // Escucha los cambios en la base de datos de Firebase para las facturas
         onValue(facturasRef, (snapshot) => {
             const data = snapshot.val();
             mostrarFacturas(data);
@@ -257,14 +271,10 @@
             console.error("Error al leer datos de Firebase:", error);
             tablaFacturasBody.innerHTML = '<tr><td colspan="6">Error al cargar las facturas.</td></tr>';
             totalGeneralFacturasSpan.textContent = '$0,00';
+            ivaTotalGeneralFacturasSpan.textContent = '$0,00';
         });
 
-        // Asigna la función al scope global para que el onclick en el HTML funcione
         window.agregarFactura = agregarFactura;
-
-        // Si los scripts admin_header.js y footer_objetc.js ya manejan la inserción del HTML,
-        // estas líneas de script al final del body serán suficientes.
-        // Si no aparecen, la lógica de inserción está en esos JS o las rutas a los .html están mal.
     </script>
 
     <script src="../administracion/OBJECTS JS/admin_header.js"></script>

@@ -1,114 +1,412 @@
-/* MIS ESTILOS PARA CERTIFICACIONES_PENDIENTES.HTML */
-@import url('certificaciones.css'); /* Importo los estilos generales de certificaciones.css */
+/* MIS ESTILOS PARA CERTIFICACIONES_PENDIENTES.HTML - REFORMULADO DESDE CERO */
 
-.centrado h2 { color: #d9534f; } /* Rojo para el título principal, para indicar "pendiente" */
-.centrado p { color: #5bc0de; } /* Azul claro para el párrafo descriptivo */
+/* Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-.listado-certificados h3 { display: block; } /* Aseguro que el título del listado se vea bien */
-.listado-certificados table { width: 98%; margin: 0 auto; } /* La tabla casi al ancho completo y centrada */
-.listado-certificados { overflow-x: auto; } /* Para que la tabla se pueda desplazar si es muy ancha en móviles */
-.listado-certificados th { color: white; } /* Texto blanco para los encabezados de la tabla */
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background: whitesmoke;
+    color: #333;
+    line-height: 1.6;
+}
 
-/* Estilos para el formulario de ingreso de nuevas certificaciones pendientes */
+/* --- ESTILOS GENERALES DE LA PÁGINA --- */
+main {
+    padding: 20px;
+    max-width: 1200px; /* Limita el ancho máximo del contenido principal */
+    margin: 0 auto; /* Centra el contenido principal en la página */
+}
+
+.centrado {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.centrado h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: #d9534f;
+    margin-bottom: 10px;
+}
+
+.centrado p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #5bc0de;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- ESTILOS PARA EL FORMULARIO DE INGRESO --- */
 .formulario-nueva-certificacion {
-    background-color: #f9f9f9; /* Fondo gris claro para el contenedor del formulario */
-    padding: 20px; /* Espaciado interno */
-    margin-bottom: 30px; /* Margen inferior para separarlo de la tabla */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+    background-color: #f9f9f9;
+    padding: 25px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Ancho máximo para el formulario */
+    margin-left: auto;
+    margin-right: auto; /* Centra el bloque del formulario en PC */
 }
 
 .formulario-nueva-certificacion h3 {
-    font-family: 'Poppins', sans-serif; /* Fuente Poppins para el título del formulario */
-    font-weight: 500; /* Grosor de la fuente */
-    color: #333; /* Color de texto oscuro */
-    margin-bottom: 15px; /* Margen inferior */
-    text-align: center; /* Título centrado */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 .formulario-nueva-certificacion form {
-    display: flex; /* Uso flexbox para organizar los campos */
-    flex-direction: column; /* Quiero que cada fila de label/input se apile verticalmente */
-    gap: 15px; /* Espacio entre cada renglón completo de label + input */
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center; /* Centra las filas del formulario en PC */
 }
 
 .form-row {
-    display: flex; /* Cada `form-row` contendrá el label y el input/textarea en la misma línea */
-    flex-direction: row; /* Coloca el label y el input uno al lado del otro */
-    align-items: center; /* Alinea verticalmente el label y el input al centro */
-    gap: 10px; /* Espacio entre el label y el input */
-    flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea si el espacio es muy pequeño */
+    display: flex;
+    align-items: center;
+    width: 100%; /* La fila ocupa todo el ancho de su contenedor */
+    max-width: 600px; /* Limita el ancho de la fila para una buena lectura en desktop */
 }
 
 .form-row label {
-    font-weight: bold; /* Label en negrita */
-    color: #555; /* Color de texto gris oscuro */
-    min-width: 150px; /* Doy un ancho mínimo al label para que los inputs se alineen mejor */
-    text-align: right; /* Alineo el texto del label a la derecha para un aspecto más limpio */
+    font-weight: bold;
+    color: #555;
+    min-width: 180px; /* Ancho fijo para las etiquetas en desktop */
+    text-align: right;
+    padding-right: 15px;
+    flex-shrink: 0; /* Evita que la etiqueta se encoja */
 }
 
 .form-row input,
-.form-row textarea { /* Ahora textarea comparte los mismos estilos generales que input */
-    flex-grow: 1; /* El input/textarea debe crecer para ocupar el espacio restante en la fila */
-    padding: 8px; /* Relleno interno */
-    border: 1px solid #ddd; /* Borde suave */
-    border-radius: 4px; /* Bordes ligeramente redondeados */
-    font-size: 1rem; /* Tamaño de fuente estándar */
-    max-width: calc(100% - 160px); /* Calculo el ancho máximo, restando el min-width del label y el gap */
+.form-row textarea {
+    flex-grow: 1; /* El input/textarea crece para ocupar el espacio restante */
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-row textarea {
+    min-height: 100px; /* Altura mínima para el textarea en desktop */
+    resize: vertical;
 }
 
 .formulario-nueva-certificacion button {
-    padding: 10px 15px; /* Relleno para el botón */
-    background: #007bff; /* Color de fondo azul */
-    color: #fff; /* Texto blanco */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    font-family: 'Noto Sans', sans-serif; /* Fuente del botón */
-    font-size: 1rem; /* Tamaño de fuente */
-    cursor: pointer; /* Cursor de puntero al pasar por encima */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave para efectos hover */
-    align-self: center; /* Centro el botón horizontalmente dentro del formulario */
-    margin-top: 15px; /* Margen superior para separarlo de los campos */
+    padding: 12px 25px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center; /* Centra el botón horizontalmente */
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .formulario-nueva-certificacion button:hover {
-    background: #0056b3; /* Azul más oscuro al pasar el ratón */
-    transform: translateY(-2px); /* Pequeño levantamiento al pasar el ratón */
+    background: #0056b3;
+    transform: translateY(-2px);
 }
 
-/* Media query para pantallas pequeñas (móviles) */
-@media (max-width: 767px) {
-    /* En pantallas más pequeñas, vuelvo a apilar el label y el input/textarea para ahorrar espacio vertical */
-    .form-row {
-        flex-direction: column; /* Apilo verticalmente */
-        align-items: flex-start; /* Alineo a la izquierda */
-        gap: 5px; /* Reduzco el espacio */
-    }
+/* --- ESTILOS PARA LA TABLA DE CERTIFICACIONES --- */
+.listado-certificados {
+    margin-bottom: 50px;
+    background-color: #fff; /* Fondo blanco para el contenedor de la tabla */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Padding interno para el contenedor */
 
-    .form-row label {
-        text-align: left; /* Alineo los labels a la izquierda */
-        min-width: unset; /* Quito el ancho mínimo fijo para los labels */
-    }
-
-    .form-row input,
-    .form-row textarea {
-        max-width: 100%; /* Ocupa el ancho completo disponible */
-    }
+    /* Nuevas propiedades para la tabla en PC */
+    max-width: 1200px; /* **NUEVO: Limita el ancho máximo de la tabla en PC** */
+    margin-left: auto; /* **NUEVO: Centra la tabla en PC** */
+    margin-right: auto; /* **NUEVO: Centra la tabla en PC** */
+    overflow-x: auto; /* Permite el scroll horizontal si la tabla es muy ancha */
 }
 
-/* Estilos para el botón Eliminar en la tabla (lo dejo igual, no es parte del formulario de ingreso) */
+.listado-certificados h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.listado-certificados table {
+    width: 100%; /* La tabla ocupa el 100% del contenedor con max-width */
+    border-collapse: collapse;
+    /* min-width ya no es tan crítico aquí porque el contenedor tiene max-width y overflow-x */
+}
+
+.listado-certificados th {
+    background: #2c3e50;
+    color: white;
+    padding: 14px 10px;
+    text-align: left;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Evita que los encabezados se rompan */
+}
+
+.listado-certificados td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.88rem;
+    word-wrap: break-word;
+    max-width: 250px; /* Ajusta el ancho máximo de las celdas de contenido en desktop si es necesario */
+    text-align: left; /* Alineado a la izquierda por defecto en desktop */
+}
+
+.listado-certificados tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.listado-certificados tbody tr:hover {
+    background-color: #f8f8f8;
+}
+
+/* Estilos para el botón Eliminar en la tabla */
 .eliminar-btn {
-    background-color: #dc3545; /* Rojo */
+    background-color: #dc3545;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 7px 11px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+    display: block; /* Para que el margin auto funcione en desktop */
+    margin: 0 auto; /* Centrado en la celda en desktop */
 }
 
 .eliminar-btn:hover {
     background-color: #c82333;
     transform: translateY(-1px);
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVE DESIGN --- */
+
+/* Teléfonos y tabletas pequeñas (hasta 767px) */
+@media (max-width: 767px) {
+    main {
+        padding: 15px; /* Menos padding general en móviles */
+    }
+
+    .centrado h2 {
+        font-size: 1.8rem;
+    }
+
+    .centrado p {
+        font-size: 0.9rem;
+    }
+
+    /* --- FORMULARIO EN MÓVILES --- */
+    .formulario-nueva-certificacion {
+        padding: 15px;
+        margin-bottom: 30px;
+        max-width: 100%; /* Anula el max-width de desktop */
+    }
+
+    .formulario-nueva-certificacion h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .formulario-nueva-certificacion form {
+        gap: 10px;
+        align-items: stretch; /* Estira los form-row para que ocupen todo el ancho en móvil */
+    }
+
+    .form-row {
+        flex-direction: column; /* Apila el label y el input verticalmente */
+        align-items: flex-start; /* Alinea todo a la izquierda */
+        gap: 5px;
+        width: 100%;
+        max-width: 100%; /* Anula el max-width de desktop para que ocupe todo el ancho */
+    }
+
+    .form-row label {
+        text-align: left;
+        min-width: unset;
+        padding-right: 0;
+        width: 100%; /* Ocupa el ancho completo */
+    }
+
+    .form-row input,
+    .form-row textarea {
+        max-width: 100%;
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .formulario-nueva-certificacion button {
+        width: 100%;
+        max-width: 250px;
+        font-size: 1rem;
+        padding: 10px 15px;
+        margin-top: 15px;
+        align-self: center; /* Asegura que el botón siga centrado */
+    }
+
+    /* --- TABLA EN MÓVILES (TRANSFORMADA A "TARJETAS") --- */
+    .listado-certificados {
+        overflow-x: hidden; /* Oculta el scroll horizontal cuando la tabla se transforma */
+        padding: 10px; /* Menos padding en móviles para el contenedor de la tabla */
+        max-width: 100%; /* La tabla ocupa todo el ancho disponible */
+        margin-left: 0; /* Anula el margin auto */
+        margin-right: 0; /* Anula el margin auto */
+    }
+
+    .listado-certificados h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .listado-certificados table {
+        min-width: unset; /* Anula el min-width */
+        box-shadow: none;
+        border-radius: 0;
+        background-color: transparent;
+    }
+
+    .listado-certificados thead {
+        display: none; /* Oculta el encabezado de la tabla en móviles */
+    }
+
+    .listado-certificados tbody,
+    .listado-certificados tr {
+        display: block; /* Cada fila es una "tarjeta" */
+        width: 100%;
+    }
+
+    .listado-certificados tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        background-color: #fff;
+        padding: 15px;
+    }
+
+    .listado-certificados td {
+        display: flex; /* **CLAVE: Usamos flexbox para alinear etiqueta y valor** */
+        flex-direction: row; /* La etiqueta y el valor en la misma fila */
+        align-items: flex-start; /* Alinea los elementos al inicio (arriba) */
+        padding: 8px 0;
+        border-bottom: 1px dashed #eee;
+        font-size: 0.85rem;
+        word-wrap: break-word;
+        max-width: unset; /* Anula el max-width de desktop */
+        text-align: left; /* **CLAVE: Asegura que el contenido real del td se alinee a la izquierda** */
+    }
+
+    .listado-certificados td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .listado-certificados td::before {
+        content: attr(data-label); /* Usa el atributo data-label para mostrar el encabezado */
+        font-weight: bold;
+        color: #555;
+        /* **CLAVE: Ancho fijo para la etiqueta y sin encogerse** */
+        width: 130px; /* **AJUSTAR ESTE ANCHO** según la etiqueta más larga (ej. "Departamento Instalación:") */
+        min-width: 100px; /* Asegura un mínimo */
+        flex-shrink: 0; /* Evita que la etiqueta se encoja */
+        text-align: left; /* **CLAVE: La etiqueta se alinea a la izquierda** */
+        padding-right: 10px; /* Espacio entre la etiqueta y el valor */
+        font-size: 0.85rem;
+        white-space: nowrap; /* Evita que la etiqueta se rompa */
+        overflow: hidden; /* Oculta el texto si es muy largo */
+        text-overflow: ellipsis; /* Añade puntos suspensivos */
+    }
+
+    /* **CLAVE: Asignar data-label a cada celda para responsive** */
+    /* Asegúrate de que el orden de tus columnas HTML en tbody coincida con esto */
+    .listado-certificados tbody tr td:nth-child(1)::before { content: "Nombre Empresa:"; }
+    .listado-certificados tbody tr td:nth-child(2)::before { content: "NIT/RUT:"; }
+    .listado-certificados tbody tr td:nth-child(3)::before { content: "Contacto:"; }
+    .listado-certificados tbody tr td:nth-child(4)::before { content: "Correo Contacto:"; }
+    .listado-certificados tbody tr td:nth-child(5)::before { content: "Tipo Instalación:"; }
+    .listado-certificados tbody tr td:nth-child(6)::before { content: "Nombre Instalación:"; }
+    .listado-certificados tbody tr td:nth-child(7)::before { content: "Ciudad Instalación:"; }
+    .listado-certificados tbody tr td:nth-child(8)::before { content: "Departamento Inst.:"; } /* Acortado si es muy largo */
+    .listado-certificados tbody tr td:nth-child(9)::before { content: "Observaciones:"; }
+    .listado-certificados tbody tr td:nth-child(10)::before { content: "Fecha Solicitud:"; }
+    .listado-certificados tbody tr td:nth-child(11)::before { content: "Acciones:"; }
+
+    /* Estilo para el contenido real de la celda (el valor) */
+    .listado-certificados td:not(:empty) {
+        flex-grow: 1; /* El contenido ocupa el resto del espacio */
+        text-align: left; /* **CLAVE: El contenido del td se alinea a la izquierda** */
+    }
+
+    /* Ajustes específicos para el botón Eliminar en modo móvil */
+    .eliminar-btn {
+        margin: 0; /* Elimina el margin auto para que flexbox lo controle */
+        display: inline-block; /* Para que se alinee con la etiqueta si es necesario */
+        width: auto; /* Ancho automático, no 100% de la celda, para que la etiqueta tenga espacio */
+        max-width: 120px; /* Limita el ancho del botón */
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}
+
+/* Teléfonos muy pequeños (ej. iPhone SE) */
+@media (max-width: 480px) {
+    .centrado h2 {
+        font-size: 1.5rem;
+    }
+
+    .centrado p {
+        font-size: 0.85rem;
+    }
+
+    .formulario-nueva-certificacion {
+        padding: 10px;
+    }
+
+    .formulario-nueva-certificacion h3 {
+        font-size: 1.1rem;
+    }
+
+    .form-row input,
+    .form-row textarea {
+        font-size: 0.85rem;
+        padding: 7px 8px;
+    }
+
+    .formulario-nueva-certificacion button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .listado-certificados td {
+        font-size: 0.8rem;
+    }
+
+    .listado-certificados td::before {
+        width: 100px; /* Ancho más pequeño para etiquetas en teléfonos muy pequeños */
+        min-width: 80px;
+        font-size: 0.8rem;
+    }
+
+    .eliminar-btn {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+        max-width: 100px; /* Limita un poco más el ancho */
+    }
 }

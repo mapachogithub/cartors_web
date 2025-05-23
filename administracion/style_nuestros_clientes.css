@@ -1,4 +1,4 @@
-/* ESTILOS PARA NUESTROS_EMPLEADOS.HTML */
+/* ESTILOS PARA NUESTROS_CLIENTES.HTML */
 
 /* Estilos base */
 * {
@@ -13,8 +13,6 @@ body {
     color: #333;
     line-height: 1.6;
 }
-
-
 
 /* Sección Principal */
 .centrado {
@@ -42,14 +40,20 @@ body {
 }
 
 /* Tabla de Empleados */
+.table-container { /* Nuevo contenedor para la tabla */
+    overflow-x: auto; /* Permite el scroll horizontal en dispositivos pequeños */
+    margin: 0 auto;
+    max-width: 100%; /* Asegura que no se desborde */
+}
+
 .centrado table {
     width: 100%;
-    margin: 0 auto;
+    min-width: 600px; /* Ancho mínimo para la tabla, ajusta si es necesario */
     border-collapse: collapse;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    /* overflow: hidden;  Movido al .table-container si se usa overflow-x */
 }
 
 .centrado th,
@@ -93,79 +97,43 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Aquí se asume que tienes un header. Si no lo tienes, puedes ignorar estas reglas. */
     header .header-container {
         flex-direction: column;
         text-align: center;
-        padding: 15px; /* Tomado del ejemplo */
+        padding: 15px;
     }
 
     header h1 {
         margin-bottom: 10px;
-        font-size: 1.5rem; /* Ajustado para móviles */
+        font-size: 1.5rem;
     }
 
     nav ul {
         justify-content: center;
-        margin-top: 15px; /* Tomado del ejemplo */
-        gap: 10px; /* Reducido para un diseño más compacto */
+        margin-top: 15px;
+        gap: 10px;
     }
 
     nav ul li a {
-        padding: 6px 12px; /* Reducido ligeramente */
-        font-size: 0.9rem; /* Ajustado para móviles */
+        padding: 6px 12px;
+        font-size: 0.9rem;
     }
 
+    /* Manejo de tabla responsive para dispositivos pequeños */
     .centrado table {
-        display: block;
-        width: 100%;
-    }
-
-    .centrado thead,
-    .centrado tbody,
-    .centrado th,
-    .centrado td,
-    .centrado tr {
-        display: block;
-        width: 100%;
-    }
-
-    .centrado th {
-        text-align: center;
-        padding: 10px;
-        font-size: 0.85rem;
-    }
-
-    .centrado td {
-        text-align: right;
-        position: relative;
-        padding: 10px 10px 10px 45%;
-        font-size: 0.85rem;
-    }
-
-    .centrado td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        font-weight: bold;
-        color: #333;
-        font-size: 0.85rem;
-    }
-
-    .centrado tbody tr {
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
+        min-width: unset; /* Elimina el min-width para permitir que se ajuste mejor */
     }
 }
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.5rem; /* Tomado del ejemplo */
+        font-size: 1.5rem;
     }
 
     nav ul li a {
-        font-size: 0.9rem; /* Tomado del ejemplo */
-        padding: 6px 10px; /* Tomado del ejemplo */
+        font-size: 0.9rem;
+        padding: 6px 10px;
     }
 
     .centrado h2 {
@@ -176,16 +144,10 @@ footer p {
         font-size: 0.9rem;
     }
 
+    /* Reducir aún más el padding para las celdas en pantallas muy pequeñas si es necesario */
     .centrado th,
     .centrado td {
-        font-size: 0.8rem;
-    }
-
-    .centrado td {
-        padding: 8px 8px 8px 40%;
-    }
-
-    .centrado td::before {
+        padding: 8px;
         font-size: 0.8rem;
     }
 

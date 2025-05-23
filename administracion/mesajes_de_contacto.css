@@ -1,4 +1,4 @@
-/* ESTILOS PARA MENSAJES_DE_CONTACTO.CSS */
+/* ESTILOS PARA MENSAJES_DE_CONTACTO.CSS - REESCRITO Y MEJORADO */
 
 /* Estilos base */
 * {
@@ -16,7 +16,7 @@ body {
 
 /* Sección de administración */
 .admin-section {
-    padding: 40px 20px;
+    padding: 30px 15px; /* Ajuste de padding */
     background: whitesmoke;
 }
 
@@ -24,13 +24,13 @@ body {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px; /* Padding lateral consistente */
 }
 
 .admin-section h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 2.2rem; /* Tamaño de fuente ligeramente más grande */
     color: #333;
     text-align: center;
     margin-bottom: 15px;
@@ -38,10 +38,10 @@ body {
 
 .admin-section p {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Ajuste de tamaño de fuente */
     color: #666;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Margen inferior para separar de la tabla */
 }
 
 /* Contenedor de la tabla de mensajes */
@@ -50,33 +50,36 @@ body {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 /* Tabla de mensajes */
 .messages-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 700px; /* Asegura un ancho mínimo para la tabla */
+    min-width: 750px; /* Un poco más de min-width para asegurar buena vista en desktop */
 }
 
 .messages-table thead th {
     background: #2c3e50;
     color: #fff;
     font-weight: bold;
-    padding: 15px;
+    padding: 14px 12px; /* Ajuste de padding */
     text-align: left;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem; /* Ajuste de tamaño de fuente */
+    white-space: nowrap;
 }
 
 .messages-table tbody td {
-    padding: 15px;
-    text-align: left;
+    padding: 12px;
+    text-align: left; /* Alineado a la izquierda por defecto en desktop */
     font-family: 'Noto Sans', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* Ajuste de tamaño de fuente */
     color: #333;
     border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Permite que el texto largo se rompa */
+    max-width: 250px; /* Limita el ancho de la celda en desktop */
 }
 
 .messages-table tbody tr:hover {
@@ -85,8 +88,10 @@ body {
 
 /* Checkbox "Leído" */
 .messages-table input[type="checkbox"] {
-    transform: scale(1.2); /* Aumenta el tamaño del checkbox */
+    transform: scale(1.1); /* Ligeramente más grande */
     cursor: pointer;
+    display: block; /* Para que margin auto funcione en desktop */
+    margin: 0 auto; /* Centrado en la celda */
 }
 
 /* Botón "Atendido: Eliminar" */
@@ -99,12 +104,14 @@ body {
     cursor: pointer;
     font-family: 'Noto Sans', sans-serif;
     font-size: 0.9rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block; /* Para que ocupe su propio espacio en desktop */
+    margin: 0 auto; /* Centrado en la celda */
 }
 
 .delete-btn:hover {
     background-color: #c0392b;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 /* Mensaje "No hay mensajes nuevos" */
@@ -114,78 +121,141 @@ body {
     font-size: 1.1rem;
     color: #777;
     font-style: italic;
+    padding: 15px; /* Añadir padding para que no se pegue a los bordes */
 }
 
 /* Responsive Design para la tabla */
 @media (max-width: 768px) {
-    .messages-table thead {
-        display: none; /* Oculta el encabezado de la tabla */
-    }
-
-    .messages-table,
-    .messages-table tbody,
-    .messages-table tr,
-    .messages-table td {
-        display: block; /* Hace que todos los elementos de la tabla se comporten como bloques */
-        width: 100%;
-    }
-
-    .messages-table tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-
-    .messages-table td {
-        text-align: right;
-        padding-left: 50%; /* Espacio para el pseudo-elemento */
-        position: relative;
-        border: none; /* Elimina los bordes de celda */
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .messages-table td::before {
-        content: attr(data-label); /* Usa el atributo data-label para mostrar el encabezado */
-        position: absolute;
-        left: 15px;
-        width: calc(50% - 30px); /* Ajusta el ancho del label */
-        font-weight: bold;
-        color: #555;
-        text-align: left;
-    }
-    
-    /* Asignar data-label a cada celda para responsive */
-    .messages-table tbody tr td:nth-child(1)::before { content: "Fecha/Hora:"; }
-    .messages-table tbody tr td:nth-child(2)::before { content: "Nombre:"; }
-    .messages-table tbody tr td:nth-child(3)::before { content: "Email:"; }
-    .messages-table tbody tr td:nth-child(4)::before { content: "Mensaje:"; }
-    .messages-table tbody tr td:nth-child(5)::before { content: "Leído:"; }
-    .messages-table tbody tr td:nth-child(6)::before { content: "Acción:"; }
-}
-
-@media (max-width: 480px) {
     .admin-section h1 {
         font-size: 1.8rem;
     }
 
     .admin-section p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
-    .messages-table tbody td {
-        font-size: 0.9rem;
-        padding-left: 45%;
+    .messages-table-container {
+        overflow-x: hidden; /* En móviles, ocultamos el scroll horizontal */
+        box-shadow: none; /* Quitamos la sombra del contenedor */
+        border-radius: 0;
+    }
+
+    .messages-table {
+        min-width: unset; /* Anulamos el min-width */
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .messages-table thead {
+        display: none; /* Oculta el encabezado de la tabla en móviles */
+    }
+
+    .messages-table tbody,
+    .messages-table tr {
+        display: block; /* Hacemos que tbody y tr se comporten como bloques */
+        width: 100%;
+    }
+
+    .messages-table tr {
+        margin-bottom: 15px; /* Espacio entre cada "tarjeta" de mensaje */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra para cada tarjeta */
+        background-color: #fff;
+        padding: 15px; /* Padding interno para cada tarjeta */
+    }
+
+    .messages-table td {
+        display: flex; /* Usamos flexbox para alinear etiqueta y valor */
+        /* Eliminamos justify-content: space-between para un mejor control */
+        align-items: flex-start; /* Alinea los elementos al inicio */
+        padding: 8px 0; /* Padding vertical para cada "fila" dentro de la tarjeta */
+        border-bottom: 1px dashed #eee; /* Separador sutil entre campos */
+        font-size: 0.9rem; /* Ajuste de tamaño de fuente para celdas */
+    }
+    
+    .messages-table td:last-child {
+        border-bottom: none; /* Elimina el borde inferior de la última celda en cada tarjeta */
+        padding-bottom: 0; /* Ajuste de padding para la última celda */
     }
 
     .messages-table td::before {
-        left: 10px;
-        width: calc(45% - 20px);
+        content: attr(data-label); /* Muestra la etiqueta del atributo data-label */
+        font-weight: bold;
+        color: #555;
+        /* Damos un ancho fijo a la etiqueta para que el contenido fluya después */
+        width: 100px; /* Ancho fijo para las etiquetas, ajusta si alguna etiqueta es más larga */
+        min-width: 80px; /* Para asegurar que no se encoja demasiado */
+        text-align: left;
+        padding-right: 10px; /* Espacio entre la etiqueta y el valor */
+        font-size: 0.9rem; /* Ajuste de tamaño de fuente para la etiqueta */
+        white-space: nowrap; /* Evita que la etiqueta se rompa */
+        overflow: hidden; /* Oculta el texto si es muy largo */
+        text-overflow: ellipsis; /* Añade puntos suspensivos */
+        flex-shrink: 0; /* Evita que la etiqueta se encoja */
+    }
+
+    .messages-table td span {
+        /* Creamos un span para el contenido real dentro del td */
+        flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+        text-align: left; /* Aseguramos que el contenido se alinee a la izquierda */
+        word-break: break-word; /* Rompe palabras largas */
+    }
+
+    /* Asignar data-label a cada celda para responsive (Asegúrate de que el orden de tus columnas HTML coincida) */
+    .messages-table tbody tr td:nth-child(1)::before { content: "Fecha:"; }
+    .messages-table tbody tr td:nth-child(2)::before { content: "Nombre:"; }
+    .messages-table tbody tr td:nth-child(3)::before { content: "Email:"; }
+    .messages-table tbody tr td:nth-child(4)::before { content: "Mensaje:"; }
+    .messages-table tbody tr td:nth-child(5)::before { content: "Leído:"; }
+    .messages-table tbody tr td:nth-child(6)::before { content: "Acción:"; }
+
+    /* Ajuste para el checkbox en modo móvil */
+    .messages-table input[type="checkbox"] {
+        transform: scale(1.1);
+        margin: 0; /* Controlado por flexbox */
+        display: inline-block; /* Para que se alinee */
+        vertical-align: middle;
+    }
+
+    /* Ajuste para el botón en modo móvil */
+    .delete-btn {
+        margin: 10px auto 0 0; /* Alinea a la izquierda en la sección de acción */
+        width: 100%; /* Ocupa todo el ancho disponible en la celda */
+        max-width: 180px; /* Limita el ancho máximo del botón */
+        font-size: 0.85rem;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .admin-section p {
+        font-size: 0.85rem;
+    }
+
+    .messages-table td {
+        font-size: 0.8rem; /* Reduzco aún más el tamaño de la fuente */
+        padding: 6px 0;
+    }
+
+    .messages-table td::before {
+        width: 80px; /* Ancho fijo para etiquetas en pantallas muy pequeñas */
+        min-width: 70px;
+        font-size: 0.8rem;
+    }
+
+    .messages-table input[type="checkbox"] {
+        transform: scale(1); /* Tamaño estándar para checkbox en pantallas muy pequeñas */
     }
 
     .delete-btn {
-        padding: 6px 10px;
-        font-size: 0.85rem;
+        width: 100%; /* Ocupa casi todo el ancho disponible */
+        font-size: 0.75rem;
+        padding: 7px 8px;
     }
 }

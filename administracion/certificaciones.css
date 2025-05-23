@@ -40,15 +40,103 @@ body {
     margin-bottom: 30px;
 }
 
+/* Formulario Nueva Certificación */
+.formulario-nueva-certificacion {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    max-width: 800px; /* Limita el ancho del formulario */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formulario-nueva-certificacion h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.formulario-nueva-certificacion form {
+    display: flex;
+    flex-direction: column; /* Apila los elementos en móvil por defecto */
+    gap: 15px; /* Espacio entre cada form-row */
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column; /* Etiqueta encima del input en móvil */
+    gap: 8px; /* Espacio entre label y input */
+    align-items: flex-start; /* Alinea los elementos a la izquierda por defecto */
+}
+
+.form-row label {
+    font-weight: bold;
+    color: #555;
+    width: 100%; /* Ocupa todo el ancho disponible para la etiqueta */
+}
+
+.form-row input[type="text"],
+/* .form-row input[type="email"], REMOVIDO */
+.form-row input[type="file"],
+.form-row select {
+    padding: 10px 12px; /* Aumenta el padding para mejor tactilidad */
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Bordes ligeramente más redondeados */
+    font-size: 1rem;
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    max-width: 100%; /* Asegura que no desborde */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+}
+
+/* Estilo específico para input type file para visualización */
+.form-row input[type="file"] {
+    padding: 8px; /* Menos padding para el campo de archivo */
+}
+
+
+.formulario-nueva-certificacion button {
+    padding: 12px 20px; /* Aumenta el padding del botón */
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem; /* Ligeramente más grande */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: auto; /* Ancho automático para el botón */
+    align-self: center; /* Centra el botón en el formulario */
+    margin-top: 15px; /* Espacio superior */
+}
+
+.formulario-nueva-certificacion button:hover {
+    background: #1e7e34;
+    transform: translateY(-2px);
+}
+
+
+/* Contenedor Responsivo para la Tabla */
+.tabla-responsiva {
+    overflow-x: auto; /* Permite el desplazamiento horizontal en la tabla */
+    margin-bottom: 40px; /* Espacio debajo de la tabla */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff; /* Asegura que el fondo del contenedor sea blanco */
+}
+
 /* Tabla de Certificaciones */
 .centrado table {
     width: 100%;
-    margin: 0 auto;
+    min-width: 600px; /* Reducido el min-width ya que hay menos columnas */
     border-collapse: collapse;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 .centrado th,
@@ -64,6 +152,7 @@ body {
     background: #2c3e50;
     color: #fff;
     font-weight: bold;
+    white-space: nowrap; /* Evita que los encabezados se rompan en múltiples líneas */
 }
 
 .centrado tbody tr {
@@ -80,18 +169,22 @@ body {
     font-size: 0.9rem;
     color: #333;
     padding: 5px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box;
 }
 
-.centrado input[type="email"] {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 0.9rem;
-    color: #333;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 70%;
-    margin-right: 10px;
-}
+/* .centrado input[type="email"] { REMOVIDO */
+/* font-family: 'Noto Sans', sans-serif; */
+/* font-size: 0.9rem; */
+/* color: #333; */
+/* padding: 8px; */
+/* border: 1px solid #ddd; */
+/* border-radius: 5px; */
+/* width: calc(100% - 70px); */
+/* margin-right: 10px; */
+/* box-sizing: border-box; */
+/* display: inline-block; */
+/* } */
 
 .centrado select {
     font-family: 'Noto Sans', sans-serif;
@@ -102,8 +195,11 @@ body {
     border-radius: 5px;
     background: #fff;
     cursor: pointer;
+    width: 100%; /* Ocupa todo el ancho disponible en la celda */
+    box-sizing: border-box;
 }
 
+/* Botones dentro de la tabla */
 .centrado button {
     padding: 8px 15px;
     background: #0073e6;
@@ -114,11 +210,20 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap; /* Evita que el texto del botón se rompa */
 }
 
 .centrado button:hover {
     background: #005bb5;
     transform: translateY(-2px);
+}
+
+.centrado .eliminar-btn {
+    background: #e74c3c;
+}
+
+.centrado .eliminar-btn:hover {
+    background: #c0392b;
 }
 
 /* Footer */
@@ -137,193 +242,215 @@ footer p {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    header .header-container {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
-    }
 
-    nav ul {
-        justify-content: center;
-        margin-top: 15px;
-    }
-
-    .centrado table {
-        display: block;
-        width: 100%;
-    }
-
-    .centrado thead,
-    .centrado tbody,
-    .centrado th,
-    .centrado td,
-    .centrado tr {
-        display: block;
-        width: 100%;
-    }
-
-    .centrado th {
-        text-align: center;
-    }
-
-    .centrado td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    .centrado td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .centrado tbody tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    .centrado input[type="file"],
-    .centrado input[type="email"],
-    .centrado select,
-    .centrado button,
-    .eliminar-btn { /* Incluimos el botón eliminar en el ancho completo */
-        width: 100%;
-        text-align: center;
-        margin: 5px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
-        padding: 6px 10px;
+/* Media Query para pantallas medianas (tablets, laptops pequeñas) */
+@media (max-width: 992px) {
+    .centrado {
+        padding: 30px 15px; /* Reduce el padding general */
     }
 
     .centrado h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .centrado p {
         font-size: 1rem;
     }
 
-    .centrado th,
-    .centrado td {
-        font-size: 0.9rem;
+    .formulario-nueva-certificacion {
+        padding: 25px;
     }
 
-    .centrado input[type="file"],
-    .centrado input[type="email"],
-    .centrado select,
-    .centrado button,
-    .eliminar-btn { /* Incluimos el botón eliminar en el ancho completo */
-        font-size: 0.8rem;
-        padding: 6px 12px;
-    }
-
-    footer p {
-        font-size: 0.8rem;
-    }
-}
-
-/* Estilos para el formulario de nueva certificación */
-.formulario-nueva-certificacion {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.formulario-nueva-certificacion h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.form-row {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.form-row label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-.form-row input[type="text"],
-.form-row input[type="email"],
-.form-row input[type="file"],
-.form-row select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.formulario-nueva-certificacion button {
-    padding: 10px 15px;
-    background: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.formulario-nueva-certificacion button:hover {
-    background: #1e7e34;
-    transform: translateY(-2px);
-}
-
-@media (min-width: 768px) {
-    .form-row {
-        flex-direction: row;
-        align-items: center;
+    .formulario-nueva-certificacion h3 {
+        font-size: 1.4rem;
     }
 
     .form-row label {
-        width: 150px;
-        margin-right: 15px;
-        text-align: right;
+        font-size: 0.95rem;
     }
 
     .form-row input[type="text"],
-    .form-row input[type="email"],
+    /* .form-row input[type="email"], REMOVIDO */
     .form-row input[type="file"],
     .form-row select {
-        flex-grow: 1;
+        font-size: 0.95rem;
+        padding: 9px 10px;
     }
+
+    .formulario-nueva-certificacion button {
+        font-size: 1rem;
+        padding: 10px 18px;
+    }
+
+    .centrado th,
+    .centrado td {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    /* .centrado input[type="email"] { REMOVIDO */
+    /* width: 100%; */
+    /* margin-right: 0; */
+    /* } */
 }
 
-/* Estilos para el botón Eliminar */
-.eliminar-btn {
-    background-color: #dc3545; /* Rojo */
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+/* Media Query para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .centrado {
+        padding: 20px 10px; /* Padding aún más reducido para móviles */
+    }
+
+    .centrado h2 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .centrado p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .formulario-nueva-certificacion {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .formulario-nueva-certificacion h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        gap: 6px; /* Espacio más pequeño entre label e input en móvil */
+    }
+
+    .form-row input[type="text"],
+    /* .form-row input[type="email"], REMOVIDO */
+    .form-row input[type="file"],
+    .form-row select {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .formulario-nueva-certificacion button {
+        font-size: 0.95rem;
+        padding: 10px 15px;
+        width: 100%; /* Botón de formulario ocupa todo el ancho */
+        max-width: 250px; /* Limita el ancho del botón para que no sea excesivamente grande */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Ocultar encabezados de tabla para vista móvil */
+    .centrado thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .centrado table,
+    .centrado tbody,
+    .centrado th,
+    .centrado td,
+    .centrado tr {
+        display: block; /* Apila las filas y celdas */
+    }
+
+    .centrado tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        display: flex; /* Usar flexbox para organizar elementos dentro de la fila */
+        flex-direction: column; /* Apilar elementos verticalmente */
+        padding: 15px;
+    }
+
+    .centrado td {
+        border: none;
+        border-bottom: 1px solid #eee; /* Separador entre celdas apiladas */
+        position: relative;
+        padding-left: 50%; /* Espacio para la etiqueta data-label */
+        text-align: left; /* Alinea el contenido a la izquierda */
+        font-size: 0.9rem;
+        word-wrap: break-word; /* Permite que el texto largo se rompa */
+    }
+
+    .centrado td:last-child {
+        border-bottom: none;
+        padding-bottom: 0; /* Elimina padding inferior si es la última celda */
+    }
+
+    .centrado td:before {
+        content: attr(data-label); /* Muestra el contenido de data-label */
+        position: absolute;
+        left: 15px; /* Ajusta la posición de la etiqueta */
+        width: calc(50% - 30px); /* Ancho para la etiqueta */
+        white-space: nowrap;
+        font-weight: bold;
+        color: #555;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Añade puntos suspensivos si la etiqueta es muy larga */
+    }
+
+    /* Ajuste para inputs y selects dentro de las celdas de la tabla en móvil */
+    .centrado td input[type="file"],
+    /* .centrado td input[type="email"], REMOVIDO */
+    .centrado td select {
+        width: 100%; /* Ocupa el ancho restante en la celda */
+        margin-right: 0; /* Elimina margen derecho */
+        display: block; /* Asegura que ocupen su propia línea */
+        margin-top: 5px; /* Espacio superior para separar de la etiqueta */
+    }
+
+    .centrado td button {
+        margin-top: 10px; /* Espacio superior para los botones */
+        width: 100%; /* Botones ocupan todo el ancho */
+        max-width: none; /* Elimina el max-width para que puedan estirarse */
+    }
+
+    .centrado td .eliminar-btn {
+        margin-top: 15px; /* Más espacio para el botón de eliminar */
+    }
+
+    /* .centrado td input[type="email"] + button { REMOVIDO */
+    /* margin-top: 10px; */
+    /* } */
 }
 
-.eliminar-btn:hover {
-    background-color: #c82333;
-    transform: translateY(-1px);
+/* Media Query para pantallas muy pequeñas (smartphones pequeños) */
+@media (max-width: 480px) {
+    .centrado h2 {
+        font-size: 1.4rem;
+    }
+
+    .centrado p {
+        font-size: 0.9rem;
+    }
+
+    .formulario-nueva-certificacion h3 {
+        font-size: 1.2rem;
+    }
+
+    .form-row label,
+    .form-row input,
+    .form-row select,
+    .formulario-nueva-certificacion button {
+        font-size: 0.85rem;
+    }
+
+    .centrado td {
+        padding-left: 45%; /* Ajusta el padding para la etiqueta */
+    }
+
+    .centrado td:before {
+        left: 10px; /* Ajusta la posición de la etiqueta */
+        width: calc(45% - 20px); /* Ajusta el ancho de la etiqueta */
+    }
 }

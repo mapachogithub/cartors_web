@@ -40,40 +40,26 @@ body {
 .welcome-section h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .welcome-section .subtitle {
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.1rem;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.welcome-section .logout-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #0073e6;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.welcome-section .logout-btn:hover {
-    background: #005bb5;
-    transform: translateY(-2px);
-}
-
-/* Sección de Momentos de la Empresa */
+/* ------------------------------------------------------------------------------------------------- */
+/* Momentos de la Empresa */
 .company-moments {
-    padding: 40px 20px;
+    padding: 30px 20px;
     text-align: center;
-    background: whitesmoke;
+    background-color: #f8f8f8;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 
 .company-moments h3 {
@@ -81,272 +67,60 @@ body {
     font-weight: 600;
     font-size: 1.8rem;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .moments-container {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 25px;
+    flex-wrap: wrap; /* Permite que las imágenes se envuelvan en pantallas más pequeñas */
 }
 
 .moments-container img {
-    width: 300px; /* Ancho fijo */
-    height: 200px; /* Altura fija */
-    object-fit: cover; /* Recorta la imagen manteniendo proporción */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Ancho fijo para pantallas grandes */
+    height: 200px; /* Altura fija para pantallas grandes */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Sección de Lista de Empleados */
-.employee-list {
-    padding: 40px 20px;
-    background: whitesmoke;
+.moments-container img:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-.employee-list h2 {
+/* ------------------------------------------------------------------------------------------------- */
+
+/* NUEVO ESTILO PARA EL TÍTULO "Nuestras Secciones" */
+.titulo-secciones {
+    text-align: center; /* Centra el texto horizontalmente */
+    padding: 20px 0; /* Añade un poco de padding vertical para separación */
+    background-color: whitesmoke; /* Mantiene el mismo fondo que las secciones */
+    margin-top: 30px; /* Margen superior para separarlo de la sección anterior */
+}
+
+.titulo-secciones h3 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #333;
-    text-align: center;
-    margin-bottom: 30px;
+    margin: 0; /* Elimina márgenes por defecto del h3 para que el padding del div funcione */
 }
+/* FIN NUEVO ESTILO */
 
-.employee-list table {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.employee-list th,
-.employee-list td {
-    padding: 15px;
-    text-align: left;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
-    color: #333;
-}
-
-.employee-list th {
-    background: #2c3e50;
-    color: #fff;
-    font-weight: bold;
-}
-
-.employee-list tbody tr {
-    border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s ease;
-}
-
-.employee-list tbody tr:hover {
-    background-color: #f5f5f5;
-}
-
-.employee-list td img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover; /* Mantiene la proporción y recorta si es necesario */
-}
-
-/* Sección de Frase Motivadora */
-.motivational-quote {
-    padding: 40px 20px;
-    text-align: center;
-    background: whitesmoke;
-}
-
-.motivational-quote p {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #333;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Footer */
-footer {
-    background: #fff;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-footer p {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-    margin: 5px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    header .header-container {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
-    }
-
-    nav ul {
-        justify-content: center;
-        margin-top: 15px;
-    }
-
-    .moments-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .moments-container img {
-        width: 100%;
-        max-width: 300px;
-        height: auto; /* Permite que la altura se ajuste proporcionalmente */
-    }
-
-    .employee-list table {
-        display: block;
-        width: 100%;
-    }
-
-    .employee-list thead,
-    .employee-list tbody,
-    .employee-list th,
-    .employee-list td,
-    .employee-list tr {
-        display: block;
-        width: 100%;
-    }
-
-    .employee-list th {
-        text-align: center;
-    }
-
-    .employee-list td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    .employee-list td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .employee-list tbody tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    .employee-list td img {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
-        padding: 6px 10px;
-    }
-
-    .welcome-section .logo {
-        max-width: 150px;
-    }
-
-    .welcome-section h2 {
-        font-size: 1.5rem;
-    }
-
-    .welcome-section .subtitle {
-        font-size: 1rem;
-    }
-
-    .welcome-section .logout-btn {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-    }
-
-    .company-moments h3 {
-        font-size: 1.5rem;
-    }
-
-    .employee-list h2 {
-        font-size: 1.5rem;
-    }
-
-    .employee-list th,
-    .employee-list td {
-        font-size: 0.9rem;
-    }
-
-    .employee-list td img {
-        width: 35px;
-        height: 35px;
-    }
-
-    .motivational-quote p {
-        font-size: 1rem;
-    }
-
-    footer p {
-        font-size: 0.8rem;
-    }
-}
-
-/* -------------------------------------------------------------------
-boton de nuestros empleados */
-
-.contenedor-del-boton {
-    display: flex; /* Convierte el contenedor en un flex container */
-    justify-content: center; /* Centra los elementos hijos horizontalmente */
-}
-
-/* Tus estilos actuales para el botón */
-.nuestros-empleados-btn {
-    display: inline-block;
-    padding: 8px 15px; /* Ajustado el padding */
-    background: #0073e6;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 0.9rem; /* Ajustado el tamaño de la fuente */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.nuestros-empleados-btn:hover { /* Corregí el selector para el hover */
-    background: #005bb5;
-    transform: translateY(-2px);
-}
-
-/* -------------------------------------------------------------------
-Estilos para la sección principal de logos y botones */
+/* Secciones Principales (Empleados, Clientes, etc.) */
 .secciones-principales {
-    display: flex; /* Activa el flexbox para organizar los elementos en fila */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente (opcional, depende de la altura) */
-    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea en pantallas pequeñas */
-    gap: 20px; /* Espacio entre cada sección (imagen y botón) */
-    padding: 20px; /* Espacio alrededor del contenedor principal */
-    background-color: whitesmoke; /* Mantiene el fondo */
+    display: grid; /* Usa CSS Grid para el layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
+    justify-content: center; /* Centra los ítems en el contenedor */
+    align-items: stretch; /* Estira los ítems para que tengan la misma altura si es necesario */
+    padding: 30px 20px; /* Espacio alrededor del contenedor principal */
+    gap: 25px; /* Espacio entre cada sección (imagen y botón) */
+    background-color: whitesmoke;
+    max-width: 1200px; /* Para que no se estire demasiado en pantallas muy grandes */
+    margin: 0 auto; /* Centra el contenedor en la página */
 }
 
 /* Estilos para cada sección individual (contenedor de imagen y botón) */
@@ -355,12 +129,26 @@ Estilos para la sección principal de logos y botones */
     flex-direction: column; /* Asegura que la imagen esté encima del botón */
     align-items: center; /* Centra la imagen y el botón horizontalmente dentro de su contenedor */
     text-align: center; /* Centra el texto del botón (redundante si align-items está centrado) */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contenedor-seccion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 /* Estilos para los contenedores de las imágenes (para controlar su tamaño) */
 .contenedor-imagen-empleaos,
 .contenedor-imagen-certificaciones {
-    margin-bottom: 5px; /* Reduce el espacio entre la imagen y el botón */
+    margin-bottom: 15px; /* Espacio entre la imagen y el botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Asegura que ocupe el ancho disponible en la columna */
 }
 
 /* Estilos para las imágenes (haciéndolas más pequeñas y controlando su proporción) */
@@ -370,9 +158,310 @@ Estilos para la sección principal de logos y botones */
     height: auto;
     display: block; /* Evita espacio extra debajo de la imagen */
     object-fit: contain; /* Asegura que la imagen se ajuste sin deformarse */
+    transition: transform 0.3s ease;
 }
 
-.titulo-secciones {
+.contenedor-seccion:hover img {
+    transform: scale(1.05);
+}
+
+/* Estilos para los botones dentro de las secciones */
+.nuestros-empleados-btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupa todo el ancho disponible del contenedor de la sección */
+    max-width: 200px; /* Limita el ancho máximo del botón */
+}
+
+.nuestros-empleados-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+/* Sección de Cita Motivacional */
+.motivational-quote {
+    background: linear-gradient(90deg, #f0f4f8 0%, #e0e7ed 100%);
+    padding: 40px 20px;
     text-align: center;
-    margin-bottom: 20px; /* Opcional: Añade un poco de espacio debajo del título */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3em;
+    color: #555;
+    font-style: italic;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    margin-top: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.motivational-quote p {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+/* Tabla de Empleados (Ejemplo de tabla responsiva si hubiera una) */
+.employee-list {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow-x: auto; /* Permite el scroll horizontal en tablas */
+}
+
+.employee-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.employee-list th,
+.employee-list td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.employee-list th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: 600;
+}
+
+.employee-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.employee-list tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Acciones en la tabla */
+.employee-actions button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.employee-actions button.edit {
+    background-color: #f39c12;
+}
+
+.employee-actions button.delete {
+    background-color: #e74c3c;
+}
+
+.employee-actions button:hover {
+    opacity: 0.9;
+}
+
+
+/* ------------------------------------------------------------------------------------------------- */
+/* Media Queries para Responsividad */
+
+/* Pantallas medianas (tablets y laptops pequeñas) */
+@media (max-width: 992px) {
+    .welcome-section h2 {
+        font-size: 2em;
+    }
+    .welcome-section .subtitle {
+        font-size: 1em;
+    }
+    .company-moments h3 {
+        font-size: 1.6em;
+    }
+    .moments-container {
+        gap: 20px;
+    }
+    .moments-container img {
+        width: 45%; /* Permite que 2 imágenes quepan por fila en tablets */
+        height: auto; /* Mantiene la proporción */
+        max-width: 300px; /* Asegura que no se estiren demasiado */
+    }
+    .titulo-secciones h3 { /* Ajuste de tamaño para el título en pantallas medianas */
+        font-size: 1.6rem;
+    }
+    .secciones-principales {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta el min-width para más columnas */
+        gap: 20px;
+    }
+    .contenedor-seccion {
+        padding: 20px;
+    }
+    .nuestros-empleados-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Pantallas pequeñas (móviles grandes a medianos) */
+@media (max-width: 768px) {
+    .welcome-section {
+        padding: 30px 15px;
+    }
+    .welcome-section h2 {
+        font-size: 1.8em;
+    }
+    .welcome-section .subtitle {
+        font-size: 0.95em;
+    }
+    .company-moments {
+        padding: 25px 15px;
+    }
+    .company-moments h3 {
+        font-size: 1.4em;
+    }
+    .moments-container {
+        gap: 15px;
+    }
+    .moments-container img {
+        width: 90%; /* Ajustado para que las imágenes no peguen a los bordes y se centren */
+        max-width: 320px; /* Limita el ancho máximo para no ser demasiado grande */
+        margin: 0 auto; /* Centra la imagen */
+        height: auto;
+    }
+    .titulo-secciones h3 { /* Ajuste de tamaño para el título en móviles */
+        font-size: 1.4rem;
+    }
+    .secciones-principales {
+        grid-template-columns: 1fr; /* Una sola columna para móviles */
+        padding: 25px 15px; /* Ajusta el padding para móviles */
+        gap: 20px;
+    }
+    .contenedor-seccion {
+        padding: 20px;
+        /* Asegura que el contenido interno de cada sección se centre */
+        align-items: center;
+        margin: 0 auto; /* Centra cada sección individualmente si el grid lo permite */
+        max-width: 350px; /* Limita el ancho máximo de cada sección para que no ocupe todo el ancho disponible */
+    }
+    .contenedor-imagen-empleaos img,
+    .contenedor-imagen-certificaciones img {
+        max-width: 70px; /* Ligeramente más pequeñas */
+    }
+    .nuestros-empleados-btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        /* Asegura que el botón también se centre si su contenedor lo permite */
+        margin: 0 auto;
+    }
+
+    /* Tablas responsivas */
+    .employee-list table,
+    .employee-list thead,
+    .employee-list tbody,
+    .employee-list th,
+    .employee-list td,
+    .employee-list tr {
+        display: block; /* Hace que las filas y celdas se apilen */
+    }
+
+    .employee-list thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px; /* Oculta los encabezados de la tabla original */
+    }
+
+    .employee-list tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .employee-list td {
+        border: none; /* Elimina bordes entre celdas apiladas */
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%; /* Espacio para la etiqueta */
+        text-align: right;
+    }
+
+    .employee-list td:before {
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label); /* Usa el atributo data-label como encabezado */
+        font-weight: bold;
+        text-align: left;
+        color: #555;
+    }
+
+    .employee-list td:last-child {
+        border-bottom: none;
+    }
+
+    .motivational-quote {
+        font-size: 1.1em;
+        padding: 30px 15px;
+    }
+}
+
+/* Pantallas muy pequeñas (la mayoría de los smartphones) */
+@media (max-width: 480px) {
+    .welcome-section h2 {
+        font-size: 1.6em;
+    }
+    .welcome-section .subtitle {
+        font-size: 0.9em;
+    }
+    .company-moments h3 {
+        font-size: 1.2em;
+    }
+    .moments-container {
+        gap: 10px;
+    }
+    .moments-container img {
+        max-width: 280px; /* Asegura que no sea demasiado grande en los teléfonos más pequeños */
+        width: 95%; /* Ajuste para pantallas muy estrechas */
+    }
+    .titulo-secciones h3 { /* Ajuste de tamaño para el título en móviles muy pequeños */
+        font-size: 1.2rem;
+    }
+    .secciones-principales {
+        padding: 20px 10px; /* Reduce aún más el padding para pantallas muy pequeñas */
+        gap: 15px;
+    }
+    .contenedor-seccion {
+        padding: 15px;
+        max-width: 320px; /* Ajuste para pantallas muy pequeñas */
+    }
+    .contenedor-imagen-empleaos img,
+    .contenedor-imagen-certificaciones img {
+        max-width: 60px; /* Ajuste final para imágenes pequeñas */
+    }
+    .nuestros-empleados-btn {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    .employee-list td {
+        padding-left: 40%; /* Ajusta el padding para la etiqueta si es necesario */
+    }
+    .employee-list td:before {
+        width: 35%; /* Ajusta el ancho de la etiqueta */
+    }
+    .motivational-quote {
+        font-size: 1em;
+        padding: 25px 10px;
+    }
 }
