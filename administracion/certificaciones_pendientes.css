@@ -1,4 +1,4 @@
-/* MIS ESTILOS PARA CERTIFICACIONES_PENDIENTES.HTML - REFORMULADO DESDE CERO */
+/* MIS ESTILOS PARA CERTIFICACIONES_PENDIENTES.HTML */
 
 /* Estilos base */
 * {
@@ -187,14 +187,34 @@ main {
     font-size: 0.85rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
     white-space: nowrap;
-    display: block; /* Para que el margin auto funcione en desktop */
-    margin: 0 auto; /* Centrado en la celda en desktop */
+    display: inline-block; /* Para que esté junto al botón de editar */
+    margin-left: 5px; /* Espacio entre editar y eliminar */
 }
 
 .eliminar-btn:hover {
     background-color: #c82333;
     transform: translateY(-1px);
 }
+
+/* NUEVO: Estilo para el botón Editar en la tabla */
+.editar-btn {
+    background-color: #5cb85c; /* Un verde para editar */
+    color: white;
+    border: none;
+    padding: 7px 11px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+    display: inline-block; /* Para que esté junto al botón de eliminar */
+}
+
+.editar-btn:hover {
+    background-color: #4cae4c;
+    transform: translateY(-1px);
+}
+
 
 /* --- MEDIA QUERIES PARA RESPONSIVE DESIGN --- */
 
@@ -354,15 +374,16 @@ main {
         text-align: left; /* **CLAVE: El contenido del td se alinea a la izquierda** */
     }
 
-    /* Ajustes específicos para el botón Eliminar en modo móvil */
-    .eliminar-btn {
-        margin: 0; /* Elimina el margin auto para que flexbox lo controle */
-        display: inline-block; /* Para que se alinee con la etiqueta si es necesario */
-        width: auto; /* Ancho automático, no 100% de la celda, para que la etiqueta tenga espacio */
-        max-width: 120px; /* Limita el ancho del botón */
+    /* Ajustes específicos para los botones en modo móvil */
+    .eliminar-btn, .editar-btn {
+        margin: 5px 5px 5px 0; /* Espacio entre botones y del lado izquierdo */
+        display: block; /* Cada botón en su propia línea */
+        width: auto; /* Ancho automático, no 100% */
+        max-width: 150px; /* Limita el ancho del botón */
         font-size: 0.8rem;
         padding: 6px 10px;
     }
+    .eliminar-btn { margin-left: 0; } /* Elimina el margen izquierdo para que no se superpongan si están en líneas separadas */
 }
 
 /* Teléfonos muy pequeños (ej. iPhone SE) */
@@ -395,7 +416,7 @@ main {
     }
 
     .listado-certificados td {
-        font-size: 0.8rem;
+        font-size: 0.8rem; /* Reduzco aún más el tamaño de la fuente */
     }
 
     .listado-certificados td::before {
@@ -404,9 +425,9 @@ main {
         font-size: 0.8rem;
     }
 
-    .eliminar-btn {
+    .eliminar-btn, .editar-btn {
         font-size: 0.75rem;
         padding: 5px 8px;
-        max-width: 100px; /* Limita un poco más el ancho */
+        max-width: 120px; /* Limita un poco más el ancho */
     }
 }

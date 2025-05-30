@@ -53,7 +53,7 @@ body {
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* overflow: hidden;  Movido al .table-container si se usa overflow-x */
+    /* overflow: hidden;  Movido al .table-container if se usa overflow-x */
 }
 
 .centrado th,
@@ -154,4 +154,22 @@ footer p {
     footer p {
         font-size: 0.7rem;
     }
+}
+
+/* Estilos para el botón de editar */
+.editar-btn {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-right: 5px; /* Espacio a la derecha para que no se pegue al botón de eliminar */
+}
+
+.editar-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
 }

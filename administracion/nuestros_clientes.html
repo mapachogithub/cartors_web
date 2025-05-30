@@ -85,9 +85,8 @@
             }
         }
 
-        /* Estilos para el botón Eliminar (si no están en style_nuestros_clientes.css) */
-        .eliminar-btn {
-            background-color: #dc3545; /* Rojo */
+        /* Estilos para los botones de acción */
+        .eliminar-btn, .editar-btn {
             color: white;
             border: none;
             padding: 8px 12px;
@@ -95,16 +94,29 @@
             cursor: pointer;
             font-size: 0.9rem;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 5px; /* Espacio entre botones */
+        }
+
+        .eliminar-btn {
+            background-color: #dc3545; /* Rojo */
         }
 
         .eliminar-btn:hover {
             background-color: #c82333;
             transform: translateY(-1px);
         }
+
+        .editar-btn {
+            background-color: #007bff; /* Azul */
+        }
+
+        .editar-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
-    <!-- Llamando al objeto admin_header a este html -->
     <div id="admin-header-placeholder"></div>
 
     <main>
@@ -115,7 +127,7 @@
             <div class="formulario-nuevo-cliente">
                 <h3>Añadir Nuevo Cliente</h3>
                 <form id="nuevoClienteForm">
-                    <div class="form-row">
+                    <input type="hidden" id="clienteKey" name="clienteKey"> <div class="form-row">
                         <label for="cliente">Cliente:</label>
                         <input type="text" id="cliente" name="cliente" required>
                     </div>
@@ -150,7 +162,7 @@
                         <label for="siguiente_control">Siguiente Fecha de Control:</label>
                         <input type="date" id="siguiente_control" name="siguiente_control">
                     </div>
-                    <button type="button" onclick="agregarCliente()">Añadir Cliente</button>
+                    <button type="button" id="submitButton" onclick="agregarOActualizarCliente()">Añadir Cliente</button>
                 </form>
             </div>
 
@@ -175,12 +187,11 @@
         </section>
     </main>
 
-    <!-- Llamando al objeto footer_objetc.js a este html -->
     <div id="admin-footer-placeholder"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { getDatabase, ref, onValue, push, remove, update } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
         import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
 
         // Inicializa Firebase
@@ -188,11 +199,14 @@
         const database = getDatabase(app);
         const clientesRef = ref(database, 'clientes-atendidos'); // Nueva referencia para clientes atendidos
         const tablaClientesBody = document.getElementById('tablaClientesBody');
+        const nuevoClienteForm = document.getElementById('nuevoClienteForm');
+        const submitButton = document.getElementById('submitButton');
+        const clienteKeyField = document.getElementById('clienteKey'); // Referencia al campo oculto
 
         function eliminarCliente(key) {
             if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
-                const clienteRef = ref(database, `clientes-atendidos/${key}`);
-                remove(clienteRef)
+                const clientePath = `clientes-atendidos/${key}`;
+                remove(ref(database, clientePath))
                     .then(() => {
                         alert('Cliente eliminado con éxito.');
                         // La tabla se actualizará automáticamente gracias al listener onValue
@@ -201,6 +215,73 @@
                         console.error("Error al eliminar el cliente:", error);
                         alert('Error al eliminar el cliente. Por favor, intenta de nuevo.');
                     });
+            }
+        }
+
+        // Nueva función para cargar los datos del cliente en el formulario para edición
+        function cargarFormularioParaEdicion(key, cliente) {
+            clienteKeyField.value = key; // Guarda la clave del cliente en el campo oculto
+            nuevoClienteForm.cliente.value = cliente.cliente || '';
+            nuevoClienteForm.telefono.value = cliente.telefono || '';
+            nuevoClienteForm.email.value = cliente.email || '';
+            nuevoClienteForm.fecha_trabajo.value = cliente.fecha_trabajo || '';
+            nuevoClienteForm.terminado.value = cliente.terminado || 'No';
+            nuevoClienteForm.trabajo_realizado.value = cliente.trabajo_realizado || '';
+            nuevoClienteForm.observaciones.value = cliente.observaciones || '';
+            nuevoClienteForm.siguiente_control.value = cliente.siguiente_control || '';
+            submitButton.textContent = 'Actualizar Cliente'; // Cambia el texto del botón
+        }
+
+        // Función modificada para añadir o actualizar un cliente
+        function agregarOActualizarCliente() {
+            const key = clienteKeyField.value; // Obtener la clave del cliente (si existe)
+            const cliente = nuevoClienteForm.cliente.value;
+            const telefono = nuevoClienteForm.telefono.value;
+            const email = nuevoClienteForm.email.value;
+            const fecha_trabajo = nuevoClienteForm.fecha_trabajo.value;
+            const terminado = nuevoClienteForm.terminado.value;
+            const trabajo_realizado = nuevoClienteForm.trabajo_realizado.value;
+            const observaciones = nuevoClienteForm.observaciones.value;
+            const siguiente_control = nuevoClienteForm.siguiente_control.value;
+
+            if (cliente) {
+                const datosCliente = {
+                    cliente: cliente,
+                    telefono: telefono,
+                    email: email,
+                    fecha_trabajo: fecha_trabajo,
+                    terminado: terminado,
+                    trabajo_realizado: trabajo_realizado,
+                    observaciones: observaciones,
+                    siguiente_control: siguiente_control
+                };
+
+                if (key) { // Si hay una clave, estamos editando
+                    const clientePath = `clientes-atendidos/${key}`;
+                    update(ref(database, clientePath), datosCliente)
+                        .then(() => {
+                            alert('Cliente actualizado con éxito.');
+                            nuevoClienteForm.reset();
+                            clienteKeyField.value = ''; // Limpiar la clave
+                            submitButton.textContent = 'Añadir Cliente'; // Restaurar el texto del botón
+                        })
+                        .catch((error) => {
+                            console.error("Error al actualizar el cliente:", error);
+                            alert('Error al actualizar el cliente. Por favor, intenta de nuevo.');
+                        });
+                } else { // Si no hay clave, estamos añadiendo
+                    push(clientesRef, datosCliente)
+                        .then(() => {
+                            alert('Cliente añadido con éxito.');
+                            nuevoClienteForm.reset();
+                        })
+                        .catch((error) => {
+                            console.error("Error al añadir el cliente:", error);
+                            alert('Error al añadir el cliente. Por favor, intenta de nuevo.');
+                        });
+                }
+            } else {
+                alert('El campo Cliente es obligatorio.');
             }
         }
 
@@ -227,8 +308,9 @@
                     cell.dataset.label = 'Fecha del Trabajo';
 
                     cell = row.insertCell();
+                    // Para el select de "Terminado", lo cargamos con el valor existente
                     const selectTerminado = document.createElement('select');
-                    selectTerminado.name = `terminado_${(cliente.cliente || '').toLowerCase().replace(/\s/g, '')}`;
+                    selectTerminado.name = `terminado_${key}`; // Usar la key para un nombre único
                     const optionSi = document.createElement('option');
                     optionSi.value = 'Sí';
                     optionSi.textContent = 'Sí';
@@ -239,6 +321,8 @@
                     optionNo.selected = cliente.terminado === 'No';
                     selectTerminado.appendChild(optionSi);
                     selectTerminado.appendChild(optionNo);
+                    // Deshabilitar el select si no está en modo edición
+                    selectTerminado.disabled = true;
                     cell.appendChild(selectTerminado);
                     cell.dataset.label = 'Terminado';
 
@@ -254,13 +338,21 @@
                     cell.textContent = cliente.siguiente_control || 'N/A';
                     cell.dataset.label = 'Siguiente Fecha de Control';
 
-                    // Columna de acciones con el botón Eliminar
+                    // Columna de acciones con los botones Editar y Eliminar
                     const accionesCell = row.insertCell();
+                    
+                    const editarButton = document.createElement('button');
+                    editarButton.textContent = 'Editar';
+                    editarButton.classList.add('editar-btn');
+                    editarButton.onclick = () => cargarFormularioParaEdicion(key, cliente);
+                    accionesCell.appendChild(editarButton);
+
                     const eliminarButton = document.createElement('button');
                     eliminarButton.textContent = 'Eliminar';
                     eliminarButton.classList.add('eliminar-btn');
-                    eliminarButton.onclick = () => eliminarCliente(key); // Pasar la clave única
+                    eliminarButton.onclick = () => eliminarCliente(key);
                     accionesCell.appendChild(eliminarButton);
+                    
                     accionesCell.dataset.label = 'Acciones';
                 });
             } else {
@@ -268,43 +360,6 @@
                 const cell = row.insertCell();
                 cell.colSpan = 9; // Ajustar el colspan al número de columnas
                 cell.textContent = 'No hay clientes registrados.';
-            }
-        }
-
-        function agregarCliente() {
-            const form = document.getElementById('nuevoClienteForm');
-            const cliente = form.cliente.value;
-            const telefono = form.telefono.value;
-            const email = form.email.value;
-            const fecha_trabajo = form.fecha_trabajo.value;
-            const terminado = form.terminado.value;
-            const trabajo_realizado = form.trabajo_realizado.value;
-            const observaciones = form.observaciones.value;
-            const siguiente_control = form.siguiente_control.value;
-
-            if (cliente) {
-                const nuevoCliente = {
-                    cliente: cliente,
-                    telefono: telefono,
-                    email: email,
-                    fecha_trabajo: fecha_trabajo,
-                    terminado: terminado,
-                    trabajo_realizado: trabajo_realizado,
-                    observaciones: observaciones,
-                    siguiente_control: siguiente_control
-                };
-
-                push(clientesRef, nuevoCliente)
-                    .then(() => {
-                        alert('Cliente añadido con éxito.');
-                        form.reset();
-                    })
-                    .catch((error) => {
-                        console.error("Error al añadir el cliente:", error);
-                        alert('Error al añadir el cliente. Por favor, intenta de nuevo.');
-                    });
-            } else {
-                alert('El campo Cliente es obligatorio.');
             }
         }
 
@@ -318,7 +373,7 @@
         });
 
         // Asigna la función al scope global para que el onclick en el HTML funcione
-        window.agregarCliente = agregarCliente;
+        window.agregarOActualizarCliente = agregarOActualizarCliente;
     </script>
 
     <script src="../administracion/OBJECTS JS/admin_header.js"></script>

@@ -1,4 +1,4 @@
-/* ESTILOS PARA NUESTROS_EMPLEADOS.HTML */
+/* ESTILOS PARA NUESTROS_CLIENTES.HTML */
 
 /* Estilos base */
 * {
@@ -14,10 +14,9 @@ body {
     line-height: 1.6;
 }
 
-
 /* Sección Principal */
 .centrado {
-    padding: 40px 20px;
+    padding: 30px 15px;
     background: whitesmoke;
     max-width: 1200px;
     margin: 0 auto;
@@ -26,126 +25,43 @@ body {
 .centrado h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #333;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .centrado p {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #666;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-/* Formulario Nuevo Empleado (Estilos adicionales) */
-.formulario-nuevo-empleado {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Tabla de Clientes */
+.table-container { /* Nuevo contenedor para la tabla */
+    overflow-x: auto; /* Permite el scroll horizontal en dispositivos pequeños */
+    margin: 0 auto;
+    max-width: 100%; /* Asegura que no se desborde */
 }
 
-.formulario-nuevo-empleado h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.formulario-nuevo-empleado form {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en nuevas líneas */
-    gap: 15px; /* Espacio entre los elementos del formulario */
-}
-
-.formulario-nuevo-empleado .form-row {
-    flex: 1 1 calc(50% - 15px); /* Dos columnas, con espacio entre ellas */
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-@media (max-width: 768px) {
-    .formulario-nuevo-empleado .form-row {
-        flex: 1 1 100%; /* Una columna en pantallas pequeñas */
-    }
-}
-
-.formulario-nuevo-empleado label {
-    font-weight: bold;
-    color: #555;
-    display: block; /* Asegura que la etiqueta esté en su propia línea */
-}
-
-.formulario-nuevo-empleado input[type="text"],
-.formulario-nuevo-empleado input[type="number"],
-/* .formulario-nuevo-empleado input[type="email"], REMOVIDO */
-.formulario-nuevo-empleado select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    width: 100%; /* Ocupa todo el ancho disponible */
-    box-sizing: border-box; /* Incluye padding y border en el ancho */
-}
-
-.formulario-nuevo-empleado button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    width: auto; /* Ancho automático */
-    margin-top: 10px; /* Espacio superior */
-    align-self: flex-end; /* Alinea el botón a la derecha en el contenedor flex */
-}
-
-.formulario-nuevo-empleado button:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo para el contenedor del botón para centrarlo */
-.boton-container {
-    width: 100%; /* Ocupa todo el ancho */
-    display: flex;
-    justify-content: center; /* Centra el botón horizontalmente */
-    margin-top: 20px; /* Espacio adicional arriba del botón */
-}
-
-
-/* Contenedor Responsivo para la Tabla */
-.tabla-responsiva {
-    overflow-x: auto; /* Permite el desplazamiento horizontal en la tabla */
-    margin-bottom: 40px; /* Espacio debajo de la tabla */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: #fff; /* Asegura que el fondo del contenedor sea blanco */
-}
-
-/* Tabla de Empleados */
 .centrado table {
     width: 100%;
-    min-width: 700px; /* Ajusta este valor si la tabla se ve muy apretada */
+    min-width: 600px; /* Ancho mínimo para la tabla, ajusta si es necesario */
     border-collapse: collapse;
     background: #fff;
-    box-shadow: none;
-    border-radius: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* overflow: hidden;  Movido al .table-container if se usa overflow-x */
 }
 
 .centrado th,
 .centrado td {
-    padding: 15px;
+    padding: 12px;
     text-align: left;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #333;
 }
 
@@ -153,7 +69,6 @@ body {
     background: #2c3e50;
     color: #fff;
     font-weight: bold;
-    white-space: nowrap; /* Evita que los encabezados se rompan en múltiples líneas */
 }
 
 .centrado tbody tr {
@@ -165,260 +80,62 @@ body {
     background-color: #f5f5f5;
 }
 
-.empleado-foto {
-    width: 50px; /* Tamaño de la foto del empleado */
-    height: 50px;
-    border-radius: 50%; /* Hace la foto circular */
-    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
-    display: block; /* Para centrar si es necesario */
-    margin: 0 auto; /* Centra la imagen */
-}
-
-.centrado input[type="file"] {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 0.85rem; /* Tamaño de fuente más pequeño para el input file */
-    color: #333;
-    padding: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 5px; /* Espacio entre la foto y el input de archivo */
-}
-
-.centrado button {
-    padding: 8px 15px;
-    background: #0073e6;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    white-space: nowrap; /* Evita que el texto del botón se rompa */
-}
-
-.centrado button:hover {
-    background: #005bb5;
-    transform: translateY(-2px);
-}
-
-.centrado .eliminar-btn {
-    background: #e74c3c;
-}
-
-.centrado .eliminar-btn:hover {
-    background: #c0392b;
-}
-
-/* Footer (si aplica, ya que se inyecta por JS) */
+/* Footer */
 footer {
     background: #fff;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer p {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #666;
-    margin: 5px 0;
+    margin: 4px 0;
 }
-
 
 /* Responsive Design */
-
-/* Media Query para pantallas medianas (tablets, laptops pequeñas) */
-@media (max-width: 992px) {
-    .centrado {
-        padding: 30px 15px;
-    }
-
-    .centrado h2 {
-        font-size: 1.8rem;
-    }
-
-    .centrado p {
-        font-size: 1rem;
-    }
-
-    .formulario-nuevo-empleado {
-        padding: 25px;
-    }
-
-    .formulario-nuevo-empleado h3 {
-        font-size: 1.4rem;
-    }
-
-    .formulario-nuevo-empleado .form-row label {
-        font-size: 0.95rem;
-    }
-
-    .formulario-nuevo-empleado input[type="text"],
-    .formulario-nuevo-empleado input[type="number"],
-    /* .formulario-nuevo-empleado input[type="email"], REMOVIDO */
-    .formulario-nuevo-empleado select {
-        font-size: 0.95rem;
-        padding: 9px 10px;
-    }
-
-    .formulario-nuevo-empleado button {
-        font-size: 1rem;
-        padding: 10px 18px;
-    }
-
-    .centrado th,
-    .centrado td {
-        padding: 12px;
-        font-size: 0.9rem;
-    }
-
-    .empleado-foto {
-        width: 45px;
-        height: 45px;
-    }
-
-    .centrado input[type="file"] {
-        font-size: 0.8rem;
-    }
-}
-
-/* Media Query para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
-    .centrado {
-        padding: 20px 10px;
-    }
-
-    .centrado h2 {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-    }
-
-    .centrado p {
-        font-size: 0.95rem;
-        margin-bottom: 20px;
-    }
-
-    .formulario-nuevo-empleado {
-        padding: 20px;
-        margin-bottom: 30px;
-    }
-
-    .formulario-nuevo-empleado h3 {
-        font-size: 1.3rem;
-        margin-bottom: 20px;
-    }
-
-    .formulario-nuevo-empleado .form-row {
-        gap: 6px;
-    }
-
-    .formulario-nuevo-empleado input[type="text"],
-    .formulario-nuevo-empleado input[type="number"],
-    /* .formulario-nuevo-empleado input[type="email"], REMOVIDO */
-    .formulario-nuevo-empleado select {
-        font-size: 0.9rem;
-        padding: 8px 10px;
-    }
-
-    .formulario-nuevo-empleado button {
-        font-size: 0.95rem;
-        padding: 10px 15px;
-        width: 100%;
-        max-width: 250px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Tabla responsiva para móviles */
-    .centrado thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-
-    .centrado table,
-    .centrado tbody,
-    .centrado th,
-    .centrado td,
-    .centrado tr {
-        display: block;
-        width: 100%;
-    }
-
-    .centrado tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        display: flex;
+    /* Aquí se asume que tienes un header. Si no lo tienes, puedes ignorar estas reglas. */
+    header .header-container {
         flex-direction: column;
+        text-align: center;
         padding: 15px;
     }
 
-    .centrado td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-        text-align: left;
-        font-size: 0.9rem;
-        word-wrap: break-word;
+    header h1 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
     }
 
-    .centrado td:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-
-    .centrado td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        width: calc(50% - 30px);
-        white-space: nowrap;
-        font-weight: bold;
-        color: #555;
-        text-align: left;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    /* Ajuste para elementos dentro de las celdas de la tabla en móvil */
-    .empleado-foto {
-        margin: 0; /* Elimina el margen automático en móvil para control manual */
-        display: inline-block; /* Permite que el texto se alinee al lado si el espacio lo permite */
-        vertical-align: middle; /* Alinea verticalmente con el texto adyacente */
-        margin-right: 10px; /* Espacio a la derecha de la foto */
-    }
-
-    .centrado td input[type="file"],
-    /* .centrado td input[type="email"], REMOVIDO */
-    .centrado td select {
-        width: 100%;
-        margin-right: 0;
-        display: block;
-        margin-top: 5px;
-    }
-
-    .centrado td button {
-        margin-top: 10px;
-        width: 100%;
-        max-width: none;
-    }
-
-    .centrado td .eliminar-btn {
+    nav ul {
+        justify-content: center;
         margin-top: 15px;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    /* Manejo de tabla responsive para dispositivos pequeños */
+    .centrado table {
+        min-width: unset; /* Elimina el min-width para permitir que se ajuste mejor */
     }
 }
 
-/* Media Query para pantallas muy pequeñas (smartphones pequeños) */
 @media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
     .centrado h2 {
         font-size: 1.4rem;
     }
@@ -427,23 +144,32 @@ footer p {
         font-size: 0.9rem;
     }
 
-    .formulario-nuevo-empleado h3 {
-        font-size: 1.2rem;
-    }
-
-    .formulario-nuevo-empleado .form-row label,
-    .formulario-nuevo-empleado input,
-    .formulario-nuevo-empleado select,
-    .formulario-nuevo-empleado button {
-        font-size: 0.85rem;
-    }
-
+    /* Reducir aún más el padding para las celdas en pantallas muy pequeñas si es necesario */
+    .centrado th,
     .centrado td {
-        padding-left: 45%;
+        padding: 8px;
+        font-size: 0.8rem;
     }
 
-    .centrado td:before {
-        left: 10px;
-        width: calc(45% - 20px);
+    footer p {
+        font-size: 0.7rem;
     }
+}
+
+/* Estilos para el botón de editar */
+.editar-btn {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-right: 5px; /* Espacio a la derecha para que no se pegue al botón de eliminar */
+}
+
+.editar-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
 }

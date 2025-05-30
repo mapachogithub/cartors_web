@@ -79,8 +79,7 @@
             }
         }
 
-        .eliminar-btn {
-            background-color: #dc3545; /* Rojo */
+        .eliminar-btn, .editar-btn { /* Agregamos .editar-btn */
             color: white;
             border: none;
             padding: 8px 12px;
@@ -88,16 +87,30 @@
             cursor: pointer;
             font-size: 0.9rem;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 5px; /* Espacio entre botones */
+        }
+
+        .eliminar-btn {
+            background-color: #dc3545; /* Rojo */
         }
 
         .eliminar-btn:hover {
             background-color: #c82333;
             transform: translateY(-1px);
         }
+
+        .editar-btn { /* Estilos para el botón de editar */
+            background-color: #007bff; /* Azul */
+        }
+
+        .editar-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
     </style>
 </head>
 <body>
-    <!-- Llamando al objeto admin_header a este html -->
     <div id="admin-header-placeholder"></div>
 
     <main>
@@ -108,7 +121,7 @@
             <div class="formulario-nuevo-empleado">
                 <h3>Añadir Nuevo Empleado</h3>
                 <form id="nuevoEmpleadoForm">
-                    <div class="form-row">
+                    <input type="hidden" id="empleadoKey" name="empleadoKey"> <div class="form-row">
                         <label for="nombre_apellido">Nombre y Apellido:</label>
                         <input type="text" id="nombre_apellido" name="nombre_apellido" required>
                     </div>
@@ -132,7 +145,7 @@
                         <label for="direccion">Dirección:</label>
                         <input type="text" id="direccion" name="direccion">
                     </div>
-                    <button type="button" onclick="agregarEmpleado()">Añadir Empleado</button>
+                    <button type="button" id="submitButton" onclick="agregarOActualizarEmpleado()">Añadir Empleado</button>
                 </form>
             </div>
 
@@ -149,44 +162,16 @@
                     </tr>
                 </thead>
                 <tbody id="tablaEmpleadosBody">
-                    <tr>
-                        <td data-label="Nombre y Apellido">Carlos Eduardo Torres</td>
-                        <td data-label="Cargo">Gerente General</td>
-                        <td data-label="Cédula">12345678</td>
-                        <td data-label="Teléfono">+573113299298</td>
-                        <td data-label="Email">cartorssas.gerencia@gmail.com</td>
-                        <td data-label="Dirección">Calle 131#123-91, Bogotá</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Nombre y Apellido">Laura Torres Gonzalez</td>
-                        <td data-label="Cargo">Administradora</td>
-                        <td data-label="Cédula">87654321</td>
-                        <td data-label="Teléfono">+573226848093</td>
-                        <td data-label="Email">cartorssas.gerencia@gmail.com</td>
-                        <td data-label="Dirección">Calle 131#123-91, Bogotá</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Nombre y Apellido">Yenny Rebolledo</td>
-                        <td data-label="Cargo">Contadora</td>
-                        <td data-label="Cédula">45678912</td>
-                        <td data-label="Teléfono">+573205551234</td>
-                        <td data-label="Email">yennyrebolledo@gmail.com</td>
-                        <td data-label="Dirección">Avenida 3 #12-45, Cali</td>
-                        <td></td>
-                    </tr>
-                </tbody>
+                    </tbody>
             </table>
         </section>
     </main>
 
-    <!-- Llamando al objeto footer_objetc.js a este html -->
     <div id="admin-footer-placeholder"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getDatabase, ref, onValue, push, remove, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { getDatabase, ref, onValue, push, remove, get, update } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
         import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
 
         // Inicializa Firebase
@@ -194,27 +179,20 @@
         const database = getDatabase(app);
         const empleadosRef = ref(database, 'empleados'); // Nueva referencia para empleados
         const tablaEmpleadosBody = document.getElementById('tablaEmpleadosBody');
+        const nuevoEmpleadoForm = document.getElementById('nuevoEmpleadoForm');
+        const submitButton = document.getElementById('submitButton');
+        const empleadoKeyField = document.getElementById('empleadoKey');
 
         async function guardarEmpleadosIniciales() {
-            const empleadosIniciales = [];
-            const filasIniciales = tablaEmpleadosBody.querySelectorAll('tr');
-
-            filasIniciales.forEach(fila => {
-                const nombreApellido = fila.querySelector('td[data-label="Nombre y Apellido"]')?.textContent;
-                const cargo = fila.querySelector('td[data-label="Cargo"]')?.textContent;
-                const cedula = fila.querySelector('td[data-label="Cédula"]')?.textContent;
-                const telefono = fila.querySelector('td[data-label="Teléfono"]')?.textContent;
-                const email = fila.querySelector('td[data-label="Email"]')?.textContent;
-                const direccion = fila.querySelector('td[data-label="Dirección"]')?.textContent;
-
-                if (nombreApellido && cedula) { // Asegurarse de tener datos clave
-                    empleadosIniciales.push({ nombre_apellido: nombreApellido, cargo: cargo, cedula: cedula, telefono: telefono, email: email, direccion: direccion });
-                }
-            });
+            const empleadosIniciales = [
+                { nombre_apellido: "Carlos Eduardo Torres", cargo: "Gerente General", cedula: "12345678", telefono: "+573113299298", email: "cartorssas.gerencia@gmail.com", direccion: "Calle 131#123-91, Bogotá" },
+                { nombre_apellido: "Laura Torres Gonzalez", cargo: "Administradora", cedula: "87654321", telefono: "+573226848093", email: "cartorssas.gerencia@gmail.com", direccion: "Calle 131#123-91, Bogotá" },
+                { nombre_apellido: "Yenny Rebolledo", cargo: "Contadora", cedula: "45678912", telefono: "+573205551234", email: "yennyrebolledo@gmail.com", direccion: "Avenida 3 #12-45, Cali" }
+            ];
 
             // Verificar si el empleado ya existe por su cédula antes de guardar
             for (const empleado of empleadosIniciales) {
-                const empleadoSnapshot = await get(ref(database, `empleados`));
+                const empleadoSnapshot = await get(empleadosRef); // Obtener todos los empleados
                 let existe = false;
                 empleadoSnapshot.forEach(childSnapshot => {
                     if (childSnapshot.val().cedula === empleado.cedula) {
@@ -229,16 +207,74 @@
 
         function eliminarEmpleado(key) {
             if (confirm('¿Estás seguro de que deseas eliminar a este empleado?')) {
-                const empleadoRef = ref(database, `empleados/${key}`);
-                remove(empleadoRef)
+                const empleadoPath = `empleados/${key}`;
+                remove(ref(database, empleadoPath))
                     .then(() => {
                         alert('Empleado eliminado con éxito.');
-                        // La tabla se actualizará automáticamente gracias al listener onValue
                     })
                     .catch((error) => {
                         console.error("Error al eliminar al empleado:", error);
                         alert('Error al eliminar al empleado. Por favor, intenta de nuevo.');
                     });
+            }
+        }
+
+        function cargarFormularioParaEdicion(key, empleado) {
+            empleadoKeyField.value = key; // Guarda la clave del empleado en el campo oculto
+            nuevoEmpleadoForm.nombre_apellido.value = empleado.nombre_apellido || '';
+            nuevoEmpleadoForm.cargo.value = empleado.cargo || '';
+            nuevoEmpleadoForm.cedula.value = empleado.cedula || '';
+            nuevoEmpleadoForm.telefono.value = empleado.telefono || '';
+            nuevoEmpleadoForm.email.value = empleado.email || '';
+            nuevoEmpleadoForm.direccion.value = empleado.direccion || '';
+            submitButton.textContent = 'Actualizar Empleado'; // Cambia el texto del botón
+        }
+
+        function agregarOActualizarEmpleado() {
+            const key = empleadoKeyField.value;
+            const nombre_apellido = nuevoEmpleadoForm.nombre_apellido.value;
+            const cargo = nuevoEmpleadoForm.cargo.value;
+            const cedula = nuevoEmpleadoForm.cedula.value;
+            const telefono = nuevoEmpleadoForm.telefono.value;
+            const email = nuevoEmpleadoForm.email.value;
+            const direccion = nuevoEmpleadoForm.direccion.value;
+
+            if (nombre_apellido && cedula) {
+                const datosEmpleado = {
+                    nombre_apellido: nombre_apellido,
+                    cargo: cargo,
+                    cedula: cedula,
+                    telefono: telefono,
+                    email: email,
+                    direccion: direccion
+                };
+
+                if (key) { // Si hay una clave, estamos editando
+                    const empleadoPath = `empleados/${key}`;
+                    update(ref(database, empleadoPath), datosEmpleado)
+                        .then(() => {
+                            alert('Empleado actualizado con éxito.');
+                            nuevoEmpleadoForm.reset();
+                            empleadoKeyField.value = ''; // Limpiar la clave
+                            submitButton.textContent = 'Añadir Empleado'; // Restaurar el texto del botón
+                        })
+                        .catch((error) => {
+                            console.error("Error al actualizar el empleado:", error);
+                            alert('Error al actualizar el empleado. Por favor, intenta de nuevo.');
+                        });
+                } else { // Si no hay clave, estamos añadiendo
+                    push(empleadosRef, datosEmpleado)
+                        .then(() => {
+                            alert('Empleado añadido con éxito.');
+                            nuevoEmpleadoForm.reset();
+                        })
+                        .catch((error) => {
+                            console.error("Error al añadir el empleado:", error);
+                            alert('Error al añadir el empleado. Por favor, intenta de nuevo.');
+                        });
+                }
+            } else {
+                alert('Los campos Nombre y Apellido y Cédula son obligatorios.');
             }
         }
 
@@ -272,13 +308,21 @@
                     cell.textContent = empleado.direccion || 'N/A';
                     cell.dataset.label = 'Dirección';
 
-                    // Columna de acciones con el botón Eliminar
+                    // Columna de acciones con los botones Editar y Eliminar
                     const accionesCell = row.insertCell();
+                    
+                    const editarButton = document.createElement('button');
+                    editarButton.textContent = 'Editar';
+                    editarButton.classList.add('editar-btn');
+                    editarButton.onclick = () => cargarFormularioParaEdicion(key, empleado);
+                    accionesCell.appendChild(editarButton);
+
                     const eliminarButton = document.createElement('button');
                     eliminarButton.textContent = 'Eliminar';
                     eliminarButton.classList.add('eliminar-btn');
                     eliminarButton.onclick = () => eliminarEmpleado(key); // Pasar la clave única
                     accionesCell.appendChild(eliminarButton);
+                    
                     accionesCell.dataset.label = 'Acciones';
                 });
             } else {
@@ -286,39 +330,6 @@
                 const cell = row.insertCell();
                 cell.colSpan = 7; // Ajustar el colspan al número de columnas
                 cell.textContent = 'No hay empleados registrados.';
-            }
-        }
-
-        function agregarEmpleado() {
-            const form = document.getElementById('nuevoEmpleadoForm');
-            const nombre_apellido = form.nombre_apellido.value;
-            const cargo = form.cargo.value;
-            const cedula = form.cedula.value;
-            const telefono = form.telefono.value;
-            const email = form.email.value;
-            const direccion = form.direccion.value;
-
-            if (nombre_apellido && cedula) {
-                const nuevoEmpleado = {
-                    nombre_apellido: nombre_apellido,
-                    cargo: cargo,
-                    cedula: cedula,
-                    telefono: telefono,
-                    email: email,
-                    direccion: direccion
-                };
-
-                push(empleadosRef, nuevoEmpleado)
-                    .then(() => {
-                        alert('Empleado añadido con éxito.');
-                        form.reset();
-                    })
-                    .catch((error) => {
-                        console.error("Error al añadir el empleado:", error);
-                        alert('Error al añadir el empleado. Por favor, intenta de nuevo.');
-                    });
-            } else {
-                alert('Los campos Nombre y Apellido y Cédula son obligatorios.');
             }
         }
 
@@ -335,7 +346,7 @@
         });
 
         // Asigna la función al scope global para que el onclick en el HTML funcione
-        window.agregarEmpleado = agregarEmpleado;
+        window.agregarOActualizarEmpleado = agregarOActualizarEmpleado;
     </script>
 
     <script src="../administracion/OBJECTS JS/admin_header.js"></script>

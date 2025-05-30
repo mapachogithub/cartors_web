@@ -13,11 +13,13 @@
     <main>
         <section class="centrado">
             <h2>Certificaciones Pendientes</h2>
-            <p>Aquí puedes ver y eliminar las certificaciones pendientes, e ingresar nuevas.</p>
+            <p>Aquí puedes ver, editar y eliminar las certificaciones pendientes, e ingresar nuevas.</p>
 
             <div class="formulario-nueva-certificacion">
                 <h3>Ingresar Aquí Una Nueva Certificación Pendiente</h3>
                 <form id="formulario-nueva-certificacion">
+                    <input type="hidden" id="certificacionPendienteKey" name="certificacionPendienteKey">
+
                     <div class="form-row">
                         <label for="nombre_legal">Nombre Empresa:</label>
                         <input type="text" id="nombre_legal" name="nombre_legal" required>
@@ -54,7 +56,7 @@
                         <label for="observaciones">Observaciones:</label>
                         <input type="text" id="observaciones" name="observaciones">
                     </div>
-                    <button type="button" onclick="guardarNuevaCertificacion()">Guardar Certificación</button>
+                    <button type="button" id="submitButton" onclick="guardarOActualizarCertificacion()">Guardar Certificación</button>
                 </form>
             </div>
 
@@ -88,15 +90,21 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
-        import { firebaseConfig } from './firebaseConfig.js'; //  <-  ¡Verifica esta ruta!
+        // Importa 'update' para la funcionalidad de edición
+        import { getDatabase, ref, onValue, push, remove, update } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { firebaseConfig } from './firebaseConfig.js'; // <- ¡Verifica esta ruta!
 
         // Inicializa Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const solicitudesRef = ref(database, 'solicitudes-certificacion'); // Referencia a donde se guardan las solicitudes
         const listaPendientesTabla = document.getElementById('lista-pendientes'); // Referencia al tbody
+        const formularioNuevaCertificacion = document.getElementById('formulario-nueva-certificacion');
+        const certificacionPendienteKeyField = document.getElementById('certificacionPendienteKey');
+        const submitButton = document.getElementById('submitButton');
 
+
+        // Función para eliminar una solicitud de certificación
         function eliminarCertificacion(key) {
             if (confirm('¿Estás seguro de que deseas eliminar esta certificación?')) {
                 const certificacionRef = ref(database, `solicitudes-certificacion/${key}`);
@@ -112,24 +120,142 @@
             }
         }
 
+        // NUEVA FUNCIÓN: Carga los datos de una certificación en el formulario para su edición
+        function cargarFormularioParaEdicion(key, certificacion) {
+            certificacionPendienteKeyField.value = key; // Guarda la clave del registro que se va a editar
+
+            // Rellena los campos del formulario con los datos del registro
+            formularioNuevaCertificacion.nombre_legal.value = certificacion.nombre_legal || '';
+            formularioNuevaCertificacion.nit_rut.value = certificacion.nit_rut || '';
+            formularioNuevaCertificacion.contacto.value = certificacion.contacto || '';
+            formularioNuevaCertificacion.correo_contacto.value = certificacion.correo_contacto || '';
+            formularioNuevaCertificacion.tipo_instalacion.value = certificacion.tipo_instalacion || '';
+            formularioNuevaCertificacion.nombre_instalacion.value = certificacion.nombre_instalacion || '';
+            formularioNuevaCertificacion.ciudad_instalacion.value = certificacion.ciudad_instalacion || '';
+            formularioNuevaCertificacion.departamento_instalacion.value = certificacion.departamento_instalacion || '';
+            formularioNuevaCertificacion.observaciones.value = certificacion.observaciones || '';
+            // fecha_solicitud no se carga para edición si se genera automáticamente
+
+            submitButton.textContent = 'Actualizar Certificación'; // Cambia el texto del botón
+        }
+
+        // FUNCIÓN MODIFICADA: Guarda una nueva certificación o actualiza una existente
+        function guardarOActualizarCertificacion() {
+            const key = certificacionPendienteKeyField.value; // Obtiene la clave del campo oculto
+
+            const nombreLegal = document.getElementById('nombre_legal').value;
+            const nitRut = document.getElementById('nit_rut').value;
+            const contacto = document.getElementById('contacto').value;
+            const correoContacto = document.getElementById('correo_contacto').value;
+            const tipoInstalacion = document.getElementById('tipo_instalacion').value;
+            const nombreInstalacion = document.getElementById('nombre_instalacion').value;
+            const ciudadInstalacion = document.getElementById('ciudad_instalacion').value;
+            const departamentoInstalacion = document.getElementById('departamento_instalacion').value;
+            const observaciones = document.getElementById('observaciones').value;
+            const fechaSolicitud = Date.now(); // Timestamp actual, se actualiza siempre al guardar/editar
+
+            if (nombreLegal && nitRut) { // Validar campos obligatorios
+                const datosCertificacion = {
+                    nombre_legal: nombreLegal,
+                    nit_rut: nitRut,
+                    contacto: contacto,
+                    correo_contacto: correoContacto,
+                    tipo_instalacion: tipoInstalacion,
+                    nombre_instalacion: nombreInstalacion,
+                    ciudad_instalacion: ciudadInstalacion,
+                    departamento_instalacion: departamentoInstalacion,
+                    observaciones: observaciones,
+                    fecha_solicitud: fechaSolicitud // Se actualiza la fecha de solicitud al guardar o editar
+                };
+
+                if (key) { // Si hay una key, es una actualización
+                    const certificacionRef = ref(database, `solicitudes-certificacion/${key}`);
+                    update(certificacionRef, datosCertificacion)
+                        .then(() => {
+                            alert('Certificación actualizada con éxito.');
+                            formularioNuevaCertificacion.reset(); // Limpia el formulario
+                            certificacionPendienteKeyField.value = ''; // Limpia la clave oculta
+                            submitButton.textContent = 'Guardar Certificación'; // Restaura el texto del botón
+                        })
+                        .catch((error) => {
+                            console.error("Error al actualizar la certificación:", error);
+                            alert('Error al actualizar la certificación. Por favor, intenta de nuevo.');
+                        });
+                } else { // Si no hay key, es una nueva certificación
+                    push(solicitudesRef, datosCertificacion)
+                        .then(() => {
+                            alert('Nueva certificación pendiente guardada con éxito.');
+                            formularioNuevaCertificacion.reset();
+                        })
+                        .catch((error) => {
+                            console.error("Error al guardar la certificación:", error);
+                            alert('Error al guardar la certificación. Por favor, intenta de nuevo.');
+                        });
+                }
+            } else {
+                alert('Los campos "Nombre Empresa" y "NIT/RUT" son obligatorios.');
+            }
+        }
+
+
+        // Función para mostrar el listado de certificaciones pendientes
         function mostrarListadoPendientes(data) {
             listaPendientesTabla.innerHTML = ''; // Limpia la tabla
             if (data) {
                 Object.entries(data).forEach(([key, solicitud]) => {
                     const row = listaPendientesTabla.insertRow();
-                    row.insertCell().textContent = solicitud.nombre_legal || 'N/A';
-                    row.insertCell().textContent = solicitud.nit_rut || 'N/A';
-                    row.insertCell().textContent = solicitud.contacto || 'N/A';
-                    row.insertCell().textContent = solicitud.correo_contacto || 'N/A';
-                    row.insertCell().textContent = solicitud.tipo_instalacion === 'otro' ? solicitud.otro_tipo : solicitud.tipo_instalacion || 'N/A';
-                    row.insertCell().textContent = solicitud.nombre_instalacion || 'N/A';
-                    row.insertCell().textContent = solicitud.ciudad_instalacion || 'N/A';
-                    row.insertCell().textContent = solicitud.departamento_instalacion || 'N/A';
-                    row.insertCell().textContent = solicitud.observaciones || 'N/A';
-                    row.insertCell().textContent = solicitud.fecha_solicitud ? new Date(solicitud.fecha_solicitud).toLocaleDateString() : 'N/A';
+                    
+                    let cell = row.insertCell();
+                    cell.textContent = solicitud.nombre_legal || 'N/A';
+                    cell.dataset.label = 'Nombre Empresa'; // Añadir data-label para responsive
 
-                    // Columna de acciones con el botón Eliminar
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.nit_rut || 'N/A';
+                    cell.dataset.label = 'NIT/RUT';
+
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.contacto || 'N/A';
+                    cell.dataset.label = 'Contacto';
+
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.correo_contacto || 'N/A';
+                    cell.dataset.label = 'Correo Contacto';
+
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.tipo_instalacion || 'N/A';
+                    cell.dataset.label = 'Tipo Instalación';
+
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.nombre_instalacion || 'N/A';
+                    cell.dataset.label = 'Nombre Instalación';
+
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.ciudad_instalacion || 'N/A';
+                    cell.dataset.label = 'Ciudad Instalación';
+
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.departamento_instalacion || 'N/A';
+                    cell.dataset.label = 'Departamento Instalación';
+
+                    cell = row.insertCell();
+                    cell.textContent = solicitud.observaciones || 'N/A';
+                    cell.dataset.label = 'Observaciones';
+
+                    cell = row.insertCell();
+                    // Formatea la fecha si existe y es un timestamp
+                    cell.textContent = solicitud.fecha_solicitud ? new Date(solicitud.fecha_solicitud).toLocaleDateString() : 'N/A';
+                    cell.dataset.label = 'Fecha Solicitud';
+
+                    // Columna de acciones con los botones Editar y Eliminar
                     const accionesCell = row.insertCell();
+                    accionesCell.dataset.label = 'Acciones'; // Añadir data-label
+
+                    const editarButton = document.createElement('button');
+                    editarButton.textContent = 'Editar';
+                    editarButton.classList.add('editar-btn'); // Añade una clase para estilos
+                    editarButton.onclick = () => cargarFormularioParaEdicion(key, solicitud); // Llama a la nueva función de edición
+                    accionesCell.appendChild(editarButton);
+
                     const eliminarButton = document.createElement('button');
                     eliminarButton.textContent = 'Eliminar';
                     eliminarButton.classList.add('eliminar-btn');
@@ -144,42 +270,6 @@
             }
         }
 
-        function guardarNuevaCertificacion() {
-            const nombreLegal = document.getElementById('nombre_legal').value;
-            const nitRut = document.getElementById('nit_rut').value;
-            const contacto = document.getElementById('contacto').value;
-            const correoContacto = document.getElementById('correo_contacto').value;
-            const tipoInstalacion = document.getElementById('tipo_instalacion').value;
-            const nombreInstalacion = document.getElementById('nombre_instalacion').value;
-            const ciudadInstalacion = document.getElementById('ciudad_instalacion').value;
-            const departamentoInstalacion = document.getElementById('departamento_instalacion').value;
-            const observaciones = document.getElementById('observaciones').value;
-            const fechaSolicitud = Date.now(); // Timestamp actual
-
-            const nuevaCertificacion = {
-                nombre_legal: nombreLegal,
-                nit_rut: nitRut,
-                contacto: contacto,
-                correo_contacto: correoContacto,
-                tipo_instalacion: tipoInstalacion,
-                nombre_instalacion: nombreInstalacion,
-                ciudad_instalacion: ciudadInstalacion,
-                departamento_instalacion: departamentoInstalacion,
-                observaciones: observaciones,
-                fecha_solicitud: fechaSolicitud
-            };
-
-            push(solicitudesRef, nuevaCertificacion)
-                .then(() => {
-                    alert('Nueva certificación pendiente guardada con éxito.');
-                    document.getElementById('formulario-nueva-certificacion').reset();
-                })
-                .catch((error) => {
-                    console.error("Error al guardar la certificación:", error);
-                    alert('Error al guardar la certificación. Por favor, intenta de nuevo.');
-                });
-        }
-
         // Escucha los cambios en la base de datos de Firebase
         onValue(solicitudesRef, (snapshot) => {
             const data = snapshot.val();
@@ -189,8 +279,10 @@
             listaPendientesTabla.innerHTML = '<tr><td colspan="11">Error al cargar las solicitudes.</td></tr>';
         });
 
-        // Asigna la función al scope global para que el onclick en el HTML funcione
-        window.guardarNuevaCertificacion = guardarNuevaCertificacion;
+        // Asigna las funciones al scope global para que el onclick en el HTML funcione
+        window.guardarOActualizarCertificacion = guardarOActualizarCertificacion;
+        window.eliminarCertificacion = eliminarCertificacion; // Asegúrate de que esta también esté accesible
+        window.cargarFormularioParaEdicion = cargarFormularioParaEdicion; // Asegúrate de que esta también esté accesible
     </script>
 
     <script src="../administracion/OBJECTS JS/admin_header.js"></script>
