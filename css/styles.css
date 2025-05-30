@@ -48,7 +48,7 @@ body {
 
 /* Estilo para la imagen de bienvenida que aparece en index.html. */
 .welcome-image {
-    width: 200px;
+    width: 300px;
     height: auto;
     display: block;
     margin: 20px auto;
@@ -192,87 +192,6 @@ body {
 /* Estilo específico para las imágenes en index.html. */
 .index-image {
     background: none; /* Me aseguro de que no tengan un fondo inesperado. */
-}
-
-/* ------------------------------------------------------------------------------------------------------- */
-
-/* Estilo del botón LOGIN. */
-
-/* Este es el botón fijo que aparece debajo de la imagen de bienvenida. */
-.login-btn {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 8px 16px; /* Tamaño del padding. */
-    background: linear-gradient(135deg, #2c3e50 0%, #1abc9c 100%); /* Gradiente de fondo. */
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px; /* Tamaño de la fuente. */
-    transition: all 0.3s ease;
-}
-
-.login-btn:hover {
-    background: linear-gradient(135deg, #34495e 0%, #16a085 100%); /* Cambia el gradiente al pasar el ratón. */
-    transform: translateY(-2px); /* Se eleva ligeramente. */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-}
-
-/* Estilos para el modal de login. */
-.modal {
-    display: none; /* Oculto por defecto. */
-    position: fixed; /* Fijo en la pantalla. */
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 90%;
-    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro. */
-    z-index: 1001; /* Para que esté por encima de la mayoría de los elementos. */
-}
-
-.modal-content {
-    background: #fff;
-    margin: 15% auto; /* Centra el contenido vertical y horizontalmente. */
-    padding: 20px;
-    width: 300px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.modal-content button {
-    padding: 10px 20px;
-    background: #2c3e50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal-content button:hover {
-    background: #34495e; /* Cambia el color al pasar el ratón. */
-}
-
-.close {
-    float: right; /* Para que la "x" de cerrar se alinee a la derecha. */
-    cursor: pointer;
-    font-size: 24px;
-    color: #333;
-}
-
-.close:hover {
-    color: #0073e6; /* Cambia de color al pasar el ratón. */
 }
 
 /* ---------------------------------------------------------------------------------------------- */
